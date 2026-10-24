@@ -55,6 +55,53 @@ class GameController extends ChangeNotifier {
     snapshot = null;
     result = null;
   });
+  Future<PageResult<Companion>> history({int offset = 0}) async {
+    final page = await repository.history(offset: offset);
+    if (snapshot == null) return page;
+    final chars = {
+      for (final c in snapshot!.characters) c.id: c,
+      for (final c in page.items) c.id: c,
+    };
+    // Preserve the authoritative current-character state and next-generation permissions.
+    chars[snapshot!.current.id] = snapshot!.current;
+    final ordered = chars.values.toList()
+      ..sort((a, b) => a.generation.compareTo(b.generation));
+    snapshot = GameSnapshot(
+      name: snapshot!.name,
+      characters: ordered,
+      deeds: snapshot!.deeds,
+      todayCount: snapshot!.todayCount,
+    );
+    notifyListeners();
+    return page;
+  }
+
+  Future<PageResult<Deed>> deedsFor(String id, {int offset = 0}) async {
+    final page = await repository.deedsFor(id, offset: offset);
+    if (snapshot == null) return page;
+    final deeds = {
+      for (final d in snapshot!.deeds) d.id: d,
+      for (final d in page.items) d.id: d,
+    };
+    snapshot = GameSnapshot(
+      name: snapshot!.name,
+      characters: snapshot!.characters,
+      deeds: deeds.values.toList(),
+      todayCount: snapshot!.todayCount,
+    );
+    notifyListeners();
+    return page;
+  }
+
+  Future<void> refresh() async {
+    if (busy) return;
+    final latest = await repository.load();
+    if (latest != null) {
+      snapshot = latest;
+      notifyListeners();
+    }
+  }
+
   void dismissResult() {
     result = null;
     notifyListeners();

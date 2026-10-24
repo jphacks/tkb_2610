@@ -24,10 +24,10 @@ class ApiRepository implements GameRepository {
     };
     final ordered = chars.values.toList()
       ..sort((a, b) => a.generation.compareTo(b.generation));
-    final deeds = {
-      for (final d in _data?.deeds ?? <Deed>[]) d.id: d,
-      if (deed != null) deed.id: deed,
-    };
+    final deeds = {for (final d in _data?.deeds ?? <Deed>[]) d.id: d};
+    if (deed != null) {
+      deeds[deed.id] = deed;
+    }
     return _data = GameSnapshot(
       name: name ?? data.name,
       characters: ordered,
@@ -132,6 +132,7 @@ class ApiRepository implements GameRepository {
     _deletedOnServer = false;
   }
 
+  @override
   Future<PageResult<Companion>> history({int offset = 0}) async {
     final response = await client.request(
       'GET',
@@ -141,6 +142,7 @@ class ApiRepository implements GameRepository {
     return pageFromApi(response, companionFromApi);
   }
 
+  @override
   Future<PageResult<Deed>> deedsFor(
     String characterId, {
     int offset = 0,

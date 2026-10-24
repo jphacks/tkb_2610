@@ -5,6 +5,7 @@ import '../core/theme.dart';
 import '../data/models.dart';
 import '../widgets/character_view.dart';
 import '../widgets/common.dart';
+import '../widgets/paged_list.dart';
 
 class DisplayCase extends StatelessWidget {
   const DisplayCase({super.key, required this.character});
@@ -58,11 +59,12 @@ class GalleryPage extends StatelessWidget {
   const GalleryPage({super.key, required this.controller});
   final GameController controller;
   @override
-  Widget build(BuildContext context) {
-    final items = controller.snapshot!.characters.reversed.toList();
-    return PageBody(
+  Widget build(BuildContext context) => PagedList<Companion>(
+    load: (offset) => controller.history(offset: offset),
+    idOf: (c) => c.id,
+    builder: (items, total, footer) => PageBody(
       title: '歴代図鑑',
-      trailing: Text('${items.length}体', style: const TextStyle(color: muted)),
+      trailing: Text('$total体', style: const TextStyle(color: muted)),
       children: [
         LayoutBuilder(
           builder: (context, b) => Wrap(
@@ -124,9 +126,10 @@ class GalleryPage extends StatelessWidget {
               style: TextStyle(fontSize: 12, color: muted),
             ),
           ),
+        footer,
       ],
-    );
-  }
+    ),
+  );
 }
 
 class CharacterDetailPage extends StatefulWidget {
@@ -142,9 +145,54 @@ class CharacterDetailPage extends StatefulWidget {
 }
 
 class _CharacterDetailPageState extends State<CharacterDetailPage> {
-  int limit = 20;
+  String? loadError;
+  bool finding = false;
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(findCharacter);
+  }
+
+  Future<void> findCharacter() async {
+    if (widget.controller.snapshot!.characters.any(
+      (c) => c.id == widget.characterId,
+    )) {
+      return;
+    }
+    setState(() {
+      finding = true;
+      loadError = null;
+    });
+    try {
+      var offset = 0;
+      while (true) {
+        final page = await widget.controller.history(offset: offset);
+        if (!mounted) return;
+        if (page.items.any((c) => c.id == widget.characterId) ||
+            !page.hasMore ||
+            page.items.isEmpty) {
+          break;
+        }
+        offset = page.nextOffset;
+      }
+    } catch (e) {
+      loadError = GameController.message(e);
+    }
+    if (mounted) setState(() => finding = false);
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (finding) return const Center(child: CircularProgressIndicator());
+    if (loadError != null) {
+      return PageBody(
+        title: '育成記録',
+        children: [
+          ErrorNotice(loadError!),
+          TextButton(onPressed: findCharacter, child: const Text('再読み込み')),
+        ],
+      );
+    }
     final matches = widget.controller.snapshot!.characters.where(
       (c) => c.id == widget.characterId,
     );
@@ -161,137 +209,132 @@ class _CharacterDetailPageState extends State<CharacterDetailPage> {
       );
     }
     final c = matches.first;
-    final deeds =
-        widget.controller.snapshot!.deeds
-            .where((d) => d.characterId == c.id)
-            .toList()
-          ..sort((a, b) => b.at.compareTo(a.at));
-    return PageBody(
-      title: '育成記録',
-      trailing: IconButton(
-        tooltip: '図鑑へ戻る',
-        onPressed: () => context.go('/gallery'),
-        icon: const Icon(Icons.arrow_back_rounded),
-      ),
-      children: [
-        Panel(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(child: DisplayCase(character: c)),
-                  const SizedBox(width: 18),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '第${c.generation}世代',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 19,
-                          ),
-                        ),
-                        Text(
-                          c.stageLabel,
-                          style: const TextStyle(color: muted),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(c.evolutionLabel),
-                        Text('いっしょに ${c.daysAt(DateTime.now())}日'),
-                        const Divider(height: 24),
-                        Text('累計XP　${c.xp}'),
-                        Text('善行　${deeds.length}件'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              Text(
-                '${shortDate(c.bornAt)} 〜 ${c.endedAt == null ? 'いま' : shortDate(c.endedAt!)}',
-                style: const TextStyle(color: muted),
-              ),
-            ],
-          ),
+    return PagedList<Deed>(
+      key: ValueKey(widget.characterId),
+      load: (offset) =>
+          widget.controller.deedsFor(widget.characterId, offset: offset),
+      idOf: (d) => d.id,
+      builder: (deeds, total, footer) => PageBody(
+        title: '育成記録',
+        trailing: IconButton(
+          tooltip: '図鑑へ戻る',
+          onPressed: () => context.go('/gallery'),
+          icon: const Icon(Icons.arrow_back_rounded),
         ),
-        const SizedBox(height: 24),
-        const Text(
-          'この子との善行',
-          style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 14),
-        if (deeds.isEmpty)
-          const Panel(
+        children: [
+          Panel(
             child: Column(
               children: [
-                Icon(Icons.auto_stories_outlined, color: muted, size: 32),
-                SizedBox(height: 12),
-                Text('まだ記録はありません'),
+                Row(
+                  children: [
+                    Expanded(child: DisplayCase(character: c)),
+                    const SizedBox(width: 18),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '第${c.generation}世代',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 19,
+                            ),
+                          ),
+                          Text(
+                            c.stageLabel,
+                            style: const TextStyle(color: muted),
+                          ),
+                          const SizedBox(height: 12),
+                          Text(c.evolutionLabel),
+                          Text('いっしょに ${c.daysAt(DateTime.now())}日'),
+                          const Divider(height: 24),
+                          Text('累計XP　${c.xp}'),
+                          Text('善行　${c.deedCount ?? total}件'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
                 Text(
-                  '小さな善いことから、残してみよう。',
-                  style: TextStyle(fontSize: 12, color: muted),
+                  '${shortDate(c.bornAt)} 〜 ${c.endedAt == null ? 'いま' : shortDate(c.endedAt!)}',
+                  style: const TextStyle(color: muted),
                 ),
               ],
             ),
           ),
-        ...deeds
-            .take(limit)
-            .map(
-              (d) => Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: Panel(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${shortDate(d.at)}  ${d.at.toUtc().add(const Duration(hours: 9)).hour.toString().padLeft(2, '0')}:${d.at.minute.toString().padLeft(2, '0')}',
-                        style: const TextStyle(fontSize: 11, color: muted),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        d.text,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Icon(
-                            categoryIcons[d.category],
-                            color: categoryColors[d.category],
-                            size: 18,
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            attributeNames[d.category],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          const Spacer(),
-                          Text(
-                            'XP +${d.xp}',
-                            style: const TextStyle(
-                              color: orange,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        d.praise,
-                        style: const TextStyle(fontSize: 12, color: muted),
-                      ),
-                    ],
+          const SizedBox(height: 24),
+          const Text(
+            'この子との善行',
+            style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 14),
+          if (deeds.isEmpty)
+            const Panel(
+              child: Column(
+                children: [
+                  Icon(Icons.auto_stories_outlined, color: muted, size: 32),
+                  SizedBox(height: 12),
+                  Text('この子との記録をここに。'),
+                  Text(
+                    '小さな善いことを、残していこう。',
+                    style: TextStyle(fontSize: 12, color: muted),
                   ),
+                ],
+              ),
+            ),
+          ...deeds.map(
+            (d) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Panel(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${shortDate(d.at)}  ${d.at.toUtc().add(const Duration(hours: 9)).hour.toString().padLeft(2, '0')}:${d.at.minute.toString().padLeft(2, '0')}',
+                      style: const TextStyle(fontSize: 11, color: muted),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      d.text,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Icon(
+                          categoryIcons[d.category],
+                          color: categoryColors[d.category],
+                          size: 18,
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          attributeNames[d.category],
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                        const Spacer(),
+                        Text(
+                          'XP +${d.xp}',
+                          style: const TextStyle(
+                            color: orange,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      d.praise,
+                      style: const TextStyle(fontSize: 12, color: muted),
+                    ),
+                  ],
                 ),
               ),
             ),
-        if (limit < deeds.length)
-          OutlinedButton(
-            onPressed: () => setState(() => limit += 20),
-            child: const Text('もっと見る'),
           ),
-      ],
+          footer,
+        ],
+      ),
     );
   }
 }
