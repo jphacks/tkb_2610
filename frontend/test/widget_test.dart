@@ -1,30 +1,42 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ichinichi_ichizen/app.dart';
+import 'package:ichinichi_ichizen/core/controller.dart';
+import 'package:ichinichi_ichizen/data/repository.dart';
 
-import 'package:ichinichi_ichizen/main.dart';
+class MemoryStore implements SnapshotStore {
+  String? value;
+  @override
+  Future<String?> read() async => value;
+  @override
+  Future<void> write(String? v) async {
+    value = v;
+  }
+}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+  testWidgets('Registration validates a name and enters the home', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final c = GameController(DemoRepository(MemoryStore()));
+    await c.initialize();
+    await tester.pumpWidget(YoinokoApp(controller: c));
+    await tester.ensureVisible(find.text('はじめる'));
+    await tester.tap(find.text('はじめる'));
     await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('名前を入力してください'), findsOneWidget);
+    await tester.enterText(find.byType(TextFormField), 'はる');
+    await tester.ensureVisible(find.text('はじめる'));
+    await tester.tap(find.text('はじめる'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(find.text('おかえり'), findsOneWidget);
+    expect(c.snapshot?.name, 'はる');
+    await tester.pumpWidget(const SizedBox());
+    c.dispose();
   });
 }

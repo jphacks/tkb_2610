@@ -1,11 +1,11 @@
 {
-    "name": "一日一善",
-    "short_name": "一日一善",
+    "name": "よいのこ",
+    "short_name": "よいのこ",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "一日一善のFlutterアプリ",
+    "background_color": "#E8F5FD",
+    "theme_color": "#E8F5FD",
+    "description": "よいのこのFlutterアプリ",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
