@@ -30,6 +30,7 @@ export type CurrentCharacterRecord = CharacterLifespanRecord & {
   evolutionStage: number;
   firstEvolutionCategory: string | null;
   secondEvolutionCategory: string | null;
+  endReason: "death" | "second_evolution" | null;
   categoryPoints: {
     kindness: number;
     environment: number;
@@ -46,7 +47,7 @@ export async function findCurrentCharacterByUserId(
 ): Promise<CurrentCharacterRecord | null> {
   const { data, error } = await supabase
     .from("characters")
-    .select("id, generation, image_id, hp, max_hp, total_xp, level, evolution_stage, first_evolution_category, second_evolution_category, category_points, status, created_at, died_at, ended_at, second_evolution_date")
+    .select("id, generation, image_id, hp, max_hp, total_xp, level, evolution_stage, first_evolution_category, second_evolution_category, category_points, status, created_at, died_at, ended_at, second_evolution_date, end_reason")
     .eq("user_id", userId)
     .order("generation", { ascending: false })
     .limit(1)
@@ -73,6 +74,7 @@ export async function findCurrentCharacterByUserId(
     evolutionStage: data.evolution_stage,
     firstEvolutionCategory: data.first_evolution_category,
     secondEvolutionCategory: data.second_evolution_category,
+    endReason: data.end_reason,
     categoryPoints: {
       kindness: points.kindness,
       environment: points.environment,
