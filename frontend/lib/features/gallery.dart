@@ -125,15 +125,6 @@ class GalleryPage extends StatelessWidget {
                 .toList(),
           ),
         ),
-        if (items.length == 1)
-          const Padding(
-            padding: EdgeInsets.only(top: 32),
-            child: Text(
-              'これから増えていく、この子たちとの思い出。',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12, color: muted),
-            ),
-          ),
         footer,
       ],
     ),
