@@ -94,6 +94,8 @@ flutter:
 
   assets:
     - assets/characters/
+    - assets/characters/evolution/
+    - assets/icons/
   fonts:
     - family: Rounded
       fonts:

@@ -33,7 +33,9 @@ class StatusPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      c.evolutionLabel,
+                      c.evolution == 0
+                          ? c.evolutionLabel
+                          : '${c.evolutionLabel} · ${c.form.label}',
                       style: const TextStyle(color: muted),
                     ),
                     const SizedBox(height: 8),

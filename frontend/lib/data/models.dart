@@ -1,26 +1,12 @@
+import 'character_catalog.dart';
+export 'character_catalog.dart';
+
+const _unchanged = Object();
+
 enum LifeStage { active, sleeping, completed }
 
 enum CharacterMotion { idle, happy, tapped, lowEnergy, sleeping }
 
-const categoryIds = [
-  'kindness',
-  'environment',
-  'gratitude',
-  'courage',
-  'cooperation',
-  'honesty',
-  'self_care',
-];
-const pointKeys = [
-  'kindness',
-  'environment',
-  'gratitude',
-  'courage',
-  'cooperation',
-  'honesty',
-  'selfCare',
-];
-const attributeNames = ['思いやり', '環境保護', '感謝', '勇気', '協力', '誠実', 'セルフケア'];
 DateTime jstDay(DateTime time) {
   final t = time.toUtc().add(const Duration(hours: 9));
   return DateTime.utc(t.year, t.month, t.day);
@@ -51,6 +37,8 @@ class Companion {
     this.endedAt,
     this.nextAvailableAt,
     this.attributes = const [0, 0, 0, 0, 0, 0, 0],
+    this.secondEvolutionPoints = const [0, 0, 0, 0, 0, 0, 0],
+    this.secondEvolutionDate,
   });
   final String id, kind;
   final int generation, hp, xp, evolution, maxHp, level;
@@ -59,7 +47,9 @@ class Companion {
   final DateTime bornAt;
   final DateTime? endedAt, nextAvailableAt;
   final LifeStage stage;
-  final List<int> attributes;
+  final List<int> attributes, secondEvolutionPoints;
+  final DateTime? secondEvolutionDate;
+  CharacterForm get form => characterForm(kind);
   String get stageLabel => switch (stage) {
     LifeStage.active => '育成中',
     LifeStage.sleeping => 'おやすみ',
@@ -74,7 +64,11 @@ class Companion {
       ? (evolution == 2 ? 1 : 0)
       : (xp / nextXp).clamp(0.0, 1.0);
   Companion copyWith({
-    int? nextEvolutionXp,
+    Object? nextEvolutionXp = _unchanged,
+    int? level,
+    int? lifespanDays,
+    List<int>? secondEvolutionPoints,
+    DateTime? secondEvolutionDate,
     int? hp,
     int? xp,
     int? evolution,
@@ -88,9 +82,13 @@ class Companion {
     generation: generation,
     bornAt: bornAt,
     maxHp: maxHp,
-    level: level,
-    nextEvolutionXp: nextEvolutionXp ?? this.nextEvolutionXp,
-    lifespanDays: lifespanDays,
+    level: level ?? this.level,
+    nextEvolutionXp: identical(nextEvolutionXp, _unchanged)
+        ? this.nextEvolutionXp
+        : nextEvolutionXp as int?,
+    lifespanDays: lifespanDays ?? this.lifespanDays,
+    secondEvolutionPoints: secondEvolutionPoints ?? this.secondEvolutionPoints,
+    secondEvolutionDate: secondEvolutionDate ?? this.secondEvolutionDate,
     deedCount: deedCount,
     canCreateNext: canCreateNext,
     hp: hp ?? this.hp,
@@ -120,6 +118,8 @@ class Companion {
     'endedAt': endedAt?.toIso8601String(),
     'nextAvailableAt': nextAvailableAt?.toIso8601String(),
     'attributes': attributes,
+    'secondEvolutionPoints': secondEvolutionPoints,
+    'secondEvolutionDate': secondEvolutionDate?.toIso8601String(),
   };
   factory Companion.fromJson(Map<String, dynamic> j) => Companion(
     id: j['id'],
@@ -141,6 +141,10 @@ class Companion {
     endedAt: DateTime.tryParse(j['endedAt'] ?? ''),
     nextAvailableAt: DateTime.tryParse(j['nextAvailableAt'] ?? ''),
     attributes: List<int>.from(j['attributes']),
+    secondEvolutionPoints: List<int>.from(
+      j['secondEvolutionPoints'] ?? List.filled(7, 0),
+    ),
+    secondEvolutionDate: DateTime.tryParse(j['secondEvolutionDate'] ?? ''),
   );
 }
 

@@ -47,7 +47,18 @@ void main() {
         ),
       );
       await t.runAsync(() async {
-        for (final asset in ['initial', 'dome', 'turtle']) {
+        await precacheImage(
+          const ResizeImage(
+            AssetImage('assets/icons/uchinoko.png'),
+            width: 136,
+          ),
+          boundary.currentContext!,
+        );
+        for (final asset in [
+          'evolution/base_01',
+          'dome',
+          'evolution/stage1_honesty',
+        ]) {
           await precacheImage(
             AssetImage('assets/characters/$asset.png'),
             boundary.currentContext!,

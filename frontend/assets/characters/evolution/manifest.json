@@ -1,0 +1,572 @@
+[
+  {
+    "imageId": "base_01",
+    "source": "exec-5852de66-0be5-4966-9f00-2957be1e76b4.png",
+    "crop": [
+      16,
+      196,
+      367,
+      488
+    ]
+  },
+  {
+    "imageId": "stage1_kindness",
+    "source": "exec-5852de66-0be5-4966-9f00-2957be1e76b4.png",
+    "crop": [
+      387,
+      157,
+      741,
+      487
+    ]
+  },
+  {
+    "imageId": "stage1_environment",
+    "source": "exec-5852de66-0be5-4966-9f00-2957be1e76b4.png",
+    "crop": [
+      770,
+      106,
+      1097,
+      488
+    ]
+  },
+  {
+    "imageId": "stage1_gratitude",
+    "source": "exec-5852de66-0be5-4966-9f00-2957be1e76b4.png",
+    "crop": [
+      1127,
+      141,
+      1536,
+      488
+    ]
+  },
+  {
+    "imageId": "stage1_courage",
+    "source": "exec-5852de66-0be5-4966-9f00-2957be1e76b4.png",
+    "crop": [
+      8,
+      543,
+      387,
+      919
+    ]
+  },
+  {
+    "imageId": "stage1_cooperation",
+    "source": "exec-5852de66-0be5-4966-9f00-2957be1e76b4.png",
+    "crop": [
+      386,
+      606,
+      817,
+      919
+    ]
+  },
+  {
+    "imageId": "stage1_honesty",
+    "source": "exec-5852de66-0be5-4966-9f00-2957be1e76b4.png",
+    "crop": [
+      812,
+      576,
+      1166,
+      919
+    ]
+  },
+  {
+    "imageId": "stage1_self_care",
+    "source": "exec-5852de66-0be5-4966-9f00-2957be1e76b4.png",
+    "crop": [
+      1171,
+      558,
+      1536,
+      919
+    ]
+  },
+  {
+    "imageId": "stage2_kindness_kindness",
+    "source": "codex-clipboard-7c9c45d4-cdbd-4a79-9433-ce2276306de1.png",
+    "crop": [
+      0,
+      130,
+      438,
+      525
+    ]
+  },
+  {
+    "imageId": "stage2_kindness_environment",
+    "source": "codex-clipboard-7c9c45d4-cdbd-4a79-9433-ce2276306de1.png",
+    "crop": [
+      415,
+      82,
+      746,
+      525
+    ]
+  },
+  {
+    "imageId": "stage2_kindness_gratitude",
+    "source": "codex-clipboard-7c9c45d4-cdbd-4a79-9433-ce2276306de1.png",
+    "crop": [
+      744,
+      130,
+      1156,
+      528
+    ]
+  },
+  {
+    "imageId": "stage2_kindness_courage",
+    "source": "codex-clipboard-7c9c45d4-cdbd-4a79-9433-ce2276306de1.png",
+    "crop": [
+      1160,
+      80,
+      1536,
+      525
+    ]
+  },
+  {
+    "imageId": "stage2_kindness_cooperation",
+    "source": "codex-clipboard-7c9c45d4-cdbd-4a79-9433-ce2276306de1.png",
+    "crop": [
+      0,
+      542,
+      483,
+      1005
+    ]
+  },
+  {
+    "imageId": "stage2_kindness_honesty",
+    "source": "codex-clipboard-7c9c45d4-cdbd-4a79-9433-ce2276306de1.png",
+    "crop": [
+      515,
+      574,
+      1029,
+      1005
+    ]
+  },
+  {
+    "imageId": "stage2_kindness_self_care",
+    "source": "codex-clipboard-7c9c45d4-cdbd-4a79-9433-ce2276306de1.png",
+    "crop": [
+      1125,
+      530,
+      1536,
+      1018
+    ]
+  },
+  {
+    "imageId": "stage2_environment_kindness",
+    "source": "codex-clipboard-26d1f733-907d-4f58-8bd4-079d5850e782.png",
+    "crop": [
+      0,
+      74,
+      388,
+      549
+    ]
+  },
+  {
+    "imageId": "stage2_environment_environment",
+    "source": "codex-clipboard-26d1f733-907d-4f58-8bd4-079d5850e782.png",
+    "crop": [
+      306,
+      120,
+      775,
+      557
+    ]
+  },
+  {
+    "imageId": "stage2_environment_gratitude",
+    "source": "codex-clipboard-26d1f733-907d-4f58-8bd4-079d5850e782.png",
+    "crop": [
+      777,
+      90,
+      1130,
+      568
+    ]
+  },
+  {
+    "imageId": "stage2_environment_courage",
+    "source": "codex-clipboard-26d1f733-907d-4f58-8bd4-079d5850e782.png",
+    "crop": [
+      1140,
+      147,
+      1536,
+      557
+    ]
+  },
+  {
+    "imageId": "stage2_environment_cooperation",
+    "source": "codex-clipboard-26d1f733-907d-4f58-8bd4-079d5850e782.png",
+    "crop": [
+      0,
+      601,
+      592,
+      985
+    ]
+  },
+  {
+    "imageId": "stage2_environment_honesty",
+    "source": "codex-clipboard-26d1f733-907d-4f58-8bd4-079d5850e782.png",
+    "crop": [
+      591,
+      600,
+      1098,
+      993
+    ]
+  },
+  {
+    "imageId": "stage2_environment_self_care",
+    "source": "codex-clipboard-26d1f733-907d-4f58-8bd4-079d5850e782.png",
+    "crop": [
+      1096,
+      532,
+      1536,
+      1010
+    ]
+  },
+  {
+    "imageId": "stage2_gratitude_kindness",
+    "source": "codex-clipboard-b7b5cd58-1551-499f-8af5-e8f05670c3bf.png",
+    "crop": [
+      45,
+      127,
+      340,
+      556
+    ]
+  },
+  {
+    "imageId": "stage2_gratitude_environment",
+    "source": "codex-clipboard-b7b5cd58-1551-499f-8af5-e8f05670c3bf.png",
+    "crop": [
+      306,
+      224,
+      774,
+      558
+    ]
+  },
+  {
+    "imageId": "stage2_gratitude_gratitude",
+    "source": "codex-clipboard-b7b5cd58-1551-499f-8af5-e8f05670c3bf.png",
+    "crop": [
+      737,
+      126,
+      1186,
+      555
+    ]
+  },
+  {
+    "imageId": "stage2_gratitude_courage",
+    "source": "codex-clipboard-b7b5cd58-1551-499f-8af5-e8f05670c3bf.png",
+    "crop": [
+      1183,
+      102,
+      1536,
+      572
+    ]
+  },
+  {
+    "imageId": "stage2_gratitude_cooperation",
+    "source": "codex-clipboard-b7b5cd58-1551-499f-8af5-e8f05670c3bf.png",
+    "crop": [
+      0,
+      631,
+      624,
+      987
+    ]
+  },
+  {
+    "imageId": "stage2_gratitude_honesty",
+    "source": "codex-clipboard-b7b5cd58-1551-499f-8af5-e8f05670c3bf.png",
+    "crop": [
+      617,
+      600,
+      1114,
+      997
+    ]
+  },
+  {
+    "imageId": "stage2_gratitude_self_care",
+    "source": "codex-clipboard-b7b5cd58-1551-499f-8af5-e8f05670c3bf.png",
+    "crop": [
+      1113,
+      595,
+      1536,
+      1018
+    ]
+  },
+  {
+    "imageId": "stage2_courage_kindness",
+    "source": "codex-clipboard-5d84d4c8-351f-44b4-98ee-d0d2e60cfbe0.png",
+    "crop": [
+      8,
+      92,
+      353,
+      545
+    ]
+  },
+  {
+    "imageId": "stage2_courage_environment",
+    "source": "codex-clipboard-5d84d4c8-351f-44b4-98ee-d0d2e60cfbe0.png",
+    "crop": [
+      343,
+      184,
+      754,
+      545
+    ]
+  },
+  {
+    "imageId": "stage2_courage_gratitude",
+    "source": "codex-clipboard-5d84d4c8-351f-44b4-98ee-d0d2e60cfbe0.png",
+    "crop": [
+      771,
+      136,
+      1237,
+      546
+    ]
+  },
+  {
+    "imageId": "stage2_courage_courage",
+    "source": "codex-clipboard-5d84d4c8-351f-44b4-98ee-d0d2e60cfbe0.png",
+    "crop": [
+      1230,
+      85,
+      1536,
+      550
+    ]
+  },
+  {
+    "imageId": "stage2_courage_cooperation",
+    "source": "codex-clipboard-5d84d4c8-351f-44b4-98ee-d0d2e60cfbe0.png",
+    "crop": [
+      0,
+      618,
+      574,
+      991
+    ]
+  },
+  {
+    "imageId": "stage2_courage_honesty",
+    "source": "codex-clipboard-5d84d4c8-351f-44b4-98ee-d0d2e60cfbe0.png",
+    "crop": [
+      529,
+      652,
+      1113,
+      992
+    ]
+  },
+  {
+    "imageId": "stage2_courage_self_care",
+    "source": "codex-clipboard-5d84d4c8-351f-44b4-98ee-d0d2e60cfbe0.png",
+    "crop": [
+      1143,
+      550,
+      1536,
+      1018
+    ]
+  },
+  {
+    "imageId": "stage2_cooperation_kindness",
+    "source": "codex-clipboard-639537c4-e5c4-45b2-ba78-12d2a7121aab.png",
+    "crop": [
+      0,
+      80,
+      377,
+      370
+    ]
+  },
+  {
+    "imageId": "stage2_cooperation_environment",
+    "source": "codex-clipboard-639537c4-e5c4-45b2-ba78-12d2a7121aab.png",
+    "crop": [
+      390,
+      83,
+      762,
+      370
+    ]
+  },
+  {
+    "imageId": "stage2_cooperation_gratitude",
+    "source": "codex-clipboard-639537c4-e5c4-45b2-ba78-12d2a7121aab.png",
+    "crop": [
+      778,
+      67,
+      1138,
+      368
+    ]
+  },
+  {
+    "imageId": "stage2_cooperation_courage",
+    "source": "codex-clipboard-639537c4-e5c4-45b2-ba78-12d2a7121aab.png",
+    "crop": [
+      1162,
+      65,
+      1536,
+      370
+    ]
+  },
+  {
+    "imageId": "stage2_cooperation_cooperation",
+    "source": "codex-clipboard-639537c4-e5c4-45b2-ba78-12d2a7121aab.png",
+    "crop": [
+      3,
+      577,
+      579,
+      811
+    ]
+  },
+  {
+    "imageId": "stage2_cooperation_honesty",
+    "source": "codex-clipboard-639537c4-e5c4-45b2-ba78-12d2a7121aab.png",
+    "crop": [
+      612,
+      601,
+      1077,
+      812
+    ]
+  },
+  {
+    "imageId": "stage2_cooperation_self_care",
+    "source": "codex-clipboard-639537c4-e5c4-45b2-ba78-12d2a7121aab.png",
+    "crop": [
+      1116,
+      569,
+      1536,
+      816
+    ]
+  },
+  {
+    "imageId": "stage2_honesty_kindness",
+    "source": "exec-25482763-b670-467f-a34a-7b517b2b98f9.png",
+    "crop": [
+      0,
+      132,
+      401,
+      558
+    ]
+  },
+  {
+    "imageId": "stage2_honesty_environment",
+    "source": "exec-25482763-b670-467f-a34a-7b517b2b98f9.png",
+    "crop": [
+      391,
+      197,
+      782,
+      558
+    ]
+  },
+  {
+    "imageId": "stage2_honesty_gratitude",
+    "source": "exec-25482763-b670-467f-a34a-7b517b2b98f9.png",
+    "crop": [
+      777,
+      125,
+      1194,
+      551
+    ]
+  },
+  {
+    "imageId": "stage2_honesty_courage",
+    "source": "exec-25482763-b670-467f-a34a-7b517b2b98f9.png",
+    "crop": [
+      1206,
+      78,
+      1536,
+      552
+    ]
+  },
+  {
+    "imageId": "stage2_honesty_cooperation",
+    "source": "exec-25482763-b670-467f-a34a-7b517b2b98f9.png",
+    "crop": [
+      0,
+      612,
+      610,
+      978
+    ]
+  },
+  {
+    "imageId": "stage2_honesty_honesty",
+    "source": "exec-25482763-b670-467f-a34a-7b517b2b98f9.png",
+    "crop": [
+      564,
+      653,
+      1125,
+      987
+    ]
+  },
+  {
+    "imageId": "stage2_honesty_self_care",
+    "source": "exec-25482763-b670-467f-a34a-7b517b2b98f9.png",
+    "crop": [
+      1157,
+      548,
+      1536,
+      1016
+    ]
+  },
+  {
+    "imageId": "stage2_self_care_kindness",
+    "source": "codex-clipboard-596e0d90-62da-4ec5-9c78-6f8b78026c8c.png",
+    "crop": [
+      17,
+      120,
+      343,
+      538
+    ]
+  },
+  {
+    "imageId": "stage2_self_care_environment",
+    "source": "codex-clipboard-596e0d90-62da-4ec5-9c78-6f8b78026c8c.png",
+    "crop": [
+      374,
+      137,
+      768,
+      538
+    ]
+  },
+  {
+    "imageId": "stage2_self_care_gratitude",
+    "source": "codex-clipboard-596e0d90-62da-4ec5-9c78-6f8b78026c8c.png",
+    "crop": [
+      774,
+      97,
+      1169,
+      540
+    ]
+  },
+  {
+    "imageId": "stage2_self_care_courage",
+    "source": "codex-clipboard-596e0d90-62da-4ec5-9c78-6f8b78026c8c.png",
+    "crop": [
+      1182,
+      117,
+      1536,
+      543
+    ]
+  },
+  {
+    "imageId": "stage2_self_care_cooperation",
+    "source": "codex-clipboard-596e0d90-62da-4ec5-9c78-6f8b78026c8c.png",
+    "crop": [
+      17,
+      580,
+      580,
+      983
+    ]
+  },
+  {
+    "imageId": "stage2_self_care_honesty",
+    "source": "codex-clipboard-596e0d90-62da-4ec5-9c78-6f8b78026c8c.png",
+    "crop": [
+      601,
+      630,
+      1059,
+      973
+    ]
+  },
+  {
+    "imageId": "stage2_self_care_self_care",
+    "source": "codex-clipboard-596e0d90-62da-4ec5-9c78-6f8b78026c8c.png",
+    "crop": [
+      1076,
+      571,
+      1536,
+      997
+    ]
+  }
+]

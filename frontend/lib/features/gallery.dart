@@ -246,6 +246,7 @@ class _CharacterDetailPageState extends State<CharacterDetailPage> {
                           ),
                           const SizedBox(height: 12),
                           Text(c.evolutionLabel),
+                          if (c.evolution > 0) Text(c.form.label),
                           Text('いっしょに ${c.daysAt(DateTime.now())}日'),
                           const Divider(height: 24),
                           Text('累計XP　${c.xp}'),
