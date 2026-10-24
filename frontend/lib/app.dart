@@ -38,13 +38,14 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
     try {
       await widget.controller.refresh();
     } catch (e) {
-      if (mounted)
+      if (mounted) {
         messengerKey.currentState?.showSnackBar(
           SnackBar(
             content: Text(GameController.message(e)),
             action: SnackBarAction(label: '再試行', onPressed: refresh),
           ),
         );
+      }
     }
   }
 

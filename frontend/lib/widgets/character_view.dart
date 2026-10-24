@@ -10,6 +10,22 @@ typedef CharacterRenderer =
       CharacterMotion motion,
     );
 
+/// Install once around the app when the final Rive assets become available.
+class CharacterRendererScope extends InheritedWidget {
+  const CharacterRendererScope({
+    super.key,
+    required this.renderer,
+    required super.child,
+  });
+  final CharacterRenderer renderer;
+  static CharacterRenderer? of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<CharacterRendererScope>()
+      ?.renderer;
+  @override
+  bool updateShouldNotify(CharacterRendererScope oldWidget) =>
+      renderer != oldWidget.renderer;
+}
+
 class CharacterView extends StatefulWidget {
   const CharacterView({
     super.key,
@@ -75,7 +91,11 @@ class _CharacterViewState extends State<CharacterView>
         width: widget.size,
         height: widget.size,
         child:
-            widget.renderer?.call(context, widget.character, widget.motion) ??
+            (widget.renderer ?? CharacterRendererScope.of(context))?.call(
+              context,
+              widget.character,
+              widget.motion,
+            ) ??
             AnimatedBuilder(
               animation: _animation,
               builder: (context, child) {
