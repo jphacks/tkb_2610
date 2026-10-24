@@ -101,7 +101,18 @@ class ApiRepository implements GameRepository {
     );
     final deed = deedFromApi(object(response['deed']));
     final alreadyKnown = data.deeds.any((d) => d.id == deed.id);
-    final c = companionFromApi(object(response['currentCharacter']));
+    final raw = object(response['currentCharacter']);
+    Map<String, dynamic>? progress;
+    if (raw['evolutionStage'] == data.current.evolution) {
+      progress = {'nextEvolutionXp': data.current.nextEvolutionXp};
+    } else if (raw['evolutionStage'] == 1) {
+      try {
+        progress = await client.request('GET', '/characters/me/evolution');
+      } on GameException {
+        // The deed already succeeded. A progress lookup must never turn it into a failed post.
+      }
+    }
+    final c = companionFromApi(raw, evolution: progress);
     final snapshot = _replace(
       c,
       deed: deed,
