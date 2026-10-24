@@ -17,8 +17,44 @@ void main() {
     await expectLater(repo.register('はる'), throwsException);
     sessions.fail = false;
     expect((await repo.register('はる')).name,'はる'); expect(calls.length,1);
+    expect(calls.first.uri.toString(), 'https://example.invalid/api/guests');
     expect((await repo.rename('なつ')).name,'なつ'); expect(calls.last.method,'PUT'); expect(calls.last.headers['Authorization'],'Bearer test-token');
     expect(calls.last.data,{'displayName':'なつ'});
+  });
+  test('API base URL without /api is rejected before making a request', () {
+    expect(
+      () => ApiClient(baseUrl:'http://127.0.0.1:3000',sessions:TestSessions()),
+      throwsA(isA<GameException>()),
+    );
+  });
+  test('generic NOT_FOUND explains the required API prefix', () async {
+    final sessions = TestSessions()..token = 'test-token';
+    final dio = Dio();
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) => handler.reject(
+        DioException(
+          requestOptions: options,
+          response: Response(
+            requestOptions: options,
+            statusCode: 404,
+            data: {'error': {'code': 'NOT_FOUND'}},
+          ),
+          type: DioExceptionType.badResponse,
+        ),
+      ),
+    ));
+    final client = ApiClient(
+      baseUrl: 'http://127.0.0.1:3000/api',
+      sessions: sessions,
+      dio: dio,
+    );
+
+    await expectLater(
+      client.request('GET', '/users/me'),
+      throwsA(
+        isA<GameException>().having((error) => error.message, 'message', contains('/api')),
+      ),
+    );
   });
   test('Posting sends only content and stable requestId, uses actual server rewards', () async {
     final sessions = TestSessions(); final dio = Dio(); final calls = <RequestOptions>[];
