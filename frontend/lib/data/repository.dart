@@ -98,6 +98,7 @@ class DemoRepository implements GameRepository {
       xp: total,
       attributes: attrs,
       evolution: evolution,
+      nextEvolutionXp: evolution == 0 ? 100 : 200,
     );
     final deed = Deed(
       id: requestId,

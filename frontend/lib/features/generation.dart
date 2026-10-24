@@ -27,8 +27,9 @@ class _GenerationPageState extends State<GenerationPage> {
   Widget build(BuildContext context) {
     final c = widget.controller.snapshot!.current;
     final available =
-        c.nextAvailableAt != null &&
-        !DateTime.now().isBefore(c.nextAvailableAt!);
+        c.canCreateNext ??
+        (c.nextAvailableAt != null &&
+            !DateTime.now().isBefore(c.nextAvailableAt!));
     return ListView(
       padding: const EdgeInsets.fromLTRB(24, 64, 24, 24),
       children: [

@@ -37,13 +37,15 @@ class StatusPage extends StatelessWidget {
                       style: const TextStyle(color: muted),
                     ),
                     const SizedBox(height: 8),
-                    Text('XP ${c.xp}'),
+                    Text('Lv.${c.level}  ·  XP ${c.xp}'),
                     const SizedBox(height: 6),
                     ProgressTrack(value: c.progress),
                     const SizedBox(height: 6),
                     Text(
                       c.evolution >= 2
                           ? '最終進化に到達したよ！'
+                          : c.nextEvolutionXp == null
+                          ? '次の進化を楽しみに'
                           : '次の進化まで ${(c.nextXp - c.xp).clamp(0, c.nextXp)} XP',
                       style: const TextStyle(fontSize: 11, color: muted),
                     ),

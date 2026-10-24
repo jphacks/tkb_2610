@@ -51,7 +51,7 @@ class ResultBubble extends StatelessWidget {
                 _reward('XP', '+${d.xp}', orange),
                 _reward(
                   attributeNames[d.category],
-                  '+1',
+                  '+${d.categoryPoints}',
                   categoryColors[d.category],
                 ),
                 _reward('HP', '+${d.hp}', const Color(0xFFEF8798)),

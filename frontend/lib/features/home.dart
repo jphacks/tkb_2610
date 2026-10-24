@@ -18,9 +18,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final data = widget.controller.snapshot!, c = data.current;
-    final today = data.deeds
-        .where((d) => dayKey(d.at) == dayKey(DateTime.now()))
-        .length;
+    final today =
+        data.todayCount ??
+        data.deeds.where((d) => dayKey(d.at) == dayKey(DateTime.now())).length;
     return LayoutBuilder(
       builder: (context, box) => Stack(
         children: [
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Text(
-                              'HP ${c.hp}/100',
+                              'HP ${c.hp}/${c.maxHp}',
                               style: const TextStyle(
                                 fontSize: 11,
                                 color: muted,
@@ -92,11 +92,11 @@ class _HomePageState extends State<HomePage> {
                             ...List.generate(
                               5,
                               (i) => Icon(
-                                c.hp > i * 20
+                                c.hp > i * c.maxHp / 5
                                     ? Icons.favorite_rounded
                                     : Icons.favorite_border_rounded,
                                 size: 15,
-                                color: c.hp > i * 20
+                                color: c.hp > i * c.maxHp / 5
                                     ? const Color(0xFFFF8C83)
                                     : line,
                               ),
@@ -105,7 +105,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'XP ${c.xp}/${c.nextXp}',
+                          c.nextEvolutionXp == null
+                              ? 'XP ${c.xp}'
+                              : 'XP ${c.xp}/${c.nextXp}',
                           style: const TextStyle(fontSize: 11, color: muted),
                         ),
                         const SizedBox(height: 4),

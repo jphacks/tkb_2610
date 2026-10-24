@@ -2,6 +2,24 @@ enum LifeStage { active, sleeping, completed }
 
 enum CharacterMotion { idle, happy, tapped, lowEnergy, sleeping }
 
+const categoryIds = [
+  'kindness',
+  'environment',
+  'gratitude',
+  'courage',
+  'cooperation',
+  'honesty',
+  'self_care',
+];
+const pointKeys = [
+  'kindness',
+  'environment',
+  'gratitude',
+  'courage',
+  'cooperation',
+  'honesty',
+  'selfCare',
+];
 const attributeNames = ['思いやり', '環境保護', '感謝', '勇気', '協力', '誠実', 'セルフケア'];
 DateTime jstDay(DateTime time) {
   final t = time.toUtc().add(const Duration(hours: 9));
@@ -19,6 +37,12 @@ class Companion {
     required this.id,
     required this.generation,
     required this.bornAt,
+    this.maxHp = 100,
+    this.level = 1,
+    this.nextEvolutionXp = 100,
+    this.lifespanDays,
+    this.deedCount,
+    this.canCreateNext,
     this.hp = 100,
     this.xp = 0,
     this.evolution = 0,
@@ -29,7 +53,9 @@ class Companion {
     this.attributes = const [0, 0, 0, 0, 0, 0, 0],
   });
   final String id, kind;
-  final int generation, hp, xp, evolution;
+  final int generation, hp, xp, evolution, maxHp, level;
+  final int? nextEvolutionXp, lifespanDays, deedCount;
+  final bool? canCreateNext;
   final DateTime bornAt;
   final DateTime? endedAt, nextAvailableAt;
   final LifeStage stage;
@@ -41,10 +67,14 @@ class Companion {
   };
   String get evolutionLabel => evolution == 0 ? '初期形態' : '第$evolution進化';
   int daysAt(DateTime now) =>
-      jstDay(endedAt ?? now).difference(jstDay(bornAt)).inDays + 1;
-  int get nextXp => evolution == 0 ? 100 : 200;
-  double get progress => (xp / nextXp).clamp(0.0, 1.0);
+      lifespanDays ??
+      (jstDay(endedAt ?? now).difference(jstDay(bornAt)).inDays + 1);
+  int get nextXp => nextEvolutionXp ?? (xp > 0 ? xp : 1);
+  double get progress => nextEvolutionXp == null
+      ? (evolution == 2 ? 1 : 0)
+      : (xp / nextXp).clamp(0.0, 1.0);
   Companion copyWith({
+    int? nextEvolutionXp,
     int? hp,
     int? xp,
     int? evolution,
@@ -57,6 +87,12 @@ class Companion {
     id: id,
     generation: generation,
     bornAt: bornAt,
+    maxHp: maxHp,
+    level: level,
+    nextEvolutionXp: nextEvolutionXp ?? this.nextEvolutionXp,
+    lifespanDays: lifespanDays,
+    deedCount: deedCount,
+    canCreateNext: canCreateNext,
     hp: hp ?? this.hp,
     xp: xp ?? this.xp,
     evolution: evolution ?? this.evolution,
@@ -70,6 +106,12 @@ class Companion {
     'id': id,
     'generation': generation,
     'bornAt': bornAt.toIso8601String(),
+    'maxHp': maxHp,
+    'level': level,
+    'nextEvolutionXp': nextEvolutionXp,
+    'lifespanDays': lifespanDays,
+    'deedCount': deedCount,
+    'canCreateNext': canCreateNext,
     'hp': hp,
     'xp': xp,
     'evolution': evolution,
@@ -83,6 +125,14 @@ class Companion {
     id: j['id'],
     generation: j['generation'],
     bornAt: DateTime.parse(j['bornAt']),
+    maxHp: j['maxHp'] ?? 100,
+    level: j['level'] ?? 1,
+    nextEvolutionXp: j.containsKey('nextEvolutionXp')
+        ? j['nextEvolutionXp']
+        : 100,
+    lifespanDays: j['lifespanDays'],
+    deedCount: j['deedCount'],
+    canCreateNext: j['canCreateNext'],
     hp: j['hp'],
     xp: j['xp'],
     evolution: j['evolution'],
@@ -104,16 +154,18 @@ class Deed {
     required this.praise,
     required this.xp,
     required this.hp,
+    this.categoryPoints = 1,
   });
   final String id, characterId, text, praise;
   final DateTime at;
-  final int category, xp, hp;
+  final int category, xp, hp, categoryPoints;
   Map<String, dynamic> toJson() => {
     'id': id,
     'characterId': characterId,
     'text': text,
     'at': at.toIso8601String(),
     'category': category,
+    'categoryPoints': categoryPoints,
     'praise': praise,
     'xp': xp,
     'hp': hp,
@@ -124,6 +176,7 @@ class Deed {
     text: j['text'],
     at: DateTime.parse(j['at']),
     category: j['category'],
+    categoryPoints: j['categoryPoints'] ?? 1,
     praise: j['praise'],
     xp: j['xp'],
     hp: j['hp'],
@@ -135,18 +188,22 @@ class GameSnapshot {
     required this.name,
     required this.characters,
     this.deeds = const [],
+    this.todayCount,
   });
   final String name;
+  final int? todayCount;
   final List<Companion> characters;
   final List<Deed> deeds;
   Companion get current => characters.last;
   Map<String, dynamic> toJson() => {
     'name': name,
+    'todayCount': todayCount,
     'characters': characters.map((c) => c.toJson()).toList(),
     'deeds': deeds.map((d) => d.toJson()).toList(),
   };
   factory GameSnapshot.fromJson(Map<String, dynamic> j) => GameSnapshot(
     name: j['name'],
+    todayCount: j['todayCount'],
     characters: (j['characters'] as List)
         .map((c) => Companion.fromJson(Map<String, dynamic>.from(c)))
         .toList(),
@@ -168,4 +225,16 @@ class GameException implements Exception {
   final String message;
   @override
   String toString() => message;
+}
+
+class PageResult<T> {
+  const PageResult({
+    required this.items,
+    required this.totalCount,
+    required this.hasMore,
+    required this.nextOffset,
+  });
+  final List<T> items;
+  final int totalCount, nextOffset;
+  final bool hasMore;
 }

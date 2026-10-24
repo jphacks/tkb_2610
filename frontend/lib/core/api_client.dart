@@ -49,8 +49,9 @@ class ApiClient {
     bool authenticated = true,
   }) async {
     final token = authenticated ? await sessions.read() : null;
-    if (authenticated && token == null)
+    if (authenticated && token == null) {
       throw const GameException('ログイン情報が見つかりません。アプリを再起動してください。');
+    }
     try {
       final response = await dio.request<Object?>(
         path,
@@ -62,8 +63,9 @@ class ApiClient {
         ),
       );
       if (response.statusCode == 204) return {};
-      if (response.data is! Map)
+      if (response.data is! Map) {
         throw const GameException('サーバーからの応答を読み取れませんでした。');
+      }
       return Map<String, dynamic>.from(response.data as Map);
     } on DioException catch (e) {
       final data = e.response?.data;
