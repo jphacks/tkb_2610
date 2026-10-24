@@ -38,6 +38,7 @@ dependencies:
   dio: ^5.11.1
   go_router: ^17.5.0
   flutter_secure_storage: ^11.2.0
+  audioplayers: 6.5.1
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +97,7 @@ flutter:
     - assets/characters/
     - assets/characters/evolution/
     - assets/icons/
+    - assets/audio/
   fonts:
     - family: Rounded
       fonts:
