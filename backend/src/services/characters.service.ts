@@ -7,6 +7,7 @@ import {
   getNextCharacterAvailability,
   type NextCharacterAvailability,
 } from "../utils/next-character-availability.js";
+import { getTodayDeedStatus, type TodayDeedStatus } from "./deeds.service.js";
 
 export type CurrentCharacterResult = CurrentCharacterRecord & {
   lifespanDays: number;
@@ -14,6 +15,7 @@ export type CurrentCharacterResult = CurrentCharacterRecord & {
 
 export type CurrentCharacterResponse = NextCharacterAvailability & {
   currentCharacter: CurrentCharacterResult;
+  today: TodayDeedStatus;
 };
 
 export async function getCurrentCharacter(
@@ -26,11 +28,13 @@ export async function getCurrentCharacter(
   }
 
   const now = new Date();
+  const today = await getTodayDeedStatus(userId, now);
   return {
     currentCharacter: {
       ...character,
       lifespanDays: calculateCharacterLifespan(character, now),
     },
+    today,
     ...getNextCharacterAvailability(character, now),
   };
 }
