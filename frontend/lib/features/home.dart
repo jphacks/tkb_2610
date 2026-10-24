@@ -28,11 +28,11 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 const Expanded(
-                  flex: 57,
+                  flex: 62,
                   child: ColoredBox(color: wall, child: SizedBox.expand()),
                 ),
                 Expanded(
-                  flex: 43,
+                  flex: 38,
                   child: Container(
                     decoration: const BoxDecoration(
                       color: floor,
@@ -135,9 +135,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Positioned(
-            top: box.maxHeight * .54,
+            top: box.maxHeight * .60,
             left: 0,
-            right: 0,
+            right: widget.controller.result == null ? 0 : box.maxWidth * .38,
             child: Center(
               child: CharacterView(
                 character: c,
@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
           ),
           if (widget.controller.result == null)
             Positioned(
-              top: box.maxHeight * .47,
+              top: box.maxHeight * .53,
               left: box.maxWidth * .24,
               child: Panel(
                 padding: const EdgeInsets.symmetric(
@@ -175,8 +175,8 @@ class _HomePageState extends State<HomePage> {
             ),
           if (widget.controller.result != null)
             Positioned(
-              top: box.maxHeight * .25,
-              left: 70,
+              top: box.maxHeight * .37,
+              left: box.maxWidth * .38,
               right: 16,
               child: ResultBubble(controller: widget.controller),
             ),

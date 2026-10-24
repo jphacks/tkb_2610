@@ -45,11 +45,19 @@ class YoinokoNavigation extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          icons[i],
-                          size: 28,
-                          color: index == i ? orange : muted,
-                        ),
+                        i == 1
+                            ? Image.asset(
+                                'assets/characters/initial.png',
+                                width: 34,
+                                height: 28,
+                                fit: BoxFit.contain,
+                                excludeFromSemantics: true,
+                              )
+                            : Icon(
+                                icons[i],
+                                size: 28,
+                                color: index == i ? orange : muted,
+                              ),
                         const SizedBox(height: 5),
                         FittedBox(
                           fit: BoxFit.scaleDown,

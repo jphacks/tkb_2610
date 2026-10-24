@@ -65,7 +65,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   const Text('善いことを、この子と。'),
                   const Spacer(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 32),
+                    padding: const EdgeInsets.only(top: 32),
                     child: CharacterView(
                       character: Companion(
                         id: 'preview',

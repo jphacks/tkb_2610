@@ -36,7 +36,7 @@ class DisplayCase extends StatelessWidget {
           Positioned(
             left: b.maxWidth * .20,
             right: b.maxWidth * .20,
-            bottom: b.maxHeight * .085,
+            bottom: b.maxHeight * .06,
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(
