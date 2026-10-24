@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "test:integration": "npm run build && node --test --test-concurrency=1 tests/api.integration.test.mjs",
+    "check:ai": "npm run build && node scripts/check-gemini.mjs"
   },
   "keywords": [],
   "author": "",
