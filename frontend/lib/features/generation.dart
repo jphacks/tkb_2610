@@ -30,58 +30,109 @@ class _GenerationPageState extends State<GenerationPage> {
         c.canCreateNext ??
         (c.nextAvailableAt != null &&
             !DateTime.now().isBefore(c.nextAvailableAt!));
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(24, 64, 24, 24),
-      children: [
-        Center(
-          child: CharacterView(
-            character: c,
-            motion: CharacterMotion.sleeping,
-            size: 140,
+    return LayoutBuilder(
+      builder: (context, box) => Stack(
+        children: [
+          Positioned.fill(
+            child: Column(
+              children: [
+                const Expanded(
+                  flex: 43,
+                  child: ColoredBox(color: wall, child: SizedBox.expand()),
+                ),
+                Expanded(flex: 57, child: Container(color: floor)),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 32),
-        Panel(
-          child: Column(
+          ListView(
+            padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
             children: [
-              const Text(
-                'いっしょに過ごしてくれて、\nありがとう。',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 16),
-              Text(c.stageLabel, style: const TextStyle(color: muted)),
-              Text('いっしょに ${c.daysAt(DateTime.now())}日'),
-              const Divider(height: 32),
-              const Text(
-                'この子の記録は、歴代図鑑に残ります。',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 13),
-              ),
-              const SizedBox(height: 24),
-              if (!available)
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 16),
-                  child: Text(
-                    '新しい子は、明日から迎えられます。',
-                    style: TextStyle(color: muted, fontSize: 13),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  width: 200,
+                  child: Panel(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.controller.snapshot!.name,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '${c.evolutionLabel}  ·  HP ${c.hp}/${c.maxHp}',
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                        Text(
+                          'XP ${c.xp}',
+                          style: const TextStyle(fontSize: 12, color: muted),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              if (error != null) ErrorNotice(error!),
-              PrimaryButton(
-                label: '新しい子を迎える',
-                onPressed: available ? welcome : null,
-                busy: widget.controller.busy,
+              ),
+              const SizedBox(height: 100),
+              Center(
+                child: CharacterView(
+                  character: c,
+                  motion: CharacterMotion.sleeping,
+                  size: 166,
+                ),
               ),
               const SizedBox(height: 8),
-              TextButton(
-                onPressed: () => context.go('/gallery'),
-                child: const Text('歴代図鑑を見る'),
+              Panel(
+                child: Column(
+                  children: [
+                    const Text(
+                      'いっしょに過ごしてくれて、\nありがとう。',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(c.stageLabel, style: const TextStyle(color: muted)),
+                    Text('いっしょに ${c.daysAt(DateTime.now())}日'),
+                    Text(
+                      '善行 ${c.deedCount ?? widget.controller.snapshot!.deeds.where((d) => d.characterId == c.id).length}件',
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                    const Divider(height: 32),
+                    const Text(
+                      'この子の記録は、歴代図鑑に残ります。',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 13),
+                    ),
+                    const SizedBox(height: 24),
+                    if (!available)
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 16),
+                        child: Text(
+                          '新しい子は、明日から迎えられます。',
+                          style: TextStyle(color: muted, fontSize: 13),
+                        ),
+                      ),
+                    if (error != null) ErrorNotice(error!),
+                    PrimaryButton(
+                      label: '新しい子を迎える',
+                      onPressed: available ? welcome : null,
+                      busy: widget.controller.busy,
+                    ),
+                    const SizedBox(height: 8),
+                    TextButton(
+                      onPressed: () => context.go('/gallery'),
+                      child: const Text('歴代図鑑を見る'),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

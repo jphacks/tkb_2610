@@ -19,7 +19,7 @@ class StatusPage extends StatelessWidget {
         Panel(
           child: Row(
             children: [
-              CharacterView(character: c, size: 82),
+              CharacterView(character: c, size: 102),
               const SizedBox(width: 14),
               Expanded(
                 child: Column(
@@ -59,7 +59,7 @@ class StatusPage extends StatelessWidget {
         ...List.generate(
           7,
           (i) => Container(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             decoration: const BoxDecoration(
               border: Border(bottom: BorderSide(color: line, width: .5)),
             ),
