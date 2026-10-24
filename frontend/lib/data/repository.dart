@@ -74,12 +74,18 @@ class DemoRepository implements GameRepository {
   @override
   Future<DeedResult> postDeed(String text, String requestId) async {
     final old = data.deeds.where((d) => d.id == requestId);
-    if (old.isNotEmpty) return DeedResult(data, old.first);
+    if (old.isNotEmpty) {
+      if (old.first.text != text.trim()) {
+        throw const GameException('送信内容が変わっています。新しく投稿してください。');
+      }
+      return DeedResult(data, old.first);
+    }
     final c = data.current;
     if (c.stage != LifeStage.active) {
       throw const GameException('この子の育成は終了しています。新しい子を迎えてください。');
     }
     if (text.trim().isEmpty) throw const GameException('今日の善行を入力してください。');
+    if (text.length > 500) throw const GameException('500文字以内で入力してください。');
     // A deterministic local preview, never represented as AI judgement.
     final category = _category(text);
     final todayXp = data.deeds
