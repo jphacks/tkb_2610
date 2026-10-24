@@ -38,6 +38,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     try {
       await widget.controller.register(name.text.trim());
     } catch (e) {
+      debugPrint('Registration failed: ${e.runtimeType}: $e');
       if (mounted) setState(() => error = GameController.message(e));
     }
   }

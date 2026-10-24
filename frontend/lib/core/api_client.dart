@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../data/models.dart';
 
@@ -10,13 +11,41 @@ abstract interface class SessionStore {
 class SecureSessionStore implements SessionStore {
   SecureSessionStore(String baseUrl) : key = 'yoinoko.session.$baseUrl';
   final String key;
-  final FlutterSecureStorage storage = const FlutterSecureStorage();
+  final FlutterSecureStorage storage = kIsWeb ||
+          defaultTargetPlatform != TargetPlatform.macOS
+      ? const FlutterSecureStorage()
+      : const FlutterSecureStorage(
+          mOptions: MacOsOptions(
+            // Use a stable, app-specific Keychain service. The package default
+            // can collide with older app builds signed under another identity.
+            accountName: 'yoinoko.session.v2',
+            usesDataProtectionKeychain: false,
+          ),
+        );
   @override
-  Future<String?> read() => storage.read(key: key);
+  Future<String?> read() async {
+    try {
+      return await storage.read(key: key);
+    } catch (error, stackTrace) {
+      debugPrint('SecureSessionStore.read failed: ${error.runtimeType}: $error');
+      debugPrintStack(stackTrace: stackTrace);
+      rethrow;
+    }
+  }
   @override
-  Future<void> write(String? token) => token == null
-      ? storage.delete(key: key)
-      : storage.write(key: key, value: token);
+  Future<void> write(String? token) async {
+    try {
+      if (token == null) {
+        await storage.delete(key: key);
+      } else {
+        await storage.write(key: key, value: token);
+      }
+    } catch (error, stackTrace) {
+      debugPrint('SecureSessionStore.write failed: ${error.runtimeType}: $error');
+      debugPrintStack(stackTrace: stackTrace);
+      rethrow;
+    }
+  }
 }
 
 class ApiClient {
@@ -29,6 +58,10 @@ class ApiClient {
         uri.query.isNotEmpty ||
         uri.fragment.isNotEmpty) {
       throw const GameException('API接続先が設定されていません。管理者にお問い合わせください。');
+    }
+    final apiPath = uri.path.replaceFirst(RegExp(r'/+$'), '');
+    if (!apiPath.endsWith('/api')) {
+      throw const GameException('API_BASE_URLは /api で終わるURLを指定してください。');
     }
     this.dio.options = BaseOptions(
       baseUrl: baseUrl.replaceFirst(RegExp(r'/+$'), ''),
@@ -84,6 +117,8 @@ class ApiClient {
         'GENERATION_NOT_AVAILABLE' => '新しい子を迎えられる時間まで、もう少し待ってください。',
         'ACTIVE_CHARACTER_EXISTS' => '新しい子はすでに迎えられています。ホームを再読み込みしてください。',
         'VALIDATION_ERROR' => '入力内容を確認してください。',
+        'NOT_FOUND' =>
+          'APIのパスが見つかりません。API_BASE_URLが /api で終わっているか確認してください。',
         _ =>
           e.response?.statusCode == 404
               ? 'この機能はまだサーバーで準備中です。時間をおいてお試しください。'
