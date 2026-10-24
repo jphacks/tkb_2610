@@ -8,6 +8,7 @@ typedef CharacterRenderer =
       BuildContext context,
       Companion character,
       CharacterMotion motion,
+      bool animate,
     );
 
 /// Install once around the app when the final Rive assets become available.
@@ -95,6 +96,7 @@ class _CharacterViewState extends State<CharacterView>
               context,
               widget.character,
               widget.motion,
+              widget.animate && !MediaQuery.disableAnimationsOf(context),
             ) ??
             AnimatedBuilder(
               animation: _animation,
