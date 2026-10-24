@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import '../data/models.dart';
 import '../data/repository.dart';
+import 'evolution_event.dart';
 
 class GameController extends ChangeNotifier {
   GameController(this.repository);
@@ -9,6 +10,7 @@ class GameController extends ChangeNotifier {
   bool loading = true, busy = false;
   String? error;
   DeedResult? result;
+  EvolutionEvent? pendingEvolution;
   bool composing = false;
   void setComposing(bool value) {
     composing = value;
@@ -49,17 +51,28 @@ class GameController extends ChangeNotifier {
     _accept(await repository.rename(name));
   });
   Future<void> post(String text, String requestId) => _run(() async {
+    final before = snapshot!.current;
     result = await repository.postDeed(text, requestId);
     _accept(result!.snapshot);
+    final after = snapshot!.current;
+    if (before.id == after.id && after.evolution > before.evolution) {
+      pendingEvolution = EvolutionEvent(
+        id: result!.deed.id,
+        before: before,
+        after: after,
+      );
+    }
   });
   Future<void> welcomeNext() => _run(() async {
     _accept(await repository.welcomeNext());
     result = null;
+    pendingEvolution = null;
   });
   Future<void> deleteAccount() => _run(() async {
     await repository.deleteAccount();
     snapshot = null;
     result = null;
+    pendingEvolution = null;
   });
   Future<PageResult<Companion>> history({int offset = 0}) async {
     final page = await repository.history(offset: offset);
@@ -117,11 +130,17 @@ class GameController extends ChangeNotifier {
   }
 
   Future<void> refresh() async {
-    if (busy || loading || snapshot == null) return;
+    if (busy || loading || snapshot == null || pendingEvolution != null) return;
     await _run(() async {
       final latest = await repository.load();
       if (latest != null) _accept(latest);
     });
+  }
+
+  void finishEvolution(String id) {
+    if (pendingEvolution?.id != id) return;
+    pendingEvolution = null;
+    notifyListeners();
   }
 
   void dismissResult() {
