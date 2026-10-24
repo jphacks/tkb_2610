@@ -185,7 +185,6 @@
 
 - Visual Studio Code
 - Xcode
-- Android Studio
 
 ### 独自技術
 
