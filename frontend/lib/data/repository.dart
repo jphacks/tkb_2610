@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models.dart';
+import 'demo_evolution.dart';
 
 abstract interface class GameRepository {
   Future<GameSnapshot?> load();
@@ -57,6 +58,23 @@ class DemoRepository implements GameRepository {
     } catch (_) {
       throw const GameException('保存データを読み込めませんでした。データを消さずに、再読み込みをお試しください。');
     }
+    final current = data;
+    final repaired = [
+      for (final c in current.characters)
+        settleDemoGeneration(repairLegacyDemoForm(c, current.deeds), clock()),
+    ];
+    if (List.generate(
+      repaired.length,
+      (i) => !identical(repaired[i], current.characters[i]),
+    ).contains(true)) {
+      return _save(
+        GameSnapshot(
+          name: current.name,
+          characters: repaired,
+          deeds: current.deeds,
+        ),
+      );
+    }
     return _data;
   }
 
@@ -80,7 +98,7 @@ class DemoRepository implements GameRepository {
       }
       return DeedResult(data, old.first);
     }
-    final c = data.current;
+    final c = settleDemoGeneration(data.current, clock());
     if (c.stage != LifeStage.active) {
       throw const GameException('この子の育成は終了しています。新しい子を迎えてください。');
     }
@@ -93,31 +111,18 @@ class DemoRepository implements GameRepository {
         .fold(0, (sum, d) => sum + d.xp);
     final xp = todayXp >= 50 ? 0 : 10;
     final hp = (100 - c.hp).clamp(0, 20);
-    final attrs = [...c.attributes];
-    attrs[category]++;
-    final total = c.xp + xp;
-    final evolution = total >= 200
-        ? 2
-        : total >= 100
-        ? 1
-        : 0;
-    final next = c.copyWith(
-      hp: c.hp + hp,
-      xp: total,
-      attributes: attrs,
-      evolution: evolution,
-      nextEvolutionXp: evolution == 0 ? 100 : 200,
-    );
     final deed = Deed(
       id: requestId,
       characterId: c.id,
       text: text.trim(),
       at: clock(),
       category: category,
+      categoryPoints: xp > 0 ? 1 : 0,
       xp: xp,
       hp: hp,
       praise: _praises[category],
     );
+    final next = applyDemoEvolution(c, deed, data.deeds);
     final snapshot = await _save(
       GameSnapshot(
         name: data.name,
@@ -125,7 +130,7 @@ class DemoRepository implements GameRepository {
         deeds: [...data.deeds, deed],
       ),
     );
-    return DeedResult(snapshot, deed, evolved: evolution > c.evolution);
+    return DeedResult(snapshot, deed, evolved: next.evolution > c.evolution);
   }
 
   int _category(String t) {
@@ -153,7 +158,7 @@ class DemoRepository implements GameRepository {
   );
   @override
   Future<GameSnapshot> welcomeNext() async {
-    final c = data.current;
+    final c = settleDemoGeneration(data.current, clock());
     if (c.stage == LifeStage.active ||
         c.nextAvailableAt == null ||
         clock().isBefore(c.nextAvailableAt!)) {
@@ -163,7 +168,8 @@ class DemoRepository implements GameRepository {
       GameSnapshot(
         name: data.name,
         characters: [
-          ...data.characters,
+          ...data.characters.take(data.characters.length - 1),
+          c,
           Companion(
             id: 'demo-${c.generation + 1}',
             generation: c.generation + 1,
