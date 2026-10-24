@@ -15,6 +15,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool tapped = false;
+  bool assetsReady = false;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!assetsReady) {
+      assetsReady = true;
+      for (final name in ['initial', 'dome', 'turtle']) {
+        precacheImage(AssetImage('assets/characters/$name.png'), context);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final data = widget.controller.snapshot!, c = data.current;
@@ -27,12 +39,15 @@ class _HomePageState extends State<HomePage> {
           Positioned.fill(
             child: Column(
               children: [
-                const Expanded(
-                  flex: 62,
-                  child: ColoredBox(color: wall, child: SizedBox.expand()),
+                Expanded(
+                  flex: widget.controller.composing ? 42 : 62,
+                  child: const ColoredBox(
+                    color: wall,
+                    child: SizedBox.expand(),
+                  ),
                 ),
                 Expanded(
-                  flex: 38,
+                  flex: widget.controller.composing ? 58 : 38,
                   child: Container(
                     decoration: const BoxDecoration(
                       color: floor,
@@ -44,7 +59,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Positioned(
-            top: 20,
+            top: 32,
             left: 18,
             right: 18,
             child: Row(
@@ -135,13 +150,13 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Positioned(
-            top: box.maxHeight * .60,
+            top: box.maxHeight * (widget.controller.composing ? .32 : .56),
             left: 0,
             right: widget.controller.result == null ? 0 : box.maxWidth * .38,
             child: Center(
               child: CharacterView(
                 character: c,
-                size: 132,
+                size: 166,
                 motion: widget.controller.result != null
                     ? CharacterMotion.happy
                     : tapped
@@ -158,7 +173,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          if (widget.controller.result == null)
+          if (widget.controller.result == null && !widget.controller.composing)
             Positioned(
               top: box.maxHeight * .53,
               left: box.maxWidth * .24,
@@ -175,7 +190,7 @@ class _HomePageState extends State<HomePage> {
             ),
           if (widget.controller.result != null)
             Positioned(
-              top: box.maxHeight * .37,
+              top: box.maxHeight * .41,
               left: box.maxWidth * .38,
               right: 16,
               child: ResultBubble(controller: widget.controller),

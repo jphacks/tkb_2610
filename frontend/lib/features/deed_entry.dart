@@ -17,17 +17,23 @@ Future<void> openDeedEntry(
   BuildContext context,
   GameController controller,
 ) async {
+  if (controller.composing) return;
   controller.dismissResult();
-  final submitted = await showModalBottomSheet<bool>(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Colors.transparent,
-    barrierColor: Colors.black.withValues(alpha: .35),
-    enableDrag: false,
-    isDismissible: false,
-    builder: (_) => DeedEntry(controller: controller),
-  );
-  if (submitted == true && context.mounted) context.go('/home');
+  controller.setComposing(true);
+  try {
+    final submitted = await showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black.withValues(alpha: .35),
+      enableDrag: false,
+      isDismissible: false,
+      builder: (_) => DeedEntry(controller: controller),
+    );
+    if (submitted == true && context.mounted) context.go('/home');
+  } finally {
+    controller.setComposing(false);
+  }
 }
 
 class DeedEntry extends StatefulWidget {

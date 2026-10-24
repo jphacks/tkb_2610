@@ -57,6 +57,9 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
             ? const SizedBox.shrink()
             : build(),
       );
+  Page<void> tabPage(GoRouterState state, Widget Function() build) =>
+      NoTransitionPage<void>(key: state.pageKey, child: watch(build));
+
   late final GoRouter router = GoRouter(
     initialLocation: '/home',
     refreshListenable: widget.controller,
@@ -117,7 +120,8 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
         routes: [
           GoRoute(
             path: '/home',
-            builder: (context, state) => watch(
+            pageBuilder: (context, state) => tabPage(
+              state,
               () =>
                   widget.controller.snapshot!.current.stage == LifeStage.active
                   ? HomePage(controller: widget.controller)
@@ -126,13 +130,15 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
           ),
           GoRoute(
             path: '/status',
-            builder: (context, state) =>
-                watch(() => StatusPage(controller: widget.controller)),
+            pageBuilder: (context, state) =>
+                tabPage(state, () => StatusPage(controller: widget.controller)),
           ),
           GoRoute(
             path: '/gallery',
-            builder: (context, state) =>
-                watch(() => GalleryPage(controller: widget.controller)),
+            pageBuilder: (context, state) => tabPage(
+              state,
+              () => GalleryPage(controller: widget.controller),
+            ),
             routes: [
               GoRoute(
                 path: ':id',
@@ -147,7 +153,8 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
           ),
           GoRoute(
             path: '/settings',
-            builder: (context, state) => watch(
+            pageBuilder: (context, state) => tabPage(
+              state,
               () => SettingsPage(
                 controller: widget.controller,
                 isDemo: widget.isDemo,
@@ -174,21 +181,18 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(BuildContext context) => AnimatedBuilder(
-    animation: widget.controller,
-    builder: (context, _) => MaterialApp.router(
-      title: 'よいのこ',
-      scaffoldMessengerKey: messengerKey,
-      debugShowCheckedModeBanner: false,
-      theme: yoinokoTheme(),
-      routerConfig: router,
-      builder: (context, child) => ColoredBox(
-        color: const Color(0xFFDCE8EF),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 480),
-            child: child!,
-          ),
+  Widget build(BuildContext context) => MaterialApp.router(
+    title: 'よいのこ',
+    scaffoldMessengerKey: messengerKey,
+    debugShowCheckedModeBanner: false,
+    theme: yoinokoTheme(),
+    routerConfig: router,
+    builder: (context, child) => ColoredBox(
+      color: const Color(0xFFDCE8EF),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 480),
+          child: child!,
         ),
       ),
     ),
@@ -215,19 +219,22 @@ class _Shell extends StatelessWidget {
         : 0;
     return Scaffold(
       body: SafeArea(bottom: false, child: child),
-      bottomNavigationBar: YoinokoNavigation(
-        index: index,
-        onSelect: (i) {
-          if (i == 2) {
-            if (controller.snapshot!.current.stage != LifeStage.active) {
-              context.go('/home');
-              return;
+      bottomNavigationBar: AnimatedBuilder(
+        animation: controller,
+        builder: (context, _) => YoinokoNavigation(
+          index: controller.composing ? 2 : index,
+          onSelect: (i) {
+            if (i == 2) {
+              if (controller.snapshot!.current.stage != LifeStage.active) {
+                context.go('/home');
+                return;
+              }
+              openDeedEntry(context, controller);
+            } else {
+              context.go(['/home', '/status', '', '/gallery', '/settings'][i]);
             }
-            openDeedEntry(context, controller);
-          } else {
-            context.go(['/home', '/status', '', '/gallery', '/settings'][i]);
-          }
-        },
+          },
+        ),
       ),
     );
   }

@@ -9,6 +9,12 @@ class GameController extends ChangeNotifier {
   bool loading = true, busy = false;
   String? error;
   DeedResult? result;
+  bool composing = false;
+  void setComposing(bool value) {
+    composing = value;
+    notifyListeners();
+  }
+
   Future<void> initialize() async {
     loading = true;
     error = null;
