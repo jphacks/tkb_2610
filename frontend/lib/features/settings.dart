@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/theme.dart';
-import '../core/evolution_event.dart';
+import '../core/evolution_preview.dart';
 import '../core/evolution_sound.dart';
-import '../data/models.dart';
 import 'evolution_scene.dart';
 import '../widgets/character_view.dart';
 import '../widgets/common.dart';
@@ -19,6 +18,7 @@ class SettingsPage extends StatelessWidget {
   final GameController controller;
   final bool isDemo;
   final EvolutionSound Function()? evolutionSoundFactory;
+  static final _previewPicker = EvolutionPreviewPicker();
   Future<void> changeName(BuildContext context) async {
     await showDialog<void>(
       context: context,
@@ -36,26 +36,12 @@ class SettingsPage extends StatelessWidget {
   }
 
   Future<void> previewEvolution(BuildContext context, bool second) async {
-    final before = Companion(
-      id: 'preview',
-      generation: 1,
-      bornAt: DateTime.now(),
-      evolution: second ? 1 : 0,
-      kind: second ? 'stage1_environment' : 'base_01',
-    );
-    final after = before.copyWith(
-      evolution: second ? 2 : 1,
-      kind: second ? 'stage2_environment_self_care' : 'stage1_environment',
-    );
+    final event = _previewPicker.next(second: second);
     await Navigator.of(context, rootNavigator: true).push(
       PageRouteBuilder<void>(
         transitionDuration: Duration.zero,
         pageBuilder: (context, _, _) => EvolutionScene(
-          event: EvolutionEvent(
-            id: 'preview-${second ? 2 : 1}',
-            before: before,
-            after: after,
-          ),
+          event: event,
           sound: evolutionSoundFactory?.call(),
           onClose: () => Navigator.pop(context),
         ),
@@ -174,7 +160,7 @@ class SettingsPage extends StatelessWidget {
                     ListTile(
                       title: const Text('第一進化の演出をみる'),
                       subtitle: const Text(
-                        'デモ・育成記録は変わりません',
+                        'ランダム7種・育成記録は変わりません',
                         style: TextStyle(fontSize: 11, color: muted),
                       ),
                       trailing: const Icon(Icons.play_circle_outline_rounded),
@@ -183,6 +169,10 @@ class SettingsPage extends StatelessWidget {
                     const Divider(height: 1),
                     ListTile(
                       title: const Text('第二進化の演出をみる'),
+                      subtitle: const Text(
+                        'ランダム49種・育成記録は変わりません',
+                        style: TextStyle(fontSize: 11, color: muted),
+                      ),
                       trailing: const Icon(Icons.play_circle_outline_rounded),
                       onTap: () => previewEvolution(context, true),
                     ),

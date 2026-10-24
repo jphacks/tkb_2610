@@ -8,6 +8,7 @@ import 'package:ichinichi_ichizen/app.dart';
 import 'package:ichinichi_ichizen/core/controller.dart';
 import 'package:ichinichi_ichizen/data/models.dart';
 import 'package:ichinichi_ichizen/data/repository.dart';
+import 'package:ichinichi_ichizen/features/evolution_scene.dart';
 import 'repository_test.dart' show MemoryStore;
 import 'support/fake_evolution_sound.dart';
 
@@ -126,6 +127,16 @@ void main() {
     await settle();
     await t.ensureVisible(find.text('第二進化の演出をみる'));
     await t.tap(find.text('第二進化の演出をみる'));
+    await settle();
+    final scene = t.widget<EvolutionScene>(find.byType(EvolutionScene));
+    await t.runAsync(() async {
+      for (final character in [scene.event.before, scene.event.after]) {
+        await precacheImage(
+          AssetImage(character.form.assetPath),
+          t.element(find.byType(EvolutionScene)),
+        );
+      }
+    });
     await settle();
     await t.tap(find.byKey(const ValueKey('evolution-skip')));
     await t.pump();
