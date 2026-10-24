@@ -21,9 +21,11 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
     if (!assetsReady) {
       assetsReady = true;
-      for (final name in ['initial', 'dome', 'turtle']) {
-        precacheImage(AssetImage('assets/characters/$name.png'), context);
-      }
+      precacheImage(const AssetImage('assets/characters/dome.png'), context);
+      precacheImage(
+        AssetImage(widget.controller.snapshot!.current.form.assetPath),
+        context,
+      );
     }
   }
 
@@ -152,11 +154,11 @@ class _HomePageState extends State<HomePage> {
           Positioned(
             top: box.maxHeight * (widget.controller.composing ? .32 : .56),
             left: 0,
-            right: widget.controller.result == null ? 0 : box.maxWidth * .38,
+            right: widget.controller.result == null ? 0 : box.maxWidth * .60,
             child: Center(
               child: CharacterView(
                 character: c,
-                size: 166,
+                size: c.evolution == 0 ? 132 : 166,
                 motion: widget.controller.result != null
                     ? CharacterMotion.happy
                     : tapped

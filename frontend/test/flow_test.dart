@@ -54,7 +54,11 @@ void main() {
           ),
           boundary.currentContext!,
         );
-        for (final asset in ['initial', 'dome', 'turtle']) {
+        for (final asset in [
+          'evolution/base_01',
+          'dome',
+          'evolution/stage1_honesty',
+        ]) {
           await precacheImage(
             AssetImage('assets/characters/$asset.png'),
             boundary.currentContext!,

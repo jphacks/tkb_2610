@@ -66,10 +66,10 @@ class ResultBubble extends StatelessWidget {
                 ),
               ),
             if (result.evolved)
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: Text(
-                  '進化したよ！「うちのこ」で見てみよう。',
+                  '${result.snapshot.current.form.label}に進化したよ！',
                   style: TextStyle(fontSize: 12, color: orange),
                 ),
               ),
