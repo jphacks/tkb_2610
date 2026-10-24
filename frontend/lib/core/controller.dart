@@ -40,14 +40,14 @@ class GameController extends ChangeNotifier {
     snapshot = await repository.register(name);
   });
   Future<void> rename(String name) => _run(() async {
-    snapshot = await repository.rename(name);
+    _accept(await repository.rename(name));
   });
   Future<void> post(String text, String requestId) => _run(() async {
     result = await repository.postDeed(text, requestId);
-    snapshot = result!.snapshot;
+    _accept(result!.snapshot);
   });
   Future<void> welcomeNext() => _run(() async {
-    snapshot = await repository.welcomeNext();
+    _accept(await repository.welcomeNext());
     result = null;
   });
   Future<void> deleteAccount() => _run(() async {
@@ -93,13 +93,29 @@ class GameController extends ChangeNotifier {
     return page;
   }
 
+  void _accept(GameSnapshot latest) {
+    final chars = {
+      for (final c in snapshot?.characters ?? <Companion>[]) c.id: c,
+      for (final c in latest.characters) c.id: c,
+    }.values.toList()..sort((a, b) => a.generation.compareTo(b.generation));
+    final deeds = {
+      for (final d in snapshot?.deeds ?? <Deed>[]) d.id: d,
+      for (final d in latest.deeds) d.id: d,
+    };
+    snapshot = GameSnapshot(
+      name: latest.name,
+      characters: chars,
+      deeds: deeds.values.toList(),
+      todayCount: latest.todayCount,
+    );
+  }
+
   Future<void> refresh() async {
-    if (busy) return;
-    final latest = await repository.load();
-    if (latest != null) {
-      snapshot = latest;
-      notifyListeners();
-    }
+    if (busy || loading || snapshot == null) return;
+    await _run(() async {
+      final latest = await repository.load();
+      if (latest != null) _accept(latest);
+    });
   }
 
   void dismissResult() {

@@ -21,7 +21,33 @@ class YoinokoApp extends StatefulWidget {
   State<YoinokoApp> createState() => _YoinokoAppState();
 }
 
-class _YoinokoAppState extends State<YoinokoApp> {
+class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
+  final messengerKey = GlobalKey<ScaffoldMessengerState>();
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) refresh();
+  }
+
+  Future<void> refresh() async {
+    try {
+      await widget.controller.refresh();
+    } catch (e) {
+      if (mounted)
+        messengerKey.currentState?.showSnackBar(
+          SnackBar(
+            content: Text(GameController.message(e)),
+            action: SnackBarAction(label: '再試行', onPressed: refresh),
+          ),
+        );
+    }
+  }
+
   Widget watch(Widget Function() build, {bool requiresSession = true}) =>
       AnimatedBuilder(
         animation: widget.controller,
@@ -141,6 +167,7 @@ class _YoinokoAppState extends State<YoinokoApp> {
   );
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     router.dispose();
     super.dispose();
   }
@@ -150,6 +177,7 @@ class _YoinokoAppState extends State<YoinokoApp> {
     animation: widget.controller,
     builder: (context, _) => MaterialApp.router(
       title: 'よいのこ',
+      scaffoldMessengerKey: messengerKey,
       debugShowCheckedModeBanner: false,
       theme: yoinokoTheme(),
       routerConfig: router,
