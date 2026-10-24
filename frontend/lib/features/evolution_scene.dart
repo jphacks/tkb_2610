@@ -340,23 +340,6 @@ class _EvolutionSceneState extends State<EvolutionScene>
                       ),
                     ),
                     Positioned(
-                      top: box.maxHeight * .19,
-                      left: 24,
-                      right: 24,
-                      child: Opacity(
-                        opacity: 1 - ramp(p, .48, .62),
-                        child: Text(
-                          p < .18 ? 'この子に、変化が…' : 'やさしさが、ひかりに。',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 21,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
                       left: 24,
                       right: 24,
                       top: box.maxHeight * .71,
