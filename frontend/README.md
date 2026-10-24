@@ -1,17 +1,67 @@
-# frontend
+# よいのこ — Flutterフロントエンド
 
-一日一善のFlutterアプリ。
+善行の記録とキャラクター育成を組み合わせたiOS向けアプリ。作業ブランチは `front`。Flutter 3.41.1 / Dart 3.11.0 で確認しています。
 
-## Getting Started
+## 起動
 
-This project is a starting point for a Flutter application.
+このディレクトリで実行します。
 
-A few resources to get you started if this is your first Flutter project:
+```sh
+flutter pub get
+flutter run --dart-define=APP_MODE=demo
+```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Webで画面を確認する場合（製品の主対象はiOS）:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```sh
+flutter run -d web-server --web-hostname 127.0.0.1 --web-port 5173 --dart-define=APP_MODE=demo
+```
+
+実APIにつなぐ場合は、バックエンド担当から受け取った `/api` までのURLを指定します。
+
+```sh
+flutter run --dart-define=APP_MODE=api --dart-define=API_BASE_URL=https://YOUR_HOST/api
+```
+
+`YOUR_HOST` は置き換えが必要です。接続先やトークンをソースへ書き込まないでください。リリース版はHTTPS必須、接続先未設定なら設定エラーを表示します。明示的な `APP_MODE=demo` はリリース用プレビューでも使用できます。実機ビルドではXcodeでチーム・Bundle ID・署名を設定してください。
+
+## 9画面と操作
+
+1. 初回登録：名前の入力・検証・登録。
+2. ホーム：HP、XP、今日の善行、キャラクターのタップ反応。
+3. 善行投稿：500文字、二重送信防止、失敗時の再送、閉じる際の入力破棄確認。
+4. 投稿結果：褒め言葉と実際に獲得したXP・属性ポイント・HPを表示。
+5. うちのこ：7属性、レベル、進化までのXP、善行へのリンク。
+6. 歴代図鑑：ガラスケースと木の台座、世代ごとの表示、追加読み込み。
+7. 育成記録：各世代の情報・善行履歴、追加読み込み・再試行。
+8. おやすみ／世代交代：記録を保持し、許可された日時から新しい子を迎える。
+9. 設定：プレイヤー名の変更、退会の確認。引き継ぎ設定は仕様どおり準備中。
+
+下部タブは「ほーむ・うちのこ・とうこう・ずかん・せってい」。アプリに戻るとサーバーの最新状態を再取得します。通信失敗時は既存データを残し、再試行を案内します。
+
+## デモと本番の境界
+
+デモは端末内保存です。分類・褒め言葉はキーワードによる固定処理で、AIではありません。XPは1件10・日本時間の1日上限50、進化閾値100/200はデモ専用。HPの経時減少や自動のおやすみ移行は再現しません。世代交代画面はテストの保存データで検証しています。
+
+APIモードは提供された2026-10-24 API仕様v2に対応したアダプターを実装しています。実サーバーのURLは未提供のため、通信を模擬した契約テストまでの確認です。投稿、履歴、進化情報、世代交代、退会のAPIは提供資料で暫定扱いのため、バックエンド実装後に結合確認が必要です。HP・XP・進化条件・褒め言葉・翌日判定はサーバーの値を正として表示します。進化閾値が未取得の場合、推測値は表示しません。
+
+トークンは `flutter_secure_storage` へ接続先ごとに保存します。登録後に保存だけ失敗した場合、同じレスポンスのトークン保存を再試行します（プロセス終了をまたぐ回復はサーバー側の仕組みが必要）。投稿の同じ内容の再送には同じUUIDを使い、内容を変更したらUUIDを更新します。401でトークンを自動削除したり、新規ゲストを勝手に作ったりしません。
+
+## Riveを組み込むとき
+
+現在は透過PNGと小さな上下動です。`.riv` ファイルとRiveランタイムはまだ含みません。描画の差し替え口は `lib/widgets/character_view.dart` の `CharacterRendererScope` / `CharacterRenderer` です。ルートで `YoinokoApp` をScopeで囲むと全画面のキャラクターを差し替えられます。
+
+レンダラーには `Companion`、動きを許可する `bool animate` と `CharacterMotion`（idle / happy / tapped / lowEnergy / sleeping）が渡ります。Rive側の入力名・アートボード名・ステートマシン名が確定したら対応づけてください。画面側はRive内部を知る必要がありません。図鑑では `animate: false` の指定があるため、カスタムレンダラーでも静止表示に配慮してください。モデル未読み込み時のPNG表示、破棄処理、OSの動きを減らす設定への対応をRive側にも実装します。
+
+画像IDの対応表は `lib/data/api_mapper.dart`。現在は初期形態に対応し、未対応のIDは初期画像にフォールバックします。全進化形態のモデルを受領してから対応表を増やします。
+
+## 検証
+
+```sh
+flutter analyze
+flutter test
+flutter build ios --simulator --debug --dart-define=APP_MODE=demo
+flutter build web --dart-define=APP_MODE=demo
+```
+
+9画面を通る操作・名前変更・再起動後の保存・削除確認・世代交代、API変換、登録トークンの保存再試行、投稿の再送と日付境界をテストしています。`flutter test test/flow_test.dart` は `build/qa/` に390×844の9画面キャプチャを出力します。デザイン確認は `design-qa.md`、素材は `assets/README.md` を参照してください。iOSシミュレーター用ビルドは成功していますが、実機での署名・キーチェーン・日本語キーボード・実APIの結合確認は別途必要です。
