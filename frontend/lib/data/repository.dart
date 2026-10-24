@@ -9,6 +9,8 @@ abstract interface class GameRepository {
   Future<GameSnapshot> rename(String name);
   Future<GameSnapshot> welcomeNext();
   Future<void> deleteAccount();
+  Future<PageResult<Companion>> history({int offset = 0});
+  Future<PageResult<Deed>> deedsFor(String characterId, {int offset = 0});
 }
 
 abstract interface class SnapshotStore {
@@ -164,6 +166,34 @@ class DemoRepository implements GameRepository {
         ],
         deeds: data.deeds,
       ),
+    );
+  }
+
+  @override
+  Future<PageResult<Companion>> history({int offset = 0}) async {
+    final all = data.characters.reversed.toList();
+    final items = all.skip(offset).take(20).toList();
+    return PageResult(
+      items: items,
+      totalCount: all.length,
+      hasMore: offset + items.length < all.length,
+      nextOffset: offset + items.length,
+    );
+  }
+
+  @override
+  Future<PageResult<Deed>> deedsFor(
+    String characterId, {
+    int offset = 0,
+  }) async {
+    final all = data.deeds.where((d) => d.characterId == characterId).toList()
+      ..sort((a, b) => b.at.compareTo(a.at));
+    final items = all.skip(offset).take(20).toList();
+    return PageResult(
+      items: items,
+      totalCount: all.length,
+      hasMore: offset + items.length < all.length,
+      nextOffset: offset + items.length,
     );
   }
 
