@@ -1,2 +1,3 @@
-// 基本設計書の仮設定。投稿時のXP計算でも同じ値を使用する。
-export const DAILY_XP_LIMIT = 50;
+// 報酬・進化条件はDBのgame_configで管理する。ここでは入力・セッションの暫定値だけを定義する。
+export const DEED_CONTENT_MAX_LENGTH = 500;
+export const SESSION_TTL_DAYS = 90;

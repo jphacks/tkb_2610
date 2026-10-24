@@ -7,6 +7,8 @@ import {
 import { findCharacterLifespansByUserId } from "../repositories/character.repository.js";
 import { calculateCharacterLifespan } from "../utils/character-lifespan.js";
 
+import { settleCharacterState } from "../repositories/game.repository.js";
+
 export type UserProfileResult = UserProfile & {
   isGuest: boolean;
   longestSurvivalDays: number;
@@ -15,6 +17,7 @@ export type UserProfileResult = UserProfile & {
 export async function getUserProfile(
   userId: string,
 ): Promise<UserProfileResult | null> {
+  await settleCharacterState(userId);
   const user = await findUserProfileById(userId);
 
   if (!user) {

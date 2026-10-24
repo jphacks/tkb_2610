@@ -1,6 +1,8 @@
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { registerGuest } from "../repositories/auth.repository.js";
 
+import { SESSION_TTL_DAYS } from "../config/game.js";
+
 type CreateGuestAccountInput = {
   displayName: string;
 };
@@ -19,7 +21,7 @@ export async function createGuestAccount(input: CreateGuestAccountInput) {
       .update(JSON.stringify({ displayName: input.displayName }))
       .digest("hex"),
     tokenHash: createHash("sha256").update(sessionToken).digest("hex"),
-    expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
+    expiresAt: new Date(Date.now() + SESSION_TTL_DAYS * 24 * 60 * 60 * 1000).toISOString(),
   });
 
   if (result.conflict) return result;

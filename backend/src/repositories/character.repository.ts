@@ -19,6 +19,13 @@ const storedCategoryPointsSchema = z.object({
   self_care: z.number().int().nonnegative(),
 });
 
+export function mapCategoryPoints(value: unknown) {
+  const p = storedCategoryPointsSchema.parse(value);
+  return { kindness: p.kindness, environment: p.environment, gratitude: p.gratitude,
+    courage: p.courage, cooperation: p.cooperation, honesty: p.honesty, selfCare: p.self_care };
+}
+export type CategoryPoints = ReturnType<typeof mapCategoryPoints>;
+
 export type CurrentCharacterRecord = CharacterLifespanRecord & {
   id: string;
   generation: number;
@@ -31,15 +38,8 @@ export type CurrentCharacterRecord = CharacterLifespanRecord & {
   firstEvolutionCategory: string | null;
   secondEvolutionCategory: string | null;
   endReason: "death" | "second_evolution" | null;
-  categoryPoints: {
-    kindness: number;
-    environment: number;
-    gratitude: number;
-    courage: number;
-    cooperation: number;
-    honesty: number;
-    selfCare: number;
-  };
+  categoryPoints: CategoryPoints;
+  secondEvolutionPoints: CategoryPoints;
 };
 
 export async function findCurrentCharacterByUserId(
@@ -47,7 +47,7 @@ export async function findCurrentCharacterByUserId(
 ): Promise<CurrentCharacterRecord | null> {
   const { data, error } = await supabase
     .from("characters")
-    .select("id, generation, image_id, hp, max_hp, total_xp, level, evolution_stage, first_evolution_category, second_evolution_category, category_points, status, created_at, died_at, ended_at, second_evolution_date, end_reason")
+    .select("id, generation, image_id, hp, max_hp, total_xp, level, evolution_stage, first_evolution_category, second_evolution_category, category_points, status, created_at, died_at, ended_at, second_evolution_date, end_reason, second_evolution_points")
     .eq("user_id", userId)
     .order("generation", { ascending: false })
     .limit(1)
@@ -61,7 +61,6 @@ export async function findCurrentCharacterByUserId(
     return null;
   }
 
-  const points = storedCategoryPointsSchema.parse(data.category_points);
 
   return {
     id: data.id,
@@ -75,15 +74,8 @@ export async function findCurrentCharacterByUserId(
     firstEvolutionCategory: data.first_evolution_category,
     secondEvolutionCategory: data.second_evolution_category,
     endReason: data.end_reason,
-    categoryPoints: {
-      kindness: points.kindness,
-      environment: points.environment,
-      gratitude: points.gratitude,
-      courage: points.courage,
-      cooperation: points.cooperation,
-      honesty: points.honesty,
-      selfCare: points.self_care,
-    },
+    categoryPoints: mapCategoryPoints(data.category_points),
+    secondEvolutionPoints: mapCategoryPoints(data.second_evolution_points),
     status: data.status,
     createdAt: data.created_at,
     diedAt: data.died_at,
