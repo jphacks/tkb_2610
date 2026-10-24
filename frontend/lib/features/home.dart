@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import '../data/models.dart';
 import '../widgets/character_view.dart';
 import '../widgets/common.dart';
+import 'result.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.controller});
@@ -139,7 +140,9 @@ class _HomePageState extends State<HomePage> {
               child: CharacterView(
                 character: c,
                 size: 132,
-                motion: tapped
+                motion: widget.controller.result != null
+                    ? CharacterMotion.happy
+                    : tapped
                     ? CharacterMotion.tapped
                     : c.hp <= 20
                     ? CharacterMotion.lowEnergy
@@ -153,17 +156,28 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Positioned(
-            top: box.maxHeight * .47,
-            left: box.maxWidth * .24,
-            child: Panel(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              child: Text(
-                tapped ? 'えへへ、ありがとう' : 'おかえり',
-                style: const TextStyle(fontSize: 12, color: muted),
+          if (widget.controller.result == null)
+            Positioned(
+              top: box.maxHeight * .47,
+              left: box.maxWidth * .24,
+              child: Panel(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                child: Text(
+                  tapped ? 'えへへ、ありがとう' : 'おかえり',
+                  style: const TextStyle(fontSize: 12, color: muted),
+                ),
               ),
             ),
-          ),
+          if (widget.controller.result != null)
+            Positioned(
+              top: box.maxHeight * .25,
+              left: 70,
+              right: 16,
+              child: ResultBubble(controller: widget.controller),
+            ),
         ],
       ),
     );
