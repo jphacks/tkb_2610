@@ -2,6 +2,7 @@ import {
   findCurrentCharacterByUserId,
   type CurrentCharacterRecord,
 } from "../repositories/character.repository.js";
+import { getCharacterDeedCount } from "../repositories/deed.repository.js";
 import { calculateCharacterLifespan } from "../utils/character-lifespan.js";
 import {
   getNextCharacterAvailability,
@@ -11,6 +12,7 @@ import { getTodayDeedStatus, type TodayDeedStatus } from "./deeds.service.js";
 
 export type CurrentCharacterResult = CurrentCharacterRecord & {
   lifespanDays: number;
+  deedCount: number;
 };
 
 export type CurrentCharacterResponse = NextCharacterAvailability & {
@@ -28,11 +30,15 @@ export async function getCurrentCharacter(
   }
 
   const now = new Date();
-  const today = await getTodayDeedStatus(userId, now);
+  const [today, deedCount] = await Promise.all([
+    getTodayDeedStatus(userId, now),
+    getCharacterDeedCount(userId, character.id),
+  ]);
   return {
     currentCharacter: {
       ...character,
       lifespanDays: calculateCharacterLifespan(character, now),
+      deedCount,
     },
     today,
     ...getNextCharacterAvailability(character, now),

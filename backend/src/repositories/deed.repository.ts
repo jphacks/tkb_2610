@@ -34,3 +34,24 @@ export async function getDeedSummary(
     earnedXp: summary.earned_xp,
   };
 }
+
+export async function getCharacterDeedCount(
+  userId: string,
+  characterId: string,
+): Promise<number> {
+  const { count, error } = await supabase
+    .from("deeds")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .eq("character_id", characterId);
+
+  if (error) {
+    throw new Error(`Character deed count lookup failed: ${error.message}`);
+  }
+
+  if (count === null) {
+    throw new Error("Character deed count was not returned");
+  }
+
+  return count;
+}
