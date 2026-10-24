@@ -10,6 +10,10 @@ import 'repository_test.dart' show MemoryStore;
 void main() {
   test('APIの全57画像IDが実ファイルと属性対応を持つ', () {
     expect(characterForms.length, 57);
+    expect(characterForms.values.map((f) => f.name).toSet().length, 57);
+    expect(characterForm('base_01').name, 'ポノ');
+    expect(characterForm('stage1_environment').name, 'メブシカ');
+    expect(characterForm('stage2_environment_self_care').name, 'ツキノカ');
     for (final form in characterForms.values) {
       expect(File(form.assetPath).existsSync(), isTrue, reason: form.imageId);
       final c = companionFromApi({

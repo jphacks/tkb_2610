@@ -26,7 +26,7 @@ class StatusPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '第${c.generation}世代',
+                      c.form.name,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,

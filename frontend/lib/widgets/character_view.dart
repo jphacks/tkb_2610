@@ -85,7 +85,7 @@ class _CharacterViewState extends State<CharacterView>
   @override
   Widget build(BuildContext context) => Semantics(
     label:
-        '第${widget.character.generation}世代のよいのこ、${widget.character.form.label}',
+        '第${widget.character.generation}世代のよいのこ、${widget.character.form.name}、${widget.character.form.label}',
     button: widget.onTap != null,
     child: GestureDetector(
       onTap: widget.onTap,
