@@ -20,6 +20,25 @@ const attributeNames = ['思いやり', '環境保全', '感謝', '勇気', '協
 const elementNames = ['光', '草', '風', '炎', '水', '鉱石', '月'];
 const familyNames = ['クラゲ', 'シカ', 'ヒツジ', 'ライオン', 'クジラ', 'カメ', 'ネコ'];
 
+const firstSpeciesNames = [
+  'ルミクラ',
+  'メブシカ',
+  'フワラム',
+  'ヒノレオ',
+  'ナミルカ',
+  'コハガメ',
+  'ミケルナ',
+];
+const secondSpeciesNames = [
+  ['ソルクラ', 'コモレクラ', 'ソヨクラ', 'ホムラガサ', 'アワクラ', 'キラセキラ', 'ツキクラ'],
+  ['ヒノワカ', 'モリノカ', 'ソヨノカ', 'ホムノカ', 'ナミノカ', 'イワノカ', 'ツキノカ'],
+  ['コガネラム', 'モコリーフ', 'ソヨラム', 'ホムラム', 'アワラム', 'コハクラム', 'ユメラム'],
+  ['ソルレオ', 'モリレオ', 'ソヨレオ', 'ホムレオ', 'ナミレオ', 'ガンレオ', 'ルナレオ'],
+  ['ヒカリルカ', 'モリルカ', 'ソヨルカ', 'ホムルカ', 'シオルカ', 'イワルカ', 'ユメルカ'],
+  ['ヒノワガメ', 'コノハガメ', 'ソラガメ', 'ホムラガメ', 'ミナモガメ', 'キセキガメ', 'ツキネガメ'],
+  ['ヒナニャ', 'コノハニャ', 'ソヨニャ', 'ホムニャ', 'ナミニャ', 'コハクニャ', 'ネムルニャ'],
+];
+
 class CharacterForm {
   const CharacterForm(this.imageId, {this.firstCategory, this.secondCategory});
   final String imageId;
@@ -29,6 +48,11 @@ class CharacterForm {
       : firstCategory != null
       ? 1
       : 0;
+  String get name => firstCategory == null
+      ? 'ポノ'
+      : secondCategory == null
+      ? firstSpeciesNames[firstCategory!]
+      : secondSpeciesNames[firstCategory!][secondCategory!];
   String get assetPath => 'assets/characters/evolution/$imageId.png';
   String get label => firstCategory == null
       ? 'はじまりのよいのこ'

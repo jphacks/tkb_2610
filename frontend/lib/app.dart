@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'core/controller.dart';
 import 'core/theme.dart';
+import 'core/evolution_sound.dart';
+import 'features/evolution_scene.dart';
 import 'data/models.dart';
 import 'features/home.dart';
 import 'features/registration.dart';
@@ -14,9 +16,15 @@ import 'widgets/common.dart';
 import 'widgets/navigation.dart';
 
 class YoinokoApp extends StatefulWidget {
-  const YoinokoApp({super.key, required this.controller, this.isDemo = true});
+  const YoinokoApp({
+    super.key,
+    required this.controller,
+    this.isDemo = true,
+    this.evolutionSoundFactory,
+  });
   final GameController controller;
   final bool isDemo;
+  final EvolutionSound Function()? evolutionSoundFactory;
   @override
   State<YoinokoApp> createState() => _YoinokoAppState();
 }
@@ -158,6 +166,7 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
               () => SettingsPage(
                 controller: widget.controller,
                 isDemo: widget.isDemo,
+                evolutionSoundFactory: widget.evolutionSoundFactory,
               ),
             ),
           ),
@@ -192,7 +201,35 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 480),
-          child: child!,
+          child: AnimatedBuilder(
+            animation: widget.controller,
+            builder: (context, _) {
+              final event = widget.controller.pendingEvolution;
+              final showing = event != null && !widget.controller.composing;
+              return Stack(
+                children: [
+                  Positioned.fill(
+                    child: ExcludeSemantics(
+                      excluding: showing,
+                      child: TickerMode(enabled: !showing, child: child!),
+                    ),
+                  ),
+                  if (showing)
+                    Positioned.fill(
+                      child: EvolutionScene(
+                        key: ValueKey(event.id),
+                        event: event,
+                        sound: widget.evolutionSoundFactory?.call(),
+                        onClose: () {
+                          widget.controller.finishEvolution(event.id);
+                          router.go('/home');
+                        },
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     ),

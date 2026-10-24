@@ -24,12 +24,12 @@ class DisplayCase extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: b.maxWidth * .13,
-            right: b.maxWidth * .13,
+            left: b.maxWidth * .08,
+            right: b.maxWidth * .08,
             bottom: b.maxHeight * .22,
             child: CharacterView(
               character: character,
-              size: b.maxWidth * .74,
+              size: b.maxWidth * .84,
               animate: false,
             ),
           ),
@@ -85,6 +85,14 @@ class GalleryPage extends StatelessWidget {
                             DisplayCase(character: c),
                             const SizedBox(height: 8),
                             Text(
+                              c.form.name,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
                               c.stageLabel,
                               style: TextStyle(
                                 color: c.stage == LifeStage.active
@@ -117,15 +125,6 @@ class GalleryPage extends StatelessWidget {
                 .toList(),
           ),
         ),
-        if (items.length == 1)
-          const Padding(
-            padding: EdgeInsets.only(top: 32),
-            child: Text(
-              'これから増えていく、この子たちとの思い出。',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12, color: muted),
-            ),
-          ),
         footer,
       ],
     ),
@@ -240,6 +239,14 @@ class _CharacterDetailPageState extends State<CharacterDetailPage> {
                               fontSize: 19,
                             ),
                           ),
+                          Text(
+                            c.form.name,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
                           Text(
                             c.stageLabel,
                             style: const TextStyle(color: muted),

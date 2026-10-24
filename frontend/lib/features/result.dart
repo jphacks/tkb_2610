@@ -69,7 +69,7 @@ class ResultBubble extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: Text(
-                  '${result.snapshot.current.form.label}に進化したよ！',
+                  '${result.snapshot.current.form.name}に進化したよ！',
                   style: TextStyle(fontSize: 12, color: orange),
                 ),
               ),

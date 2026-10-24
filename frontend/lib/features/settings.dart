@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/theme.dart';
+import '../core/evolution_preview.dart';
+import '../core/evolution_sound.dart';
+import 'evolution_scene.dart';
 import '../widgets/character_view.dart';
 import '../widgets/common.dart';
 import 'registration.dart';
@@ -10,9 +13,12 @@ class SettingsPage extends StatelessWidget {
     super.key,
     required this.controller,
     required this.isDemo,
+    this.evolutionSoundFactory,
   });
   final GameController controller;
   final bool isDemo;
+  final EvolutionSound Function()? evolutionSoundFactory;
+  static final _previewPicker = EvolutionPreviewPicker();
   Future<void> changeName(BuildContext context) async {
     await showDialog<void>(
       context: context,
@@ -29,11 +35,26 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
+  Future<void> previewEvolution(BuildContext context, bool second) async {
+    final event = _previewPicker.next(second: second);
+    await Navigator.of(context, rootNavigator: true).push(
+      PageRouteBuilder<void>(
+        transitionDuration: Duration.zero,
+        pageBuilder: (context, _, _) => EvolutionScene(
+          event: event,
+          sound: evolutionSoundFactory?.call(),
+          onClose: () => Navigator.pop(context),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) => LayoutBuilder(
     builder: (context, box) => Stack(
       children: [
-        if (box.maxHeight >= 700 &&
+        if (!isDemo &&
+            box.maxHeight >= 700 &&
             MediaQuery.textScalerOf(context).scale(14) <= 19) ...[
           Positioned(
             bottom: 0,
@@ -130,6 +151,35 @@ class SettingsPage extends StatelessWidget {
                 onTap: () => removeAccount(context),
               ),
             ),
+            if (isDemo) ...[
+              const SizedBox(height: 24),
+              Panel(
+                padding: EdgeInsets.zero,
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: const Text('第一進化の演出をみる'),
+                      subtitle: const Text(
+                        'ランダム7種・育成記録は変わりません',
+                        style: TextStyle(fontSize: 11, color: muted),
+                      ),
+                      trailing: const Icon(Icons.play_circle_outline_rounded),
+                      onTap: () => previewEvolution(context, false),
+                    ),
+                    const Divider(height: 1),
+                    ListTile(
+                      title: const Text('第二進化の演出をみる'),
+                      subtitle: const Text(
+                        'ランダム49種・育成記録は変わりません',
+                        style: TextStyle(fontSize: 11, color: muted),
+                      ),
+                      trailing: const Icon(Icons.play_circle_outline_rounded),
+                      onTap: () => previewEvolution(context, true),
+                    ),
+                  ],
+                ),
+              ),
+            ],
             if (isDemo)
               const Padding(
                 padding: EdgeInsets.only(top: 32),
