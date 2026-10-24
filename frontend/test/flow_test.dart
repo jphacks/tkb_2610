@@ -47,6 +47,13 @@ void main() {
         ),
       );
       await t.runAsync(() async {
+        await precacheImage(
+          const ResizeImage(
+            AssetImage('assets/icons/uchinoko.png'),
+            width: 136,
+          ),
+          boundary.currentContext!,
+        );
         for (final asset in ['initial', 'dome', 'turtle']) {
           await precacheImage(
             AssetImage('assets/characters/$asset.png'),

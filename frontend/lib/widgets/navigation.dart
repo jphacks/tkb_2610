@@ -12,7 +12,7 @@ class YoinokoNavigation extends StatelessWidget {
   static const labels = ['ほーむ', 'うちのこ', 'とうこう', 'ずかん', 'せってい'];
   static const icons = [
     Icons.home_outlined,
-    Icons.face_retouching_natural_outlined,
+    null,
     Icons.edit_note_rounded,
     Icons.menu_book_outlined,
     Icons.settings_outlined,
@@ -47,10 +47,13 @@ class YoinokoNavigation extends StatelessWidget {
                       children: [
                         i == 1
                             ? Image.asset(
-                                'assets/characters/initial.png',
+                                'assets/icons/uchinoko.png',
                                 width: 34,
                                 height: 28,
-                                fit: BoxFit.contain,
+                                fit: BoxFit.cover,
+                                color: index == i ? orange : muted,
+                                colorBlendMode: BlendMode.srcIn,
+                                cacheWidth: 136,
                                 excludeFromSemantics: true,
                               )
                             : Icon(
