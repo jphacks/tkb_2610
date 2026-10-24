@@ -22,6 +22,14 @@ class YoinokoApp extends StatefulWidget {
 }
 
 class _YoinokoAppState extends State<YoinokoApp> {
+  Widget watch(Widget Function() build, {bool requiresSession = true}) =>
+      AnimatedBuilder(
+        animation: widget.controller,
+        builder: (context, _) =>
+            requiresSession && widget.controller.snapshot == null
+            ? const SizedBox.shrink()
+            : build(),
+      );
   late final GoRouter router = GoRouter(
     initialLocation: '/home',
     refreshListenable: widget.controller,
@@ -41,32 +49,37 @@ class _YoinokoAppState extends State<YoinokoApp> {
     routes: [
       GoRoute(
         path: '/loading',
-        builder: (context, state) => Scaffold(
-          body: SafeArea(
-            child: Center(
-              child: widget.controller.error == null
-                  ? const CircularProgressIndicator()
-                  : Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ErrorNotice(widget.controller.error!),
-                          PrimaryButton(
-                            label: '再読み込み',
-                            onPressed: widget.controller.initialize,
-                          ),
-                        ],
+        builder: (context, state) => watch(
+          () => Scaffold(
+            body: SafeArea(
+              child: Center(
+                child: widget.controller.error == null
+                    ? const CircularProgressIndicator()
+                    : Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ErrorNotice(widget.controller.error!),
+                            PrimaryButton(
+                              label: '再読み込み',
+                              onPressed: widget.controller.initialize,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+              ),
             ),
           ),
+          requiresSession: false,
         ),
       ),
       GoRoute(
         path: '/register',
-        builder: (context, state) =>
-            RegistrationPage(controller: widget.controller),
+        builder: (context, state) => watch(
+          () => RegistrationPage(controller: widget.controller),
+          requiresSession: false,
+        ),
       ),
       ShellRoute(
         builder: (context, state, child) => _Shell(
@@ -77,35 +90,41 @@ class _YoinokoAppState extends State<YoinokoApp> {
         routes: [
           GoRoute(
             path: '/home',
-            builder: (context, state) =>
-                widget.controller.snapshot!.current.stage == LifeStage.active
-                ? HomePage(controller: widget.controller)
-                : GenerationPage(controller: widget.controller),
+            builder: (context, state) => watch(
+              () =>
+                  widget.controller.snapshot!.current.stage == LifeStage.active
+                  ? HomePage(controller: widget.controller)
+                  : GenerationPage(controller: widget.controller),
+            ),
           ),
           GoRoute(
             path: '/status',
             builder: (context, state) =>
-                StatusPage(controller: widget.controller),
+                watch(() => StatusPage(controller: widget.controller)),
           ),
           GoRoute(
             path: '/gallery',
             builder: (context, state) =>
-                GalleryPage(controller: widget.controller),
+                watch(() => GalleryPage(controller: widget.controller)),
             routes: [
               GoRoute(
                 path: ':id',
-                builder: (context, state) => CharacterDetailPage(
-                  controller: widget.controller,
-                  characterId: state.pathParameters['id']!,
+                builder: (context, state) => watch(
+                  () => CharacterDetailPage(
+                    controller: widget.controller,
+                    characterId: state.pathParameters['id']!,
+                  ),
                 ),
               ),
             ],
           ),
           GoRoute(
             path: '/settings',
-            builder: (context, state) => SettingsPage(
-              controller: widget.controller,
-              isDemo: widget.isDemo,
+            builder: (context, state) => watch(
+              () => SettingsPage(
+                controller: widget.controller,
+                isDemo: widget.isDemo,
+              ),
             ),
           ),
         ],
