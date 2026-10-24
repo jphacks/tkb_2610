@@ -24,12 +24,7 @@ Companion companionFromApi(
     'retired' => LifeStage.completed,
     _ => throw const GameException('キャラクターの状態を読み取れませんでした。'),
   };
-  // Unknown image IDs deliberately fall back to the starter until the asset catalog is supplied.
-  final kind = switch (j['imageId']) {
-    'base_01' => 'initial',
-    'demo_turtle' => 'turtle',
-    _ => 'initial',
-  };
+  final kind = knownCharacterKind(j['imageId']);
   return Companion(
     id: j['id'] as String,
     generation: j['generation'] as int,
@@ -41,6 +36,7 @@ Companion companionFromApi(
     evolution: j['evolutionStage'] as int,
     nextEvolutionXp: evolution?['nextEvolutionXp'] as int?,
     kind: kind,
+    secondEvolutionDate: jstMidnight(j['secondEvolutionDate']),
     stage: status,
     endedAt: apiDate(j['diedAt']) ?? apiDate(j['endedAt']),
     lifespanDays: j['lifespanDays'] as int?,
