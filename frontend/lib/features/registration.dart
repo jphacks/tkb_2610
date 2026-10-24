@@ -8,7 +8,10 @@ import '../widgets/common.dart';
 String? validateName(String? value) {
   final name = value?.trim() ?? '';
   if (name.isEmpty) return '名前を入力してください';
-  if (name.characters.length > 20) return '名前は20文字以内で入力してください';
+  if (name.length > 20) return '名前は20文字以内で入力してください';
+  if (RegExp(r'[\x00-\x1F\x7F]').hasMatch(name)) {
+    return '使用できない文字が含まれています';
+  }
   return null;
 }
 
