@@ -53,159 +53,123 @@ class SettingsPage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => LayoutBuilder(
-    builder: (context, box) => Stack(
-      children: [
-        if (!isDemo &&
-            box.maxHeight >= 700 &&
-            MediaQuery.textScalerOf(context).scale(14) <= 19) ...[
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 130,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: floor,
-                border: Border(top: BorderSide(color: line)),
-              ),
-            ),
+  Widget build(BuildContext context) => PageBody(
+    title: '設定',
+    children: [
+      Row(
+        children: [
+          CharacterView(
+            character: controller.snapshot!.current,
+            size: 62,
+            animate: false,
           ),
-          Positioned(
-            bottom: 90,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: CharacterView(
-                character: controller.snapshot!.current,
-                size: 140,
-              ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  controller.snapshot!.name,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Text('ゲストで利用中', style: TextStyle(color: muted)),
+              ],
             ),
           ),
         ],
-        PageBody(
-          title: '設定',
+      ),
+      const SizedBox(height: 24),
+      if (androidPet?.supported == true)
+        AnimatedBuilder(
+          animation: androidPet!,
+          builder: (context, _) => androidPet!.available
+              ? Padding(
+                  padding: const EdgeInsets.only(bottom: 24),
+                  child: _AndroidPetSettings(pet: androidPet!),
+                )
+              : const SizedBox.shrink(),
+        ),
+      Panel(
+        padding: EdgeInsets.zero,
+        child: Column(
           children: [
-            Row(
-              children: [
-                CharacterView(
-                  character: controller.snapshot!.current,
-                  size: 62,
-                  animate: false,
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        controller.snapshot!.name,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Text('ゲストで利用中', style: TextStyle(color: muted)),
-                    ],
-                  ),
-                ),
-              ],
+            ListTile(
+              title: const Text('プレイヤー名を変更'),
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () => changeName(context),
             ),
-            const SizedBox(height: 24),
-            if (androidPet?.supported == true)
-              AnimatedBuilder(
-                animation: androidPet!,
-                builder: (context, _) => androidPet!.available
-                    ? Padding(
-                        padding: const EdgeInsets.only(bottom: 24),
-                        child: _AndroidPetSettings(pet: androidPet!),
-                      )
-                    : const SizedBox.shrink(),
-              ),
-            Panel(
-              padding: EdgeInsets.zero,
-              child: Column(
-                children: [
-                  ListTile(
-                    title: const Text('プレイヤー名を変更'),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () => changeName(context),
-                  ),
-                  const Divider(height: 1, color: line),
-                  const ListTile(
-                    title: Text('引き継ぎ設定', style: TextStyle(color: muted)),
-                    trailing: Text(
-                      '準備中',
-                      style: TextStyle(color: muted, fontSize: 12),
-                    ),
-                  ),
-                ],
+            const Divider(height: 1, color: line),
+            const ListTile(
+              title: Text('引き継ぎ設定', style: TextStyle(color: muted)),
+              trailing: Text(
+                '準備中',
+                style: TextStyle(color: muted, fontSize: 12),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 18),
-              child: Text(
-                '現在はゲストで利用しています。アプリの削除や端末変更で、データにアクセスできなくなる場合があります。',
-                style: TextStyle(fontSize: 12, color: muted),
-              ),
-            ),
-            Panel(
-              padding: EdgeInsets.zero,
-              child: ListTile(
-                title: const Text(
-                  '退会する',
-                  style: TextStyle(color: Color(0xFFB74444)),
-                ),
-                subtitle: const Text(
-                  'アカウントと育成記録を削除します',
-                  style: TextStyle(fontSize: 11, color: muted),
-                ),
-                trailing: const Icon(Icons.chevron_right_rounded),
-                onTap: () => removeAccount(context),
-              ),
-            ),
-            if (isDemo) ...[
-              const SizedBox(height: 24),
-              Panel(
-                padding: EdgeInsets.zero,
-                child: Column(
-                  children: [
-                    ListTile(
-                      title: const Text('第一進化の演出をみる'),
-                      subtitle: const Text(
-                        'ランダム7種・育成記録は変わりません',
-                        style: TextStyle(fontSize: 11, color: muted),
-                      ),
-                      trailing: const Icon(Icons.play_circle_outline_rounded),
-                      onTap: () => previewEvolution(context, false),
-                    ),
-                    const Divider(height: 1),
-                    ListTile(
-                      title: const Text('第二進化の演出をみる'),
-                      subtitle: const Text(
-                        'ランダム49種・育成記録は変わりません',
-                        style: TextStyle(fontSize: 11, color: muted),
-                      ),
-                      trailing: const Icon(Icons.play_circle_outline_rounded),
-                      onTap: () => previewEvolution(context, true),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-            if (isDemo)
-              const Padding(
-                padding: EdgeInsets.only(top: 32),
-                child: Text(
-                  'デモモード\nこの端末だけに保存されます。分類と褒め言葉はデモ用です。',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 11, color: muted),
-                ),
-              ),
           ],
         ),
+      ),
+      const Padding(
+        padding: EdgeInsets.symmetric(vertical: 18),
+        child: Text(
+          '現在はゲストで利用しています。アプリの削除や端末変更で、データにアクセスできなくなる場合があります。',
+          style: TextStyle(fontSize: 12, color: muted),
+        ),
+      ),
+      Panel(
+        padding: EdgeInsets.zero,
+        child: ListTile(
+          title: const Text('退会する', style: TextStyle(color: Color(0xFFB74444))),
+          subtitle: const Text(
+            'アカウントと育成記録を削除します',
+            style: TextStyle(fontSize: 11, color: muted),
+          ),
+          trailing: const Icon(Icons.chevron_right_rounded),
+          onTap: () => removeAccount(context),
+        ),
+      ),
+      if (isDemo) ...[
+        const SizedBox(height: 24),
+        Panel(
+          padding: EdgeInsets.zero,
+          child: Column(
+            children: [
+              ListTile(
+                title: const Text('第一進化の演出をみる'),
+                subtitle: const Text(
+                  'ランダム7種・育成記録は変わりません',
+                  style: TextStyle(fontSize: 11, color: muted),
+                ),
+                trailing: const Icon(Icons.play_circle_outline_rounded),
+                onTap: () => previewEvolution(context, false),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                title: const Text('第二進化の演出をみる'),
+                subtitle: const Text(
+                  'ランダム49種・育成記録は変わりません',
+                  style: TextStyle(fontSize: 11, color: muted),
+                ),
+                trailing: const Icon(Icons.play_circle_outline_rounded),
+                onTap: () => previewEvolution(context, true),
+              ),
+            ],
+          ),
+        ),
       ],
-    ),
+      if (isDemo)
+        const Padding(
+          padding: EdgeInsets.only(top: 32),
+          child: Text(
+            'デモモード\nこの端末だけに保存されます。分類と褒め言葉はデモ用です。',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 11, color: muted),
+          ),
+        ),
+    ],
   );
 }
 

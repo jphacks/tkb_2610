@@ -13,7 +13,7 @@ class Panel extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: padding,
     decoration: BoxDecoration(
-      color: Colors.white.withValues(alpha: .94),
+      color: Colors.white,
       borderRadius: BorderRadius.circular(26),
       border: Border.all(color: Colors.white, width: 1.5),
       boxShadow: const [
