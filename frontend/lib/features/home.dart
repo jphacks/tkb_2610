@@ -193,6 +193,11 @@ class _HomePageState extends State<HomePage> {
                       child: CharacterView(
                         character: c,
                         size: charSize,
+                        wanderDistance: math.max(
+                          0.0,
+                          (box.maxWidth - charSize * 1.08) / 2 - 16,
+                        ),
+                        wander: !composing && c.hp > 20,
                         motion: widget.controller.result != null
                             ? CharacterMotion.happy
                             : tapped
