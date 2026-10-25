@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import '../data/models.dart';
 import '../widgets/character_view.dart';
 import '../widgets/common.dart';
+import '../widgets/cloud_background.dart';
 
 String? validateName(String? value) {
   final name = value?.trim() ?? '';
@@ -45,99 +46,107 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: SafeArea(
-      child: LayoutBuilder(
-        builder: (context, constraints) => SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: IntrinsicHeight(
-              child: Column(
-                children: [
-                  const SizedBox(height: 144),
-                  const Text(
-                    'よいのこ',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 3,
+    body: CloudBackground(
+      child: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: IntrinsicHeight(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 88),
+                    const Text(
+                      'よいのこ',
+                      style: TextStyle(
+                        fontSize: 52,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 3,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text('善いことを、この子と。'),
-                  const Spacer(),
-                  const SizedBox(height: 160),
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        color: floor,
-                        padding: const EdgeInsets.fromLTRB(24, 80, 24, 90),
-                        child: Panel(
-                          child: Form(
-                            key: form,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Center(
-                                  child: Text(
-                                    'はじめまして',
-                                    style: TextStyle(
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold,
+                    const SizedBox(height: 10),
+                    const Text('善いことを、この子と。'),
+                    const Spacer(),
+                    const SizedBox(height: 160),
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          color: Colors.transparent,
+                          padding: const EdgeInsets.fromLTRB(24, 80, 24, 90),
+                          child: Panel(
+                            child: Form(
+                              key: form,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Center(
+                                    child: Text(
+                                      'はじめまして',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(height: 24),
-                                const Text('プレイヤー名'),
-                                const SizedBox(height: 8),
-                                TextFormField(
-                                  controller: name,
-                                  validator: validateName,
-                                  maxLength: 20,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) =>
-                                      widget.controller.busy ? null : submit(),
-                                  decoration: const InputDecoration(
-                                    hintText: '名前を入力',
-                                    counterText: '',
+                                  const SizedBox(height: 24),
+                                  const Text('プレイヤー名'),
+                                  const SizedBox(height: 8),
+                                  TextFormField(
+                                    controller: name,
+                                    validator: validateName,
+                                    maxLength: 20,
+                                    textInputAction: TextInputAction.done,
+                                    onFieldSubmitted: (_) =>
+                                        widget.controller.busy
+                                        ? null
+                                        : submit(),
+                                    decoration: const InputDecoration(
+                                      hintText: '名前を入力',
+                                      counterText: '',
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 8),
-                                const Text(
-                                  '名前はあとから変更できます',
-                                  style: TextStyle(fontSize: 12, color: muted),
-                                ),
-                                if (error != null) ErrorNotice(error!),
-                                const SizedBox(height: 24),
-                                PrimaryButton(
-                                  label: 'はじめる',
-                                  onPressed: submit,
-                                  busy: widget.controller.busy,
-                                ),
-                              ],
+                                  const SizedBox(height: 8),
+                                  const Text(
+                                    '名前はあとから変更できます',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: muted,
+                                    ),
+                                  ),
+                                  if (error != null) ErrorNotice(error!),
+                                  const SizedBox(height: 24),
+                                  PrimaryButton(
+                                    label: 'はじめる',
+                                    onPressed: submit,
+                                    busy: widget.controller.busy,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: -120,
-                        left: 0,
-                        right: 0,
-                        child: Center(
-                          child: CharacterView(
-                            character: Companion(
-                              id: 'preview',
-                              generation: 1,
-                              bornAt: DateTime.now(),
+                        Positioned(
+                          top: -120,
+                          left: 0,
+                          right: 0,
+                          child: Center(
+                            child: CharacterView(
+                              character: Companion(
+                                id: 'preview',
+                                generation: 1,
+                                bornAt: DateTime.now(),
+                              ),
+                              size: 160,
                             ),
-                            size: 160,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

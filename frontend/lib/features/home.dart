@@ -7,6 +7,7 @@ import '../data/models.dart';
 import '../data/character_speech.dart';
 import '../widgets/room_character.dart';
 import '../widgets/common.dart';
+import '../widgets/cloud_background.dart';
 import 'result.dart';
 
 class HomePage extends StatefulWidget {
@@ -124,25 +125,8 @@ class _HomePageState extends State<HomePage> {
               return Stack(
                 children: [
                   Positioned.fill(
-                    child: Column(
-                      children: [
-                        Expanded(
-                          flex: widget.controller.composing ? 42 : 62,
-                          child: const ColoredBox(
-                            color: wall,
-                            child: SizedBox.expand(),
-                          ),
-                        ),
-                        Expanded(
-                          flex: widget.controller.composing ? 58 : 38,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: floor,
-                              border: Border(top: BorderSide(color: line)),
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: CloudBackground(
+                      floorFraction: composing ? .42 : .62,
                     ),
                   ),
                   Positioned(

@@ -14,8 +14,15 @@ class Panel extends StatelessWidget {
     padding: padding,
     decoration: BoxDecoration(
       color: Colors.white.withValues(alpha: .94),
-      borderRadius: BorderRadius.circular(18),
-      border: Border.all(color: line),
+      borderRadius: BorderRadius.circular(26),
+      border: Border.all(color: Colors.white, width: 1.5),
+      boxShadow: const [
+        BoxShadow(
+          color: Color(0x0C176975),
+          blurRadius: 16,
+          offset: Offset(0, 4),
+        ),
+      ],
     ),
     child: child,
   );
@@ -51,7 +58,7 @@ class ProgressTrack extends StatelessWidget {
   const ProgressTrack({
     super.key,
     required this.value,
-    this.color = peach,
+    this.color = teal,
     this.height = 10,
   });
   final double value, height;
@@ -62,7 +69,7 @@ class ProgressTrack extends StatelessWidget {
     child: LinearProgressIndicator(
       value: value.clamp(0, 1),
       minHeight: height,
-      backgroundColor: const Color(0xFFE3E7EC),
+      backgroundColor: const Color(0xFFE1EFED),
       color: color,
     ),
   );
@@ -101,7 +108,13 @@ class PageBody extends StatelessWidget {
       Row(
         children: [
           Expanded(
-            child: Text(title, style: Theme.of(context).textTheme.titleLarge),
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontSize: 26,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ),
           ?trailing,
         ],
