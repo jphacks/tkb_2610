@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ichinichi_ichizen/app.dart';
 import 'package:ichinichi_ichizen/core/controller.dart';
 import 'package:ichinichi_ichizen/data/repository.dart';
+import 'package:ichinichi_ichizen/data/character_speech.dart';
 
 class MemoryStore implements SnapshotStore {
   String? value;
@@ -34,7 +35,14 @@ void main() {
     await tester.tap(find.text('はじめる'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
-    expect(find.text('おかえり'), findsOneWidget);
+    expect(
+      speechLinesFor(c.snapshot!.current.kind),
+      contains(
+        tester
+            .widget<Text>(find.byKey(const ValueKey('character-speech')))
+            .data,
+      ),
+    );
     expect(c.snapshot?.name, 'はる');
     await tester.pumpWidget(const SizedBox());
     c.dispose();
