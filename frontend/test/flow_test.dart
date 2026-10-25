@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ichinichi_ichizen/app.dart';
 import 'package:ichinichi_ichizen/core/controller.dart';
 import 'package:ichinichi_ichizen/data/repository.dart';
+import 'package:ichinichi_ichizen/data/character_speech.dart';
 import 'package:ichinichi_ichizen/data/models.dart';
 
 class _Store implements SnapshotStore {
@@ -92,7 +93,12 @@ void main() {
       await t.ensureVisible(find.text('はじめる'));
       await t.tap(find.text('はじめる'));
       await settle();
-      expect(find.text('おかえり'), findsOneWidget);
+      expect(
+        speechLinesFor(c.snapshot!.current.kind),
+        contains(
+          t.widget<Text>(find.byKey(const ValueKey('character-speech'))).data,
+        ),
+      );
       await capture('02-home');
       await t.tap(find.byKey(const ValueKey('tab-2')));
       await settle();

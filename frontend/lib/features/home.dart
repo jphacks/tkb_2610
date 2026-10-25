@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/theme.dart';
 import '../data/models.dart';
+import '../data/character_speech.dart';
 import '../widgets/character_view.dart';
 import '../widgets/common.dart';
 import 'result.dart';
@@ -17,6 +19,58 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool tapped = false;
   bool assetsReady = false;
+  final _speechRandom = math.Random();
+  Timer? _tapTimer;
+  String? _speechCharacterId, _speechImageId;
+  late String _speech;
+
+  @override
+  void initState() {
+    super.initState();
+    _syncSpeech();
+  }
+
+  @override
+  void didUpdateWidget(covariant HomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _syncSpeech();
+  }
+
+  // 再描画だけでは抽選せず、進化・世代交代でキャラが変わった時に更新。
+  void _syncSpeech() {
+    final character = widget.controller.snapshot!.current;
+    if (_speechCharacterId == character.id &&
+        _speechImageId == character.form.imageId) {
+      return;
+    }
+    _speechCharacterId = character.id;
+    _speechImageId = character.form.imageId;
+    _speech = pickCharacterSpeech(character.kind, random: _speechRandom);
+    _tapTimer?.cancel();
+    tapped = false;
+  }
+
+  void _onCharacterTap() {
+    _tapTimer?.cancel();
+    setState(() {
+      tapped = true;
+      _speech = pickCharacterSpeech(
+        widget.controller.snapshot!.current.kind,
+        random: _speechRandom,
+        previous: _speech,
+      );
+    });
+    _tapTimer = Timer(const Duration(seconds: 2), () {
+      if (mounted) setState(() => tapped = false);
+    });
+  }
+
+  @override
+  void dispose() {
+    _tapTimer?.cancel();
+    super.dispose();
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -200,12 +254,7 @@ class _HomePageState extends State<HomePage> {
                             : c.hp <= 20
                             ? CharacterMotion.lowEnergy
                             : CharacterMotion.idle,
-                        onTap: () {
-                          setState(() => tapped = true);
-                          Future.delayed(const Duration(seconds: 2), () {
-                            if (mounted) setState(() => tapped = false);
-                          });
-                        },
+                        onTap: _onCharacterTap,
                       ),
                     ),
                   ),
@@ -214,14 +263,21 @@ class _HomePageState extends State<HomePage> {
                     Positioned(
                       top: charTop - 40,
                       left: box.maxWidth * .24,
-                      child: Panel(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        child: Text(
-                          tapped ? 'えへへ、ありがとう' : 'おかえり',
-                          style: const TextStyle(fontSize: 12, color: muted),
+                      right: 16,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Panel(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
+                          child: Text(
+                            _speech,
+                            key: const ValueKey('character-speech'),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontSize: 12, color: muted),
+                          ),
                         ),
                       ),
                     ),
