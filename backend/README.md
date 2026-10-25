@@ -52,6 +52,10 @@ npm start
 
 ## 主なファイルと処理の順番
 
+善行の褒め口調は `src/config/character-personalities.json` の57キャラの設定で管理します。投稿予約で確定した個体の画像IDから設定を選び、Geminiへ性格・一人称・話し方を渡します。DBやAPIの項目追加は不要です。[編集手順とデモへの反映方法](../frontend/docs/character-praise.md) を参照してください。
+
+設定と投稿経路のテスト（実DB・実AIへの通信なし）：`npm run test:personality`
+
 ```text
 routes → controllers → services → repositories → Supabase RPC / テーブル
                          ↓

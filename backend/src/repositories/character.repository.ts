@@ -26,6 +26,14 @@ export function mapCategoryPoints(value: unknown) {
 }
 export type CategoryPoints = ReturnType<typeof mapCategoryPoints>;
 
+// 投稿予約で確定した個体を参照し、別世代の口調を混ぜない。
+export async function findCharacterImageId(userId: string, characterId: string): Promise<string> {
+  const { data, error } = await supabase.from('characters')
+    .select('image_id').eq('user_id', userId).eq('id', characterId).single();
+  if (error) throw new Error(`Character image lookup failed: ${error.message}`);
+  return z.object({ image_id: z.string() }).parse(data).image_id;
+}
+
 export type CurrentCharacterRecord = CharacterLifespanRecord & {
   id: string;
   generation: number;

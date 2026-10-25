@@ -65,6 +65,10 @@ APIモードは提供された2026-10-24 API仕様v2に対応したアダプタ�
 
 57キャラそれぞれに10種類の固定セリフを用意し、ホーム表示時とキャラのタップ時にランダムで選びます。直前と同じ言葉は続けません。文章は `lib/data/character_speech.dart` で編集できます。対応するキャラの選び方・表示処理・確認方法は [セリフの編集ガイド](docs/character-speech.md) を参照してください。
 
+## キャラごとの褒め口調
+
+善行投稿後の褒め言葉は、57キャラの性格・一人称・話し方に合わせます。本番はバックエンドのAIが具体的な投稿内容から生成し、デモは同じ性格設定の文型を使います。設定の正本は `backend/src/config/character-personalities.json` です。編集後、リポジトリの一番上で `python3 tools/generate_character_personalities.py` を実行するとデモにも反映されます。[編集手順と57キャラの一覧](docs/character-praise.md) を参照してください。
+
 ## Riveを組み込むとき
 
 現在は透過PNGと小さな上下動です。`.riv` ファイルとRiveランタイムはまだ含みません。描画の差し替え口は `lib/widgets/character_view.dart` の `CharacterRendererScope` / `CharacterRenderer` です。ルートで `YoinokoApp` をScopeで囲むと全画面のキャラクターを差し替えられます。

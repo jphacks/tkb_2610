@@ -110,7 +110,7 @@ void main() {
       await t.tap(find.text('送る'));
       await settle();
       expect(c.snapshot!.deeds.length, 1);
-      expect(find.text('そのやさしさ、きっと届いたよ！'), findsOneWidget);
+      expect(find.text(c.snapshot!.deeds.last.praise), findsOneWidget);
       await capture('04-result');
       await t.tap(find.byKey(const ValueKey('tab-1')));
       await settle();

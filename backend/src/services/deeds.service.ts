@@ -5,6 +5,7 @@ import { beginDeedRequest, finishDeedRequest, releaseDeedRequest } from '../repo
 import { getJstDayRange } from '../utils/jst-day-range.js';
 import { judgementSchema, type JudgeDeed } from '../lib/gemini.js';
 import { ApiError } from '../lib/api-error.js';
+import { findCharacterImageId } from '../repositories/character.repository.js';
 
 export type TodayDeedStatus = {
   date: string; deedCount: number; earnedXp: number; xpLimit: number; remainingXp: number; goalAchieved: boolean;
@@ -20,7 +21,10 @@ export async function submitDeed(userId: string, requestId: string, content: str
   const reservation = await beginDeedRequest(userId, requestId, content, leaseToken);
   if (reservation.kind === 'replay') return reservation;
   let judgement;
-  try { judgement = judgementSchema.parse(await judge(content, reservation.displayName)); }
+  try {
+    const imageId = await findCharacterImageId(userId, reservation.characterId);
+    judgement = judgementSchema.parse(await judge(content, reservation.displayName, imageId));
+  }
   catch {
     try { await releaseDeedRequest(userId, requestId, leaseToken); }
     catch { console.error('Deed lease release failed', { leaseToken }); }
