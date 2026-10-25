@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models.dart';
 import 'demo_evolution.dart';
+import 'character_praise.dart';
 
 abstract interface class GameRepository {
   Future<GameSnapshot?> load();
@@ -120,7 +121,8 @@ class DemoRepository implements GameRepository {
       categoryPoints: xp > 0 ? 1 : 0,
       xp: xp,
       hp: hp,
-      praise: _praises[category],
+      // この善行で進化する場合も、行動を見ていた進化前のキャラが褒める。
+      praise: demoCharacterPraise(c.kind, category),
     );
     final next = applyDemoEvolution(c, deed, data.deeds);
     final snapshot = await _save(
@@ -143,15 +145,6 @@ class DemoRepository implements GameRepository {
     return 0;
   }
 
-  static const _praises = [
-    'そのやさしさ、きっと届いたよ！',
-    '小さな行動が、世界をきれいにするね。',
-    'ありがとうの気持ち、あたたかいね。',
-    '一歩踏み出せたあなた、すてきだね。',
-    '力を合わせるって、うれしいね。',
-    '正直な行動が、誰かの安心になるね。',
-    '自分を大切にできて、えらいね。',
-  ];
   @override
   Future<GameSnapshot> rename(String name) => _save(
     GameSnapshot(name: name, characters: data.characters, deeds: data.deeds),
