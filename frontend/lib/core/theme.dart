@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
-const ink = Color(0xFF25324A);
-const muted = Color(0xFF788296);
-const wall = Color(0xFFE8F5FD);
-const floor = Color(0xFFEDEAE6);
-const peach = Color(0xFFFFBE96);
-const orange = Color(0xFFE88A46);
-const line = Color(0xFFCDD2DA);
+const ink = Color(0xFF214E59);
+const muted = Color(0xFF35515A);
+const aqua = Color(0xFF58D9DE);
+const teal = Color(0xFF126F7B);
+const wall = aqua;
+const floor = Color(0xFFE5F8F5);
+const peach = Color(0xFFCEF1EF);
+const orange = teal;
+const line = Color(0xFFB9DFDF);
 const categoryColors = [
-  Color(0xFFEF8798),
-  Color(0xFF8ABF78),
-  Color(0xFFBA91D9),
-  Color(0xFFF2A35F),
-  Color(0xFF80AFE3),
-  Color(0xFFA88E79),
-  Color(0xFFA694D5),
+  Color(0xFFC84F76),
+  Color(0xFF477E48),
+  Color(0xFF8C5CB3),
+  Color(0xFFAE6420),
+  Color(0xFF3977AF),
+  Color(0xFF806048),
+  Color(0xFF7560AB),
 ];
 const categoryIcons = [
   Icons.favorite_outline_rounded,
@@ -30,8 +32,8 @@ ThemeData yoinokoTheme() => ThemeData(
   fontFamily: 'Rounded',
   scaffoldBackgroundColor: wall,
   colorScheme: ColorScheme.fromSeed(
-    seedColor: peach,
-    primary: ink,
+    seedColor: aqua,
+    primary: teal,
     surface: Colors.white,
     error: const Color(0xFFB74444),
   ),
@@ -52,28 +54,32 @@ ThemeData yoinokoTheme() => ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: const Color(0xFFFAFBFC),
+    fillColor: const Color(0xFFF0FAF9),
     contentPadding: const EdgeInsets.all(16),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(20),
       borderSide: const BorderSide(color: line),
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(20),
       borderSide: const BorderSide(color: line),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(20),
+      borderSide: const BorderSide(color: teal, width: 2),
     ),
   ),
   filledButtonTheme: FilledButtonThemeData(
     style: FilledButton.styleFrom(
-      backgroundColor: peach,
-      foregroundColor: ink,
+      backgroundColor: teal,
+      foregroundColor: Colors.white,
       minimumSize: const Size(48, 50),
       textStyle: const TextStyle(
         fontFamily: 'Rounded',
         fontWeight: FontWeight.w700,
         fontSize: 16,
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
@@ -82,5 +88,9 @@ ThemeData yoinokoTheme() => ThemeData(
       minimumSize: const Size(48, 48),
       side: const BorderSide(color: line),
     ),
+  ),
+  dialogTheme: DialogThemeData(
+    backgroundColor: Colors.white,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
   ),
 );

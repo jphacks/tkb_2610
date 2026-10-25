@@ -22,6 +22,8 @@ CharacterPose characterPose({
   required double travelSeconds,
   required CharacterMotion motion,
   double travel = 0,
+  bool? walking,
+  bool? facingRight,
 }) {
   if (motion == CharacterMotion.sleeping) return const CharacterPose();
   final family = form.firstCategory ?? -1;
@@ -47,7 +49,8 @@ CharacterPose characterPose({
     position = -1 + ease((phase - 18) / 3);
     moving = true;
   }
-  moving = moving && travel > 0 && motion == CharacterMotion.idle;
+  moving =
+      (walking ?? (moving && travel > 0)) && motion == CharacterMotion.idle;
   final energy = motion == CharacterMotion.lowEnergy ? .35 : 1.0;
   final excited =
       motion == CharacterMotion.happy || motion == CharacterMotion.tapped;
@@ -112,6 +115,7 @@ CharacterPose characterPose({
     scaleX: 1 + (sx - 1) * energy,
     scaleY: 1 + (sy - 1) * energy,
     // These side-facing drawings point left in their source artwork.
-    faceLeft: travel > 0 && right && [1, 4, 5].contains(family),
+    faceLeft:
+        (facingRight ?? (travel > 0 && right)) && [1, 4, 5].contains(family),
   );
 }

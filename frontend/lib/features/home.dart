@@ -5,8 +5,9 @@ import '../core/controller.dart';
 import '../core/theme.dart';
 import '../data/models.dart';
 import '../data/character_speech.dart';
-import '../widgets/character_view.dart';
+import '../widgets/room_character.dart';
 import '../widgets/common.dart';
+import '../widgets/cloud_background.dart';
 import 'result.dart';
 
 class HomePage extends StatefulWidget {
@@ -97,53 +98,19 @@ class _HomePageState extends State<HomePage> {
             viewport.maxHeight,
             MediaQuery.textScalerOf(context).scale(14) > 19
                 ? 920
-                : widget.controller.result != null ||
-                      widget.controller.composing
-                ? 680
                 : viewport.maxHeight,
           ),
           child: LayoutBuilder(
             builder: (context, box) {
-              final composing = widget.controller.composing;
               final charSize = c.evolution == 0
                   ? 132.0
-                  : box.maxWidth *
-                        (composing
-                            ? .48
-                            : c.evolution == 1
-                            ? .60
-                            : .70);
-              final feet =
-                  box.maxHeight *
-                  (composing
-                      ? .43
-                      : c.evolution == 0
-                      ? .75
-                      : .84);
+                  : box.maxWidth * (c.evolution == 1 ? .60 : .70);
+              final feet = box.maxHeight * (c.evolution == 0 ? .75 : .84);
               final charTop = feet - charSize;
               return Stack(
                 children: [
                   Positioned.fill(
-                    child: Column(
-                      children: [
-                        Expanded(
-                          flex: widget.controller.composing ? 42 : 62,
-                          child: const ColoredBox(
-                            color: wall,
-                            child: SizedBox.expand(),
-                          ),
-                        ),
-                        Expanded(
-                          flex: widget.controller.composing ? 58 : 38,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: floor,
-                              border: Border(top: BorderSide(color: line)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: const CloudBackground(floorFraction: .62),
                   ),
                   Positioned(
                     top: 32,
@@ -239,74 +206,30 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  Positioned(
-                    top: charTop,
-                    left: 0,
-                    right: 0,
-                    child: Center(
-                      child: CharacterView(
-                        character: c,
-                        size: charSize,
-                        wanderDistance: math.max(
-                          0.0,
-                          (box.maxWidth - charSize * 1.08) / 2 - 16,
-                        ),
-                        wander: !composing && c.hp > 20,
-                        motion: widget.controller.result != null
-                            ? CharacterMotion.happy
-                            : tapped
-                            ? CharacterMotion.tapped
-                            : c.hp <= 20
-                            ? CharacterMotion.lowEnergy
-                            : CharacterMotion.idle,
-                        onTap: _onCharacterTap,
-                      ),
+                  Positioned.fill(
+                    child: RoomCharacter(
+                      key: ValueKey('room-character-${c.id}'),
+                      character: c,
+                      size: charSize,
+                      top: charTop,
+                      speech: widget.controller.result == null ? _speech : null,
+                      roam: c.hp > 20,
+                      motion: widget.controller.result != null
+                          ? CharacterMotion.happy
+                          : tapped
+                          ? CharacterMotion.tapped
+                          : c.hp <= 20
+                          ? CharacterMotion.lowEnergy
+                          : CharacterMotion.idle,
+                      onTap: _onCharacterTap,
                     ),
                   ),
-                  if (widget.controller.result == null &&
-                      !widget.controller.composing)
-                    Positioned(
-                      top: charTop - 40,
-                      left: box.maxWidth * .24,
-                      right: 16,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Panel(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          child: Text(
-                            _speech,
-                            key: const ValueKey('character-speech'),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontSize: 12, color: muted),
-                          ),
-                        ),
-                      ),
-                    ),
                   if (widget.controller.result != null)
                     Positioned(
                       top: box.maxHeight * .22,
                       left: 24,
                       right: 24,
                       child: ResultBubble(controller: widget.controller),
-                    ),
-                  if (!composing)
-                    Positioned(
-                      top: feet + 6,
-                      left: 20,
-                      right: 20,
-                      child: Center(
-                        child: Text(
-                          c.form.name,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
                     ),
                 ],
               );

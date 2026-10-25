@@ -5,6 +5,7 @@ import '../core/theme.dart';
 import '../data/models.dart';
 import '../widgets/character_view.dart';
 import '../widgets/common.dart';
+import '../widgets/cloud_background.dart';
 
 class GenerationPage extends StatefulWidget {
   const GenerationPage({super.key, required this.controller});
@@ -33,17 +34,7 @@ class _GenerationPageState extends State<GenerationPage> {
     return LayoutBuilder(
       builder: (context, box) => Stack(
         children: [
-          Positioned.fill(
-            child: Column(
-              children: [
-                const Expanded(
-                  flex: 43,
-                  child: ColoredBox(color: wall, child: SizedBox.expand()),
-                ),
-                Expanded(flex: 57, child: Container(color: floor)),
-              ],
-            ),
-          ),
+          const Positioned.fill(child: CloudBackground(floorFraction: .43)),
           ListView(
             padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
             children: [

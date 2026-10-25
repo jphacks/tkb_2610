@@ -42,7 +42,7 @@
 - `frontend/lib/data/character_speech.dart` の `pickCharacterSpeech`：抽選方法。
 - `frontend/lib/features/home.dart` の `_syncSpeech`：初回・進化・世代交代での更新。
 - 同じファイルの `_onCharacterTap`：タップ時の更新と2秒の動き。
-- 同じファイルの `ValueKey('character-speech')` 周辺：吹き出しの文字サイズ・最大行数。
+- `frontend/lib/widgets/speech_bubble.dart` の `ValueKey('character-speech')` 周辺：吹き出しの文字サイズ・最大行数。白く丸い、しっぽ付きの吹き出しです。`room_character.dart` で名前・キャラクターと一体で移動します。
 
 編集後はアプリを再起動して確認してください。
 

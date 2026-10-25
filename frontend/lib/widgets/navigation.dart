@@ -21,7 +21,14 @@ class YoinokoNavigation extends StatelessWidget {
   Widget build(BuildContext context) => DecoratedBox(
     decoration: const BoxDecoration(
       color: Colors.white,
-      border: Border(top: BorderSide(color: line)),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+      boxShadow: [
+        BoxShadow(
+          color: Color(0x10126F7B),
+          blurRadius: 20,
+          offset: Offset(0, -4),
+        ),
+      ],
     ),
     child: SafeArea(
       top: false,
@@ -39,37 +46,43 @@ class YoinokoNavigation extends StatelessWidget {
                 child: InkWell(
                   key: ValueKey('tab-$i'),
                   onTap: () => onSelect(i),
-                  borderRadius: BorderRadius.circular(12),
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(minHeight: 58),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        i == 1
-                            ? Image.asset(
-                                'assets/icons/uchinoko.png',
-                                width: 34,
-                                height: 28,
-                                fit: BoxFit.cover,
-                                color: index == i ? orange : muted,
-                                colorBlendMode: BlendMode.srcIn,
-                                cacheWidth: 136,
-                                excludeFromSemantics: true,
-                              )
-                            : Icon(
-                                icons[i],
-                                size: 28,
-                                color: index == i ? orange : muted,
-                              ),
-                        const SizedBox(height: 5),
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: OutlinedLabel(
-                            labels[i],
-                            color: index == i ? orange : muted,
+                  borderRadius: BorderRadius.circular(20),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: index == i ? peach : Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(minHeight: 58),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          i == 1
+                              ? Image.asset(
+                                  'assets/icons/uchinoko.png',
+                                  width: 34,
+                                  height: 28,
+                                  fit: BoxFit.cover,
+                                  color: index == i ? orange : muted,
+                                  colorBlendMode: BlendMode.srcIn,
+                                  cacheWidth: 136,
+                                  excludeFromSemantics: true,
+                                )
+                              : Icon(
+                                  icons[i],
+                                  size: 28,
+                                  color: index == i ? orange : muted,
+                                ),
+                          const SizedBox(height: 5),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: OutlinedLabel(
+                              labels[i],
+                              color: index == i ? orange : muted,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

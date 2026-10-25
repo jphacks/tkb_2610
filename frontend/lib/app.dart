@@ -14,6 +14,7 @@ import 'features/settings.dart';
 import 'features/generation.dart';
 import 'widgets/common.dart';
 import 'widgets/navigation.dart';
+import 'widgets/cloud_background.dart';
 
 class YoinokoApp extends StatefulWidget {
   const YoinokoApp({
@@ -197,7 +198,7 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
     theme: yoinokoTheme(),
     routerConfig: router,
     builder: (context, child) => ColoredBox(
-      color: const Color(0xFFDCE8EF),
+      color: const Color(0xFFDAF3F2),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 480),
@@ -255,7 +256,8 @@ class _Shell extends StatelessWidget {
         ? 4
         : 0;
     return Scaffold(
-      body: SafeArea(bottom: false, child: child),
+      resizeToAvoidBottomInset: false,
+      body: CloudBackground(child: SafeArea(bottom: false, child: child)),
       bottomNavigationBar: AnimatedBuilder(
         animation: controller,
         builder: (context, _) => YoinokoNavigation(
