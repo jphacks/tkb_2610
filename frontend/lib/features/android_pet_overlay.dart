@@ -25,6 +25,7 @@ class _AndroidPetOverlayState extends State<AndroidPetOverlay> {
   Rect _bounds = Rect.zero;
   bool _visible = false, _dragging = false, _tapped = false, _moving = false;
   bool _positionPending = false;
+  Offset? _lastSent;
   String? _speech;
   Timer? _clock, _tapTimer, _speechTimer;
 
@@ -38,12 +39,19 @@ class _AndroidPetOverlayState extends State<AndroidPetOverlay> {
           _accept(Map<String, dynamic>.from(call.arguments as Map));
         case 'visibility':
           setState(() => _visible = call.arguments == true);
+          _schedule();
       }
     });
     _load();
+  }
+
+  void _schedule() {
+    _clock?.cancel();
+    _speechTimer?.cancel();
+    if (!_visible) return;
     _clock = Timer.periodic(const Duration(milliseconds: 33), (_) => _tick());
     _speechTimer = Timer.periodic(const Duration(seconds: 40), (_) {
-      if (_visible && !_dragging) _say();
+      if (!_dragging) _say();
     });
   }
 
@@ -73,10 +81,12 @@ class _AndroidPetOverlayState extends State<AndroidPetOverlay> {
         _bounds,
       );
       _visible = state['visible'] == true;
+      _lastSent = null;
       if (changed) {
         _speech = pickCharacterSpeech(character.kind, random: _random);
       }
     });
+    _schedule();
   }
 
   void _tick() {
@@ -98,9 +108,10 @@ class _AndroidPetOverlayState extends State<AndroidPetOverlay> {
   }
 
   Future<void> _move() async {
-    if (_positionPending) return;
+    if (_positionPending || _lastSent == _wander.position) return;
     _positionPending = true;
     try {
+      _lastSent = _wander.position;
       await _channel.invokeMethod<void>('move', {
         'x': _wander.position.dx,
         'y': _wander.position.dy,

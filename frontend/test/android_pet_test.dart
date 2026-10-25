@@ -25,8 +25,9 @@ void main() {
         case 'status':
           return {'allowed': allowed, 'running': running};
         case 'start':
-          if (!allowed)
+          if (!allowed) {
             throw PlatformException(code: 'PET_ERROR', message: '表示を許可してください');
+          }
           running = true;
         case 'stop':
           running = false;
