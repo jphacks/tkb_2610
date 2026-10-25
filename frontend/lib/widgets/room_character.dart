@@ -4,7 +4,7 @@ import '../core/room_wander.dart';
 import '../core/theme.dart';
 import '../data/models.dart';
 import 'character_view.dart';
-import 'common.dart';
+import 'speech_bubble.dart';
 
 /// Moves the portrait, speech and name together in one bounded layout group.
 class RoomCharacter extends StatefulWidget {
@@ -127,22 +127,15 @@ class _RoomCharacterState extends State<RoomCharacter>
                         child: widget.showLabels && widget.speech != null
                             ? Padding(
                                 padding: const EdgeInsets.only(bottom: 8),
-                                child: Panel(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 6,
+                                child: Transform.translate(
+                                  // Pono's artwork includes extra transparent space above its head.
+                                  offset: Offset(
+                                    0,
+                                    widget.character.form.stage == 0
+                                        ? widget.size * .33
+                                        : 0,
                                   ),
-                                  child: Text(
-                                    widget.speech!,
-                                    key: const ValueKey('character-speech'),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      color: muted,
-                                    ),
-                                  ),
+                                  child: SpeechBubble(text: widget.speech!),
                                 ),
                               )
                             : null,
