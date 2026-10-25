@@ -38,6 +38,8 @@ class CharacterView extends StatefulWidget {
     this.animate = true,
     this.wanderDistance = 0,
     this.wander = true,
+    this.walking,
+    this.facingRight,
   });
   final Companion character;
   final double size;
@@ -47,6 +49,7 @@ class CharacterView extends StatefulWidget {
   final bool animate;
   final double wanderDistance;
   final bool wander;
+  final bool? walking, facingRight;
   @override
   State<CharacterView> createState() => _CharacterViewState();
 }
@@ -136,6 +139,8 @@ class _CharacterViewState extends State<CharacterView>
                             travelSeconds: _travelSeconds,
                             motion: widget.motion,
                             travel: widget.wanderDistance,
+                            walking: widget.walking,
+                            facingRight: widget.facingRight,
                           )
                         : const CharacterPose();
                     // Evolution scenes can give this view unbounded dimensions.

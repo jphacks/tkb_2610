@@ -5,7 +5,7 @@ import '../core/controller.dart';
 import '../core/theme.dart';
 import '../data/models.dart';
 import '../data/character_speech.dart';
-import '../widgets/character_view.dart';
+import '../widgets/room_character.dart';
 import '../widgets/common.dart';
 import 'result.dart';
 
@@ -239,74 +239,31 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  Positioned(
-                    top: charTop,
-                    left: 0,
-                    right: 0,
-                    child: Center(
-                      child: CharacterView(
-                        character: c,
-                        size: charSize,
-                        wanderDistance: math.max(
-                          0.0,
-                          (box.maxWidth - charSize * 1.08) / 2 - 16,
-                        ),
-                        wander: !composing && c.hp > 20,
-                        motion: widget.controller.result != null
-                            ? CharacterMotion.happy
-                            : tapped
-                            ? CharacterMotion.tapped
-                            : c.hp <= 20
-                            ? CharacterMotion.lowEnergy
-                            : CharacterMotion.idle,
-                        onTap: _onCharacterTap,
-                      ),
+                  Positioned.fill(
+                    child: RoomCharacter(
+                      key: ValueKey('room-character-${c.id}'),
+                      character: c,
+                      size: charSize,
+                      top: charTop,
+                      speech: widget.controller.result == null ? _speech : null,
+                      showLabels: !composing,
+                      roam: !composing && c.hp > 20,
+                      motion: widget.controller.result != null
+                          ? CharacterMotion.happy
+                          : tapped
+                          ? CharacterMotion.tapped
+                          : c.hp <= 20
+                          ? CharacterMotion.lowEnergy
+                          : CharacterMotion.idle,
+                      onTap: _onCharacterTap,
                     ),
                   ),
-                  if (widget.controller.result == null &&
-                      !widget.controller.composing)
-                    Positioned(
-                      top: charTop - 40,
-                      left: box.maxWidth * .24,
-                      right: 16,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Panel(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          child: Text(
-                            _speech,
-                            key: const ValueKey('character-speech'),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontSize: 12, color: muted),
-                          ),
-                        ),
-                      ),
-                    ),
                   if (widget.controller.result != null)
                     Positioned(
                       top: box.maxHeight * .22,
                       left: 24,
                       right: 24,
                       child: ResultBubble(controller: widget.controller),
-                    ),
-                  if (!composing)
-                    Positioned(
-                      top: feet + 6,
-                      left: 20,
-                      right: 20,
-                      child: Center(
-                        child: Text(
-                          c.form.name,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
                     ),
                 ],
               );
