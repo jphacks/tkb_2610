@@ -256,6 +256,7 @@ class _Shell extends StatelessWidget {
         ? 4
         : 0;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: CloudBackground(child: SafeArea(bottom: false, child: child)),
       bottomNavigationBar: AnimatedBuilder(
         animation: controller,

@@ -98,36 +98,19 @@ class _HomePageState extends State<HomePage> {
             viewport.maxHeight,
             MediaQuery.textScalerOf(context).scale(14) > 19
                 ? 920
-                : widget.controller.result != null ||
-                      widget.controller.composing
-                ? 680
                 : viewport.maxHeight,
           ),
           child: LayoutBuilder(
             builder: (context, box) {
-              final composing = widget.controller.composing;
               final charSize = c.evolution == 0
                   ? 132.0
-                  : box.maxWidth *
-                        (composing
-                            ? .48
-                            : c.evolution == 1
-                            ? .60
-                            : .70);
-              final feet =
-                  box.maxHeight *
-                  (composing
-                      ? .43
-                      : c.evolution == 0
-                      ? .75
-                      : .84);
+                  : box.maxWidth * (c.evolution == 1 ? .60 : .70);
+              final feet = box.maxHeight * (c.evolution == 0 ? .75 : .84);
               final charTop = feet - charSize;
               return Stack(
                 children: [
                   Positioned.fill(
-                    child: CloudBackground(
-                      floorFraction: composing ? .42 : .62,
-                    ),
+                    child: const CloudBackground(floorFraction: .62),
                   ),
                   Positioned(
                     top: 32,
@@ -230,8 +213,7 @@ class _HomePageState extends State<HomePage> {
                       size: charSize,
                       top: charTop,
                       speech: widget.controller.result == null ? _speech : null,
-                      showLabels: !composing,
-                      roam: !composing && c.hp > 20,
+                      roam: c.hp > 20,
                       motion: widget.controller.result != null
                           ? CharacterMotion.happy
                           : tapped
