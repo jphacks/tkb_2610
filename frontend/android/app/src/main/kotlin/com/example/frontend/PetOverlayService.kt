@@ -143,7 +143,10 @@ class PetOverlayService : Service() {
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
                 WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
             PixelFormat.TRANSLUCENT
-        ).apply { gravity = Gravity.TOP or Gravity.LEFT }
+        ).apply {
+            gravity = Gravity.TOP or Gravity.LEFT
+            title = "よいのこ"
+        }
         updateBounds(initial = true)
         flutter.dartExecutor.executeDartEntrypoint(
             DartExecutor.DartEntrypoint(loader.findAppBundlePath(), "petOverlayMain")
@@ -155,12 +158,22 @@ class PetOverlayService : Service() {
         val layout = params ?: return
         val metrics = resources.displayMetrics
         val size = if (Build.VERSION.SDK_INT >= 30) {
-            val bounds = windows.currentWindowMetrics.bounds
-            android.graphics.Point(bounds.width(), bounds.height())
-        } else android.graphics.Point(metrics.widthPixels, metrics.heightPixels)
-        // Keep clear of the status bar and navigation gestures in either orientation.
+            val windowMetrics = windows.currentWindowMetrics
+            val bounds = windowMetrics.bounds
+            val insets = windowMetrics.windowInsets.getInsetsIgnoringVisibility(
+                WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout())
+            android.graphics.Point(bounds.width() - insets.left - insets.right,
+                bounds.height() - insets.top - insets.bottom)
+        } else {
+            val insets = view?.rootWindowInsets
+            android.graphics.Point(
+                metrics.widthPixels - (insets?.systemWindowInsetLeft ?: 0) - (insets?.systemWindowInsetRight ?: 0),
+                metrics.heightPixels - (insets?.systemWindowInsetTop ?: (24 * density).roundToInt()) -
+                    (insets?.systemWindowInsetBottom ?: (48 * density).roundToInt()))
+        }
+        // WindowManager positions this window inside the system-bar insets.
         maxX = ((size.x - layout.width) / density).coerceAtLeast(0f)
-        maxY = ((size.y - layout.height) / density - 64f).coerceAtLeast(0f)
+        maxY = ((size.y - layout.height) / density).coerceAtLeast(0f)
         layout.x = if (initial) (maxX * density / 2).roundToInt()
             else layout.x.coerceIn(0, (maxX * density).roundToInt())
         layout.y = if (initial) (maxY * density * .65f).roundToInt()

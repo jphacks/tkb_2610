@@ -2,6 +2,8 @@
 
 Android 8.0（API 26）以降向けです。Flutterの既存の育成画面・57形態の画像・種族ごとの動き・キャラごとのセリフを共通で使います。AndroidのアプリIDは `jp.yoinoko.app` です。
 
+![Androidのホーム画面上のよいのこ](android-home-overlay.png)
+
 ## 使い方
 
 1. アプリを起動して、よいのこを迎えます。
@@ -25,6 +27,14 @@ flutter build apk --debug --dart-define=APP_MODE=demo
 ```
 
 確認用APKは `build/app/outputs/flutter-apk/app-debug.apk` に生成されます。
+
+一般的なARM64のAndroid端末に入れる試用版は、次のコマンドで生成できます。
+
+```sh
+flutter build apk --release --target-platform android-arm64 --dart-define=APP_MODE=demo
+```
+
+生成先は `build/app/outputs/flutter-apk/app-release.apk` です。現在は開発用の鍵で署名します。
 
 実APIへ接続する場合は、公開HTTPSの接続先を指定してください。
 
@@ -54,3 +64,5 @@ flutter build apk --debug --dart-define=APP_MODE=demo
 ```
 
 権限拒否時の表示、開始／終了、進化と退会の同期順、iOSへの影響がないこと、おでかけ用の小さい画面でのキャラ表示・セリフ切り替え・ドラッグ・終了をテストします。
+
+2026-10-25時点で、静的チェック・48件のFlutterテスト・debug APKとARM64 release APKのビルド成功を確認しました。Pixel 9 / Android 16エミュレーターで初回起動、育成ホーム、ホーム画面と他アプリの上での透過表示、文字のおしゃべりと移動を確認しています。物理端末の検証は未実施です。
