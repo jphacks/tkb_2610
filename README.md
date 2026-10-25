@@ -7,7 +7,7 @@
 ## Demo
 以下はアプリのデモ動画です
 
-https://github.com/user-attachments/assets/74a883f5-76c1-4691-b0f0-9725407b376b
+[https://github.com/user-attachments/assets/74a883f5-76c1-4691-b0f0-9725407b376b](https://github.com/user-attachments/assets/0f2945b2-e5d9-41f7-b2de-5c9b8ed02a41)
 
 ## 製品概要
 
