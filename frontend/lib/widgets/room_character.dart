@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../core/room_wander.dart';
-import '../core/theme.dart';
 import '../data/models.dart';
 import 'character_view.dart';
 import 'speech_bubble.dart';

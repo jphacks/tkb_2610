@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'core/controller.dart';
+import 'core/android_pet.dart';
 import 'core/theme.dart';
 import 'core/evolution_sound.dart';
 import 'features/evolution_scene.dart';
@@ -31,16 +32,24 @@ class YoinokoApp extends StatefulWidget {
 }
 
 class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
+  final androidPet = AndroidPet();
+  void syncPet() => androidPet.sync(widget.controller.snapshot?.current);
   final messengerKey = GlobalKey<ScaffoldMessengerState>();
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    widget.controller.addListener(syncPet);
+    syncPet();
+    androidPet.refresh();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) refresh();
+    if (state == AppLifecycleState.resumed) {
+      refresh();
+      androidPet.refresh();
+    }
   }
 
   Future<void> refresh() async {
@@ -165,6 +174,7 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
             pageBuilder: (context, state) => tabPage(
               state,
               () => SettingsPage(
+                androidPet: androidPet,
                 controller: widget.controller,
                 isDemo: widget.isDemo,
                 evolutionSoundFactory: widget.evolutionSoundFactory,
@@ -186,6 +196,8 @@ class _YoinokoAppState extends State<YoinokoApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    widget.controller.removeListener(syncPet);
+    androidPet.dispose();
     router.dispose();
     super.dispose();
   }

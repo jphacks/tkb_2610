@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
+import '../core/android_pet.dart';
 import '../core/theme.dart';
 import '../core/evolution_preview.dart';
 import '../core/evolution_sound.dart';
@@ -14,10 +15,12 @@ class SettingsPage extends StatelessWidget {
     required this.controller,
     required this.isDemo,
     this.evolutionSoundFactory,
+    this.androidPet,
   });
   final GameController controller;
   final bool isDemo;
   final EvolutionSound Function()? evolutionSoundFactory;
+  final AndroidPet? androidPet;
   static final _previewPicker = EvolutionPreviewPicker();
   Future<void> changeName(BuildContext context) async {
     await showDialog<void>(
@@ -109,6 +112,16 @@ class SettingsPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
+            if (androidPet?.supported == true)
+              AnimatedBuilder(
+                animation: androidPet!,
+                builder: (context, _) => androidPet!.available
+                    ? Padding(
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: _AndroidPetSettings(pet: androidPet!),
+                      )
+                    : const SizedBox.shrink(),
+              ),
             Panel(
               padding: EdgeInsets.zero,
               child: Column(
@@ -192,6 +205,67 @@ class SettingsPage extends StatelessWidget {
           ],
         ),
       ],
+    ),
+  );
+}
+
+class _AndroidPetSettings extends StatelessWidget {
+  const _AndroidPetSettings({required this.pet});
+  final AndroidPet pet;
+
+  @override
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: pet,
+    builder: (context, _) => Panel(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'よいのことおでかけ',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'ホーム画面や他のアプリの上で、うちのこが歩いておしゃべりします。'
+            'タップでひとこと、ドラッグでお引っ越し。×でおうちに戻ります。',
+            style: TextStyle(fontSize: 12, height: 1.7),
+          ),
+          const SizedBox(height: 12),
+          if (!pet.allowed) ...[
+            const Text(
+              '最初に「他のアプリの上に表示」を許可してください。'
+              '許可後、この画面に戻るとおでかけできます。',
+              style: TextStyle(fontSize: 12, color: muted),
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              onPressed: pet.busy ? null : pet.requestPermission,
+              icon: const Icon(Icons.settings_outlined),
+              label: const Text('表示を許可する'),
+            ),
+          ] else ...[
+            SwitchListTile.adaptive(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('おでかけする'),
+              subtitle: Text(
+                pet.running ? 'ホーム画面に戻ると、よいのこが現れます' : '今はおうちで待っています',
+                style: const TextStyle(fontSize: 11),
+              ),
+              value: pet.running,
+              onChanged: pet.busy
+                  ? null
+                  : (value) => value ? pet.start() : pet.stop(),
+            ),
+          ],
+          const SizedBox(height: 8),
+          const Text(
+            'おしゃべりは文字で表示します。ロック中とアプリ内ではお休みします。'
+            '終了後や端末の再起動後は、ここからまたおでかけできます。',
+            style: TextStyle(fontSize: 11, color: muted, height: 1.6),
+          ),
+          if (pet.error != null) ErrorNotice(pet.error!),
+        ],
+      ),
     ),
   );
 }
