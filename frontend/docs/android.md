@@ -44,6 +44,14 @@ flutter run -d <Android端末ID> --dart-define=APP_MODE=api --dart-define=API_BA
 
 このデモはAndroid端末内の別データです。iPhone内のデモの育成記録は自動では引き継がれません。APIモードでも、既存の引き継ぎ機能は未実装です。
 
+AndroidエミュレーターからMac上で起動した既存のバックエンド（ポート3000）へ接続する場合は、次の設定で通常モードを起動できます。デモの固定判定を使わず、バックエンドのDB・AIと接続します。
+
+```sh
+flutter run -d <Android端末ID> --dart-define=APP_MODE=api --dart-define=API_BASE_URL=http://10.0.2.2:3000/api
+```
+
+`10.0.2.2` はエミュレーターから見たMacのアドレスです。debug版だけが、このアドレスとlocalhostへのHTTPを許可します。release版では通常モードのHTTPS必須を維持します。バックエンドにはSupabaseとGeminiの設定が必要です。通常モードで新たに登録・投稿すると、接続先DBへ実際に保存されます。
+
 ## 実装と制約
 
 - `lib/core/android_pet.dart` がアプリ側とAndroid側をつなぎ、キャラのデータだけを送ります。ログイントークンやAPI接続情報は渡しません。
