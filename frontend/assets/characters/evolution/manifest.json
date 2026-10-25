@@ -173,10 +173,10 @@
     "imageId": "stage2_environment_gratitude",
     "source": "codex-clipboard-26d1f733-907d-4f58-8bd4-079d5850e782.png",
     "crop": [
-      777,
-      90,
-      1130,
-      568
+      750,
+      85,
+      1165,
+      575
     ]
   },
   {
@@ -313,10 +313,10 @@
     "imageId": "stage2_courage_gratitude",
     "source": "codex-clipboard-5d84d4c8-351f-44b4-98ee-d0d2e60cfbe0.png",
     "crop": [
-      771,
+      750,
       136,
       1237,
-      546
+      550
     ]
   },
   {
