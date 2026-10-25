@@ -6,6 +6,13 @@ import 'core/controller.dart';
 import 'core/theme.dart';
 import 'data/api_repository.dart';
 import 'data/repository.dart';
+import 'features/android_pet_overlay.dart';
+
+@pragma('vm:entry-point')
+void petOverlayMain() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const AndroidPetOverlay());
+}
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
