@@ -4,7 +4,7 @@ Run with --source <provided character directory>. Never changes source files.
 from pathlib import Path
 import argparse, json
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 from collections import deque
 
 CATEGORIES = ['kindness','environment','gratitude','courage','cooperation','honesty','self_care']
@@ -19,12 +19,23 @@ SHEETS = {
 }
 FIRST = ('exec-5852de66-0be5-4966-9f00-2957be1e76b4.png', [(16,196,367,488),(387,157,741,487),(770,106,1097,488),(1127,141,1536,488),(8,543,387,919),(386,606,817,919),(812,576,1166,919),(1171,558,1536,919)])
 
+# User-selected replacements only; all other forms retain the original extraction.
+REVIEWED_BOUNDS = {
+ 'stage2_environment_gratitude': (750,85,1165,575),
+ 'stage2_courage_gratitude': (750,136,1237,550),
+}
+
 def cut(source, rect, image_id):
     rgb = np.asarray(source.crop(rect).convert('RGB'))
     # Flood only pale near-neutral background connected to the crop edges.
     # Enclosed white/cream markings remain opaque.
     lo = rgb.min(axis=2).astype(float); hi = rgb.max(axis=2).astype(float)
     pale = (lo > 205) & ((hi - lo) < 32)
+    if image_id in REVIEWED_BOUNDS:
+        # Bridge one-pixel outline breaks so pale limbs do not join the background.
+        barrier = Image.fromarray((~pale).astype(np.uint8)*255)
+        closed = barrier.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.MinFilter(3))
+        pale = np.asarray(closed) == 0
     flood=Image.fromarray(np.pad(pale.astype(np.uint8)*255,1,constant_values=255)).copy()
     ImageDraw.floodfill(flood,(0,0),128)
     bg=np.asarray(flood)[1:-1,1:-1]==128
@@ -65,10 +76,12 @@ def cut(source, rect, image_id):
     return canvas
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--source',type=Path,required=True);args=ap.parse_args()
-    root=Path(__file__).resolve().parents[1]; out=root/'assets/characters/evolution';out.mkdir(parents=True,exist_ok=True)
+    ap=argparse.ArgumentParser();ap.add_argument('--source',type=Path,required=True)
+    ap.add_argument('--output',type=Path);args=ap.parse_args()
+    root=Path(__file__).resolve().parents[1]; out=args.output or root/'assets/characters/evolution';out.mkdir(parents=True,exist_ok=True)
     manifest=[]
     def emit(image_id,file,rect):
+        rect=REVIEWED_BOUNDS.get(image_id,rect)
         img=cut(Image.open(args.source/file),rect,image_id);img.save(out/(image_id+'.png'),optimize=True)
         manifest.append({'imageId':image_id,'source':file,'crop':rect})
     file,rects=FIRST
