@@ -8,6 +8,7 @@ import 'evolution_scene.dart';
 import '../widgets/character_view.dart';
 import '../widgets/common.dart';
 import 'registration.dart';
+import 'pono_preview.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({
@@ -137,6 +138,19 @@ class SettingsPage extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: Column(
             children: [
+              ListTile(
+                title: const Text('ポノの動きをみる'),
+                subtitle: const Text(
+                  '表情と動作をお試し・育成記録は変わりません',
+                  style: TextStyle(fontSize: 11, color: muted),
+                ),
+                trailing: const Icon(Icons.play_circle_outline_rounded),
+                onTap: () => showDialog<void>(
+                  context: context,
+                  builder: (_) => const PonoPreview(),
+                ),
+              ),
+              const Divider(height: 1),
               ListTile(
                 title: const Text('第一進化の演出をみる'),
                 subtitle: const Text(

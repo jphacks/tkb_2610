@@ -6,6 +6,7 @@ import 'package:ichinichi_ichizen/data/models.dart';
 import 'package:ichinichi_ichizen/data/repository.dart';
 import 'package:ichinichi_ichizen/features/home.dart';
 import 'package:ichinichi_ichizen/widgets/character_view.dart';
+import 'package:ichinichi_ichizen/widgets/pono_view.dart';
 
 class _Store implements SnapshotStore {
   String? value;
@@ -35,6 +36,10 @@ void main() {
     await tester.pump();
     final second = speech();
     expect(second, isNot(first));
+    expect(
+      tester.widget<PonoView>(find.byType(PonoView)).motion,
+      CharacterMotion.tapped,
+    );
     expect(speechLinesFor('base_01'), contains(second));
     await tester.pump(const Duration(seconds: 1));
     await tester.tap(find.byType(CharacterView));
@@ -48,6 +53,10 @@ void main() {
     );
     await tester.pump(const Duration(seconds: 1));
     expect(speech(), third);
+    expect(
+      tester.widget<PonoView>(find.byType(PonoView)).motion,
+      CharacterMotion.idle,
+    );
     expect(
       tester.widget<CharacterView>(find.byType(CharacterView)).motion,
       CharacterMotion.idle,

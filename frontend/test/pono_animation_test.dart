@@ -5,11 +5,16 @@ import 'package:rive/rive.dart' as rive;
 import 'package:ichinichi_ichizen/data/models.dart';
 import 'package:ichinichi_ichizen/widgets/character_view.dart';
 import 'package:ichinichi_ichizen/widgets/pono_view.dart';
+import 'package:ichinichi_ichizen/features/settings.dart';
+import 'package:ichinichi_ichizen/core/controller.dart';
+import 'package:ichinichi_ichizen/data/repository.dart';
+import 'repository_test.dart' show MemoryStore;
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   test('実際のRiveファイルで目と体と玉が独立して動き、全状態へ遷移できる', () async {
+    expect(await rive.RiveNative.init(), isTrue);
     final file = (await rive.File.decode(
       await io.File('assets/animations/pono.riv').readAsBytes(),
       riveFactory: rive.Factory.flutter,
@@ -140,6 +145,38 @@ void main() {
     );
     body.dispose();
     await t.pumpWidget(const SizedBox());
+    expect(t.takeException(), isNull);
+  });
+
+  testWidgets('設定からポノの全動作を試しても育成記録が変わらない', (t) async {
+    final game = GameController(DemoRepository(MemoryStore()));
+    await game.initialize();
+    await game.register('はる');
+    final before = game.snapshot!.toJson();
+    await t.pumpWidget(
+      MaterialApp(
+        home: Scaffold(body: SettingsPage(controller: game, isDemo: true)),
+      ),
+    );
+    await t.scrollUntilVisible(find.text('ポノの動きをみる'), 200);
+    await t.tap(find.text('ポノの動きをみる'));
+    await t.pump();
+    await t.pump(const Duration(milliseconds: 300));
+    final preview = find.byType(PonoView).last;
+    for (final label in ['あるく', 'なでる', 'よろこぶ', 'つかれた', 'おやすみ', 'いつも']) {
+      await t.tap(find.text(label));
+      await t.pump(const Duration(milliseconds: 300));
+      expect(preview, findsOneWidget);
+      expect(game.snapshot!.toJson(), before);
+    }
+    await t.tap(find.byTooltip('動きを止める'));
+    await t.pump();
+    expect(t.widget<PonoView>(preview).animate, isFalse);
+    await t.tap(find.byTooltip('閉じる'));
+    await t.pump(const Duration(milliseconds: 300));
+    expect(game.snapshot!.toJson(), before);
+    await t.pumpWidget(const SizedBox());
+    game.dispose();
     expect(t.takeException(), isNull);
   });
 }
