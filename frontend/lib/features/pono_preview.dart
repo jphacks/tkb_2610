@@ -75,22 +75,26 @@ class _PonoPreviewState extends State<PonoPreview> {
             ),
             SizedBox(
               height: 270,
-              child: Stack(
-                children: [
-                  const Positioned.fill(
-                    child: CloudBackground(floorFraction: .76),
-                  ),
-                  Center(
-                    child: CharacterView(
-                      character: _pono,
-                      size: 260,
-                      motion: motions[_selected],
-                      animate: _playing,
-                      walking: _selected == 1,
-                      facingRight: _right,
+              // The cloud painter deliberately draws beyond its box on full
+              // screens. Keep those clouds away from the dialog's controls.
+              child: ClipRect(
+                child: Stack(
+                  children: [
+                    const Positioned.fill(
+                      child: CloudBackground(floorFraction: .76),
                     ),
-                  ),
-                ],
+                    Center(
+                      child: CharacterView(
+                        character: _pono,
+                        size: 260,
+                        motion: motions[_selected],
+                        animate: _playing,
+                        walking: _selected == 1,
+                        facingRight: _right,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
