@@ -141,7 +141,7 @@ class _CharacterViewState extends State<CharacterView>
                   widget.motion != CharacterMotion.sleeping)
           ? _tap
           : null,
-      behavior: HitTestBehavior.translucent,
+      behavior: HitTestBehavior.opaque,
       child: SizedBox(
         width: widget.size + widget.wanderDistance * 2,
         height: widget.size,

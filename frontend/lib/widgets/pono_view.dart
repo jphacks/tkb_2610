@@ -21,6 +21,11 @@ class _PonoAsset {
 
   static Future<rive.File> _decode() async {
     try {
+      // On web the renderer factory is available only after WASM initializes.
+      // Load it here so the rest of the app can appear immediately.
+      if (!await rive.RiveNative.init()) {
+        throw StateError('Rive runtime could not be initialized');
+      }
       final file = await rive.File.asset(
         'assets/animations/pono.riv',
         riveFactory: rive.Factory.flutter,
