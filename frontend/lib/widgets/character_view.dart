@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../data/models.dart';
 import '../core/character_animation.dart';
+import 'pono_view.dart';
 
 /// Drop-in seam for a future Rive renderer; screens never depend on Rive internals.
 typedef CharacterRenderer =
@@ -61,6 +63,22 @@ class _CharacterViewState extends State<CharacterView>
     duration: const Duration(seconds: 60),
   )..addListener(_tick);
   double _seconds = 0, _travelSeconds = 0, _lastValue = 0;
+  Timer? _tapTimer;
+  bool _ponoTapped = false;
+
+  void _tap() {
+    if (widget.character.form.stage == 0 &&
+        widget.animate &&
+        !MediaQuery.disableAnimationsOf(context) &&
+        widget.motion != CharacterMotion.sleeping) {
+      _tapTimer?.cancel();
+      setState(() => _ponoTapped = true);
+      _tapTimer = Timer(const Duration(milliseconds: 1800), () {
+        if (mounted) setState(() => _ponoTapped = false);
+      });
+    }
+    widget.onTap?.call();
+  }
 
   void _tick() {
     final delta = ((_animation.value - _lastValue + 1) % 1) * 60;
@@ -88,7 +106,8 @@ class _CharacterViewState extends State<CharacterView>
   void _sync() {
     if (widget.animate &&
         !MediaQuery.disableAnimationsOf(context) &&
-        widget.motion != CharacterMotion.sleeping) {
+        widget.motion != CharacterMotion.sleeping &&
+        (widget.character.form.stage > 0 || widget.wanderDistance > 0)) {
       if (!_animation.isAnimating) _animation.repeat();
     } else {
       _animation.stop();
@@ -100,6 +119,7 @@ class _CharacterViewState extends State<CharacterView>
 
   @override
   void dispose() {
+    _tapTimer?.cancel();
     _animation.dispose();
     super.dispose();
   }
@@ -108,9 +128,19 @@ class _CharacterViewState extends State<CharacterView>
   Widget build(BuildContext context) => Semantics(
     label:
         '第${widget.character.generation}世代のよいのこ、${widget.character.form.name}、${widget.character.form.label}',
-    button: widget.onTap != null,
+    button:
+        widget.onTap != null ||
+        (widget.character.form.stage == 0 &&
+            widget.animate &&
+            widget.motion != CharacterMotion.sleeping),
     child: GestureDetector(
-      onTap: widget.onTap,
+      onTap:
+          widget.onTap != null ||
+              (widget.character.form.stage == 0 &&
+                  widget.animate &&
+                  widget.motion != CharacterMotion.sleeping)
+          ? _tap
+          : null,
       behavior: HitTestBehavior.translucent,
       child: SizedBox(
         width: widget.size + widget.wanderDistance * 2,
@@ -145,6 +175,13 @@ class _CharacterViewState extends State<CharacterView>
                         : const CharacterPose();
                     // Evolution scenes can give this view unbounded dimensions.
                     final size = widget.size.isFinite ? widget.size : 160.0;
+                    if (widget.character.form.stage == 0) {
+                      // Rive owns the local pose; the room still owns travel.
+                      return Transform.translate(
+                        offset: Offset(pose.x, 0),
+                        child: child,
+                      );
+                    }
                     return Transform.translate(
                       offset: Offset(pose.x, pose.y * size),
                       child: Transform.rotate(
@@ -162,16 +199,28 @@ class _CharacterViewState extends State<CharacterView>
                       ),
                     );
                   },
-                  child: Image.asset(
-                    widget.character.form.assetPath,
-                    fit: BoxFit.contain,
-                    gaplessPlayback: true,
-                    excludeFromSemantics: true,
-                    errorBuilder: (_, error, stackTrace) => Image.asset(
-                      characterForm('base_01').assetPath,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
+                  child: widget.character.form.stage == 0
+                      ? PonoView(
+                          motion:
+                              _ponoTapped &&
+                                  widget.motion != CharacterMotion.happy &&
+                                  widget.motion != CharacterMotion.sleeping
+                              ? CharacterMotion.tapped
+                              : widget.motion,
+                          animate: widget.animate,
+                          walking: widget.walking ?? false,
+                          facingRight: widget.facingRight ?? true,
+                        )
+                      : Image.asset(
+                          widget.character.form.assetPath,
+                          fit: BoxFit.contain,
+                          gaplessPlayback: true,
+                          excludeFromSemantics: true,
+                          errorBuilder: (_, error, stackTrace) => Image.asset(
+                            characterForm('base_01').assetPath,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
                 ),
           ),
         ),
