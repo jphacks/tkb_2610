@@ -8,9 +8,6 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late rive.File file;
   late Map<String, dynamic> manifest;
-  final vertices = <(double, double)>[];
-  final triangles = <(int, int, int)>[];
-
   setUpAll(() async {
     expect(await rive.RiveNative.init(), isTrue);
     file = (await rive.File.decode(
@@ -24,26 +21,6 @@ void main() {
               ).readAsString(),
             )
             as Map<String, dynamic>;
-    final grid = manifest['meshGrid'] as int;
-    final points = <(int, int)>[
-      for (var x = 0; x <= grid; x++) (x, 0),
-      for (var y = 1; y <= grid; y++) (grid, y),
-      for (var x = grid - 1; x >= 0; x--) (x, grid),
-      for (var y = grid - 1; y > 0; y--) (0, y),
-      for (var y = 1; y < grid; y++)
-        for (var x = 1; x < grid; x++) (x, y),
-    ];
-    final lookup = {for (var i = 0; i < points.length; i++) points[i]: i};
-    vertices.addAll(points.map((p) => (p.$1 * 500 / grid, p.$2 * 500 / grid)));
-    for (var y = 0; y < grid; y++) {
-      for (var x = 0; x < grid; x++) {
-        final a = lookup[(x, y)]!,
-            b = lookup[(x + 1, y)]!,
-            c = lookup[(x + 1, y + 1)]!,
-            d = lookup[(x, y + 1)]!;
-        triangles.addAll([(a, b, c), (a, c, d)]);
-      }
-    }
   });
   tearDownAll(() => file.dispose());
 
@@ -56,7 +33,9 @@ void main() {
     'honesty',
     'self_care',
   ]) {
-    test('$kind: 実ファイルの表情・歩行・ポーズとメッシュの接続を確認', () {
+    test('$kind: 別パーツの形を保ったまま全表情と歩行を再生する', () {
+      expect(manifest['architecture'], 'rigid-cutout');
+      expect(manifest['meshCount'], 0);
       final id = 'stage1_$kind';
       final spec = (manifest['artboards'] as List)
           .cast<Map<String, dynamic>>()
@@ -67,80 +46,116 @@ void main() {
       );
       final data = player.dataBind(rive.DataBind.auto());
       final mode = data.number('mode')!;
-      final bones = (spec['bones'] as List).cast<Map<String, dynamic>>();
-      final components = [
-        for (final b in bones) player.artboard.component(b['name'] as String)!,
+      final parts = (spec['parts'] as List).cast<Map<String, dynamic>>();
+      final joints = [
+        for (final p in parts) player.artboard.component(p['name'] as String)!,
       ];
+      final images = [
+        for (final p in parts) player.artboard.component('${p['name']} image')!,
+      ];
+      final scales = [for (final image in images) (image.scaleX, image.scaleY)];
       final eye = player.artboard.component('Eye 0')!;
-      final body = player.artboard.component('Body')!;
+      final blinks = <double>[];
+      final samples = <List<double>>[];
+      final legs = (spec['legs'] as List).cast<String>();
+      final appendages = (spec['appendages'] as List).cast<String>();
+      final movingNames = [...legs, ...appendages];
+      final moving = [
+        for (final name in movingNames) player.artboard.component(name)!,
+      ];
       addTearDown(() {
         eye.dispose();
-        body.dispose();
-        for (final c in components) {
-          c.dispose();
+        for (final component in [...joints, ...images, ...moving]) {
+          component.dispose();
         }
         mode.dispose();
         player.dispose();
         data.dispose();
       });
       expect(player.artboard.animationCount(), 6);
-      final blinkScales = <double>[];
-      final appendageAngles = <double>[];
-      final weights = (spec['weights'] as List).cast<List>();
+      expect(player.artboard.component('Puppet mesh'), isNull);
+      expect(player.artboard.component('Puppet skin'), isNull);
+      if (kind == 'kindness') expect(appendages.length, 5);
+      if (kind == 'cooperation') {
+        expect(
+          appendages,
+          containsAll(['Fin near', 'Fin far', 'Tail stem', 'Tail flukes']),
+        );
+        for (final name in ['Smile curve', 'Joy mouth', 'Sleep mouth']) {
+          expect(player.artboard.component(name), isNull);
+        }
+      }
+      if (legs.isNotEmpty) expect(legs.length, 4);
       for (var mood = 0; mood < 6; mood++) {
         mode.value = mood.toDouble();
         for (var frame = 0; frame < 240; frame++) {
           player.stateMachine.advanceAndApply(1 / 60);
-          if (mood == 0) blinkScales.add(eye.scaleY);
-          if (mood == 1) appendageAngles.add(components.last.rotation);
-          final matrices = [for (final c in components) c.worldTransform];
-          final posed = <(double, double)>[];
-          for (var v = 0; v < vertices.length; v++) {
-            final indices = weights[v][0] as int, values = weights[v][1] as int;
-            var px = 0.0, py = 0.0, sum = 0;
-            for (var slot = 0; slot < 4; slot++) {
-              final value = (values >> (slot * 8)) & 255;
-              if (value == 0) continue;
-              final index = ((indices >> (slot * 8)) & 255) - 1;
-              expect(index, inInclusiveRange(0, bones.length - 1));
-              final bind = bones[index]['bind'] as List;
-              final x = vertices[v].$1 - (bind[0] as num).toDouble();
-              final y = vertices[v].$2 - (bind[1] as num).toDouble();
-              final m = matrices[index];
-              px += (m[0] * x + m[2] * y + m[4]) * value / 255;
-              py += (m[1] * x + m[3] * y + m[5]) * value / 255;
-              sum += value;
-            }
-            expect(sum, 255);
-            expect(px.isFinite && py.isFinite, isTrue);
-            posed.add((px, py));
-          }
-          var inverted = 0;
-          final foldedAt = <(double, double)>[];
-          for (final (a, b, c) in triangles) {
-            final p = posed[a], q = posed[b], r = posed[c];
-            final area =
-                (q.$1 - p.$1) * (r.$2 - p.$2) - (q.$2 - p.$2) * (r.$1 - p.$1);
-            if (area <= 0) {
-              inverted++;
-              foldedAt.add(vertices[a]);
+          if (mood == 0) blinks.add(eye.scaleY);
+          if (mood == 1) samples.add([for (final c in moving) c.rotation]);
+          for (var p = 0; p < images.length; p++) {
+            expect(images[p].scaleX, closeTo(scales[p].$1, 1e-6));
+            expect(images[p].scaleY, closeTo(scales[p].$2, 1e-6));
+            expect(joints[p].scaleX, closeTo(1, 1e-6));
+            expect(joints[p].scaleY, closeTo(1, 1e-6));
+            final matrix = images[p].worldTransform;
+            for (var v = 0; v < 6; v++) {
+              expect(matrix[v].isFinite, isTrue);
             }
           }
-          expect(
-            inverted,
-            0,
-            reason:
-                '$id mood=$mood frame=$frame: triangle folds at ${foldedAt.take(8).toList()}',
-          );
-          expect(body.scaleY, greaterThan(.8));
         }
       }
-      expect(blinkScales.reduce(math.min), lessThan(.15));
-      expect(blinkScales.reduce(math.max), closeTo(1, .01));
-      expect(
-        appendageAngles.reduce(math.max) - appendageAngles.reduce(math.min),
-        greaterThan(.02),
-      );
+      expect(blinks.reduce(math.min), lessThan(.15));
+      expect(blinks.reduce(math.max), closeTo(1, .01));
+      for (var p = 0; p < moving.length; p++) {
+        final angles = [for (final row in samples) row[p]];
+        expect(
+          angles.reduce(math.max) - angles.reduce(math.min),
+          greaterThan(.005),
+          reason: '${movingNames[p]} must move independently',
+        );
+      }
+      if (kind == 'kindness') {
+        // A single parent wobble cannot satisfy independent phase differences.
+        for (var p = 1; p < 5; p++) {
+          expect(samples.any((s) => (s[p] - s[0]).abs() > .01), isTrue);
+        }
+      }
     });
   }
+
+  test('ミケルナは専用の四足姿へ切り替わり、停止すると座る位置に戻る', () {
+    final player = rive.RiveWidgetController(
+      file,
+      artboardSelector: rive.ArtboardSelector.byName('stage1_self_care'),
+    );
+    final data = player.dataBind(rive.DataBind.auto());
+    final mode = data.number('mode')!;
+    final head = player.artboard.component('Head')!;
+    final tail = player.artboard.component('Tail')!;
+    final standing = player.artboard.component('Standing torso image')!;
+    final seated = player.artboard.component('Seated torso image')!;
+    void settle(int value) {
+      mode.value = value.toDouble();
+      for (var f = 0; f < 30; f++) {
+        player.stateMachine.advanceAndApply(1 / 60);
+      }
+    }
+
+    settle(0);
+    final seatedX = head.x, seatedTailX = tail.x;
+    settle(1);
+    expect(head.x, seatedX - 20);
+    expect(tail.x, seatedTailX + 48);
+    expect(standing.localBounds.width, greaterThan(0));
+    expect(seated.localBounds.width, greaterThan(0));
+    settle(0);
+    expect(head.x, seatedX);
+    expect(tail.x, seatedTailX);
+    for (final c in [head, tail, standing, seated]) {
+      c.dispose();
+    }
+    mode.dispose();
+    player.dispose();
+    data.dispose();
+  });
 }

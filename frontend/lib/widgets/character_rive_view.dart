@@ -60,7 +60,7 @@ CharacterRiveSpec? characterRiveSpec(String kind) {
     return CharacterRiveSpec(
       'assets/animations/first_evolutions.riv',
       form.imageId,
-      facesLeft: const [1, 4, 5].contains(form.firstCategory),
+      facesLeft: const [1, 2, 3, 4, 5, 6].contains(form.firstCategory),
     );
   }
   return null;
