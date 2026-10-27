@@ -8,6 +8,7 @@ from face_geometry import FaceRig
 from character_specs import SPECS
 from part_layouts import LAYOUTS, LEGS
 from rig_writer import ROOT, n, key
+from registered_rig import RegisteredRig
 
 HERE = Path(__file__).resolve().parent
 PARTS = json.loads((HERE/'parts_manifest.json').read_text())
@@ -149,7 +150,7 @@ class CutoutRig(FaceRig):
 def main():
     rigs=[]
     for i,spec in enumerate(SPECS):
-        rig=CutoutRig(spec,i)
+        rig=CutoutRig(spec,i) if spec['kind']=='kindness' else RegisteredRig(spec,i)
         rig.animations()
         rigs.append(rig)
     vm=n(ROOT,'ViewModel','CompanionState',id='0:40',defaultInstanceId='0:41')
@@ -164,6 +165,7 @@ def main():
         'architecture':'rigid-cutout','meshCount':0,
         'artboards':[dict(kind=r.kind,parts=r.parts,
             appendages=[name for name,_,_ in r.accents],legs=[name for name,_ in r.legs],
+            contacts=getattr(r,'contacts',None),masters=getattr(r,'masters',[]),
             walkFrames=r.walk_duration) for r in rigs],
     },indent=2)+'\n')
 

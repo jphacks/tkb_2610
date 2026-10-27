@@ -104,182 +104,234 @@
         "Tentacle centre"
       ],
       "legs": [],
+      "contacts": null,
+      "masters": [],
       "walkFrames": 150
     },
     {
       "kind": "stage1_environment",
       "parts": [
         {
-          "name": "Head paint",
-          "asset": "deer_head",
+          "name": "Torso",
+          "asset": "environment_default_torso",
           "rect": [
-            91,
-            153,
-            270,
-            327
+            90,
+            103,
+            398,
+            475
           ],
           "pivot": [
-            221,
-            299
+            250,
+            400
           ],
-          "parent": "Head"
-        },
-        {
-          "name": "Ear near",
-          "asset": "deer_near_ear",
-          "rect": [
-            225,
-            139,
-            355,
-            240
-          ],
-          "pivot": [
-            259,
-            222
-          ],
+          "accent": null,
+          "leg": false,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
           "name": "Ear far",
-          "asset": "deer_far_ear",
+          "asset": "environment_default_ear_far",
           "rect": [
-            100,
-            123,
+            99,
+            118,
             180,
-            218
+            216
           ],
           "pivot": [
-            160,
-            207
+            153,
+            187
           ],
+          "accent": [
+            0.025,
+            2
+          ],
+          "leg": false,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
-          "name": "Antler near",
-          "asset": "deer_near_antler",
+          "name": "Ear near",
+          "asset": "environment_default_ear_near",
           "rect": [
-            217,
-            89,
-            296,
-            192
+            236,
+            144,
+            357,
+            239
           ],
           "pivot": [
-            235,
-            182
+            269,
+            216
           ],
+          "accent": [
+            0.025,
+            0
+          ],
+          "leg": false,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
           "name": "Antler far",
-          "asset": "deer_far_antler",
+          "asset": "environment_default_antler_far",
           "rect": [
-            164,
-            75,
-            214,
-            182
+            159,
+            70,
+            222,
+            194
           ],
           "pivot": [
-            185,
+            184,
             174
           ],
+          "accent": [
+            0.012,
+            1
+          ],
+          "leg": false,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
-          "name": "Torso",
-          "asset": "deer_body",
+          "name": "Antler near",
+          "asset": "environment_default_antler_near",
           "rect": [
-            165,
-            285,
-            379,
-            433
+            213,
+            83,
+            315,
+            193
           ],
           "pivot": [
-            270,
-            350
+            233,
+            176
           ],
-          "parent": "Artwork"
+          "accent": [
+            0.012,
+            3
+          ],
+          "leg": false,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leaf tail",
-          "asset": "deer_tail",
+          "asset": "environment_default_leaf_tail",
           "rect": [
-            340,
-            250,
-            411,
-            352
+            328,
+            248,
+            409,
+            362
           ],
           "pivot": [
-            351,
-            334
+            350,
+            337
           ],
-          "parent": "Artwork"
+          "accent": [
+            0.04,
+            1
+          ],
+          "leg": false,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg front_near",
-          "asset": "deer_front_near",
+          "asset": "environment_default_leg_front_near",
           "rect": [
-            200,
-            376,
-            258,
+            204,
+            346,
+            277,
             480
           ],
           "pivot": [
-            241,
-            379
+            243,
+            405
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg front_far",
-          "asset": "deer_front_far",
+          "asset": "environment_default_leg_front_far",
           "rect": [
-            159,
-            376,
-            218,
-            472
+            156,
+            356,
+            227,
+            474
           ],
           "pivot": [
-            205,
-            380
+            195,
+            411
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg rear_near",
-          "asset": "deer_rear_near",
+          "asset": "environment_default_leg_rear_near",
           "rect": [
-            343,
-            379,
-            388,
-            475
+            332,
+            350,
+            389,
+            479
           ],
           "pivot": [
-            357,
-            389
+            362,
+            410
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg rear_far",
-          "asset": "deer_rear_far",
+          "asset": "environment_default_leg_rear_far",
           "rect": [
-            274,
-            377,
-            326,
-            470
+            278,
+            365,
+            341,
+            471
           ],
           "pivot": [
             306,
-            390
+            413
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_environment.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         }
       ],
       "appendages": [
-        "Ear near",
         "Ear far",
-        "Antler near",
+        "Ear near",
         "Antler far",
+        "Antler near",
         "Leaf tail"
       ],
       "legs": [
@@ -288,167 +340,292 @@
         "Leg rear_near",
         "Leg rear_far"
       ],
-      "walkFrames": 96
+      "contacts": [
+        {
+          "child": "Ear far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Ear near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Antler far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Antler near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leaf tail",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg front_near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg front_far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg rear_near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg rear_far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "masters": [
+        "masters/environment_default.png"
+      ],
+      "walkFrames": 108
     },
     {
       "kind": "stage1_gratitude",
       "parts": [
         {
-          "name": "Head paint",
-          "asset": "sheep_head",
+          "name": "Torso",
+          "asset": "gratitude_default_torso",
           "rect": [
-            91,
-            101,
-            298,
-            343
+            45,
+            93,
+            460,
+            455
           ],
           "pivot": [
-            204,
-            329
+            250,
+            400
           ],
-          "parent": "Head"
-        },
-        {
-          "name": "Horn near",
-          "asset": "sheep_near_horn",
-          "rect": [
-            273,
-            164,
-            371,
-            260
-          ],
-          "pivot": [
-            302,
-            211
-          ],
-          "parent": "Head"
-        },
-        {
-          "name": "Horn far",
-          "asset": "sheep_far_horn",
-          "rect": [
-            77,
-            145,
-            133,
-            215
-          ],
-          "pivot": [
-            111,
-            184
-          ],
-          "parent": "Head"
-        },
-        {
-          "name": "Ear near",
-          "asset": "sheep_near_ear",
-          "rect": [
-            292,
-            260,
-            390,
-            328
-          ],
-          "pivot": [
-            309,
-            277
-          ],
+          "accent": null,
+          "leg": false,
+          "source": "textures/stage1_gratitude.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
           "name": "Ear far",
-          "asset": "sheep_far_ear",
+          "asset": "gratitude_default_ear_far",
           "rect": [
             40,
-            248,
-            113,
-            288
+            224,
+            133,
+            297
           ],
           "pivot": [
-            106,
+            105,
             264
           ],
+          "accent": [
+            0.04,
+            2
+          ],
+          "leg": false,
+          "source": "textures/stage1_gratitude.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
-          "name": "Torso",
-          "asset": "sheep_body",
+          "name": "Ear near",
+          "asset": "gratitude_default_ear_near",
           "rect": [
-            112,
+            286,
             246,
-            459,
-            449
-          ],
-          "pivot": [
-            285,
-            350
-          ],
-          "parent": "Artwork"
-        },
-        {
-          "name": "Leg front_near",
-          "asset": "sheep_front_near",
-          "rect": [
-            201,
-            395,
-            253,
-            480
-          ],
-          "pivot": [
-            233,
-            413
-          ],
-          "parent": "Artwork"
-        },
-        {
-          "name": "Leg front_far",
-          "asset": "sheep_front_far",
-          "rect": [
-            143,
-            395,
-            195,
-            472
-          ],
-          "pivot": [
-            176,
-            410
-          ],
-          "parent": "Artwork"
-        },
-        {
-          "name": "Leg rear_near",
-          "asset": "sheep_rear_near",
-          "rect": [
-            340,
-            401,
-            397,
-            480
-          ],
-          "pivot": [
-            365,
-            416
-          ],
-          "parent": "Artwork"
-        },
-        {
-          "name": "Leg rear_far",
-          "asset": "sheep_rear_far",
-          "rect": [
-            278,
-            402,
-            327,
-            468
+            396,
+            339
           ],
           "pivot": [
             310,
-            417
+            280
           ],
-          "parent": "Artwork"
+          "accent": [
+            0.03,
+            0
+          ],
+          "leg": false,
+          "source": "textures/stage1_gratitude.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
+        },
+        {
+          "name": "Leg front_near",
+          "asset": "gratitude_default_leg_front_near",
+          "rect": [
+            198,
+            385,
+            259,
+            480
+          ],
+          "pivot": [
+            227,
+            428
+          ],
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_gratitude.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
+        },
+        {
+          "name": "Leg front_far",
+          "asset": "gratitude_default_leg_front_far",
+          "rect": [
+            135,
+            384,
+            200,
+            474
+          ],
+          "pivot": [
+            172,
+            426
+          ],
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_gratitude.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
+        },
+        {
+          "name": "Leg rear_near",
+          "asset": "gratitude_default_leg_rear_near",
+          "rect": [
+            334,
+            386,
+            407,
+            480
+          ],
+          "pivot": [
+            368,
+            430
+          ],
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_gratitude.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
+        },
+        {
+          "name": "Leg rear_far",
+          "asset": "gratitude_default_leg_rear_far",
+          "rect": [
+            275,
+            389,
+            332,
+            467
+          ],
+          "pivot": [
+            305,
+            429
+          ],
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_gratitude.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         }
       ],
       "appendages": [
-        "Horn near",
-        "Horn far",
-        "Ear near",
-        "Ear far"
+        "Ear far",
+        "Ear near"
       ],
       "legs": [
         "Leg front_near",
@@ -456,181 +633,296 @@
         "Leg rear_near",
         "Leg rear_far"
       ],
-      "walkFrames": 108
+      "contacts": [
+        {
+          "child": "Ear far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Ear near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg front_near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg front_far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg rear_near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg rear_far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "masters": [
+        "masters/gratitude_default.png"
+      ],
+      "walkFrames": 120
     },
     {
       "kind": "stage1_courage",
       "parts": [
         {
-          "name": "Head paint",
-          "asset": "lion_head",
+          "name": "Torso",
+          "asset": "courage_default_torso",
           "rect": [
-            78,
-            199,
-            299,
-            348
+            40,
+            77,
+            460,
+            473
           ],
           "pivot": [
-            205,
-            362
+            250,
+            400
           ],
-          "parent": "Head"
-        },
-        {
-          "name": "Ear near",
-          "asset": "lion_near_ear",
-          "rect": [
-            233,
-            188,
-            304,
-            268
-          ],
-          "pivot": [
-            259,
-            253
-          ],
+          "accent": null,
+          "leg": false,
+          "source": "textures/stage1_courage.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
           "name": "Ear far",
-          "asset": "lion_far_ear",
+          "asset": "courage_default_ear_far",
           "rect": [
-            68,
-            190,
-            132,
-            266
+            49,
+            165,
+            140,
+            272
           ],
           "pivot": [
-            110,
-            251
+            104,
+            232
           ],
+          "accent": [
+            0.025,
+            2
+          ],
+          "leg": false,
+          "source": "textures/stage1_courage.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
-          "name": "Mane",
-          "asset": "lion_mane",
+          "name": "Ear near",
+          "asset": "courage_default_ear_near",
           "rect": [
-            40,
-            80,
-            383,
-            417
+            231,
+            164,
+            331,
+            277
           ],
           "pivot": [
-            205,
-            303
+            270,
+            240
           ],
+          "accent": [
+            0.025,
+            0
+          ],
+          "leg": false,
+          "source": "textures/stage1_courage.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
-        },
-        {
-          "name": "Torso",
-          "asset": "lion_body",
-          "rect": [
-            175,
-            323,
-            411,
-            443
-          ],
-          "pivot": [
-            290,
-            380
-          ],
-          "parent": "Artwork"
         },
         {
           "name": "Tail",
-          "asset": "lion_tail",
+          "asset": "courage_default_tail",
           "rect": [
-            348,
-            249,
-            444,
-            393
-          ],
-          "pivot": [
-            365,
+            343,
+            247,
+            458,
             362
           ],
-          "parent": "Artwork"
+          "pivot": [
+            367,
+            341
+          ],
+          "accent": [
+            0.04,
+            1
+          ],
+          "leg": false,
+          "source": "textures/stage1_courage.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Tail flame",
-          "asset": "lion_flame",
+          "asset": "courage_default_tail_flame",
           "rect": [
-            374,
-            183,
-            461,
-            300
+            371,
+            179,
+            460,
+            289
           ],
           "pivot": [
             429,
-            256
+            260
           ],
+          "accent": [
+            0.035,
+            2
+          ],
+          "leg": false,
+          "source": "textures/stage1_courage.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Tail"
         },
         {
           "name": "Leg front_near",
-          "asset": "lion_front_near",
+          "asset": "courage_default_leg_front_near",
           "rect": [
-            173,
-            382,
-            252,
+            179,
+            367,
+            259,
             480
           ],
           "pivot": [
-            204,
-            410
+            216,
+            415
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_courage.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg front_far",
-          "asset": "lion_front_far",
+          "asset": "courage_default_leg_front_far",
           "rect": [
-            125,
-            366,
+            88,
+            361,
             191,
-            472
-          ],
-          "pivot": [
-            164,
-            390
-          ],
-          "parent": "Artwork"
-        },
-        {
-          "name": "Leg rear_near",
-          "asset": "lion_rear_near",
-          "rect": [
-            348,
-            386,
-            419,
             477
           ],
           "pivot": [
-            370,
-            418
+            142,
+            412
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_courage.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
+        },
+        {
+          "name": "Leg rear_near",
+          "asset": "courage_default_leg_rear_near",
+          "rect": [
+            329,
+            365,
+            418,
+            477
+          ],
+          "pivot": [
+            373,
+            414
+          ],
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_courage.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg rear_far",
-          "asset": "lion_rear_far",
+          "asset": "courage_default_leg_rear_far",
           "rect": [
-            265,
-            398,
-            317,
-            465
+            257,
+            389,
+            327,
+            473
           ],
           "pivot": [
-            300,
-            413
+            295,
+            424
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_courage.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         }
       ],
       "appendages": [
-        "Ear near",
         "Ear far",
-        "Mane",
+        "Ear near",
         "Tail",
         "Tail flame"
       ],
@@ -640,84 +932,238 @@
         "Leg rear_near",
         "Leg rear_far"
       ],
-      "walkFrames": 108
+      "contacts": [
+        {
+          "child": "Ear far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Ear near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Tail",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Tail flame",
+          "parents": [
+            "Tail"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg front_near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg front_far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg rear_near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg rear_far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "masters": [
+        "masters/courage_default.png"
+      ],
+      "walkFrames": 120
     },
     {
       "kind": "stage1_cooperation",
       "parts": [
         {
-          "name": "Fin near",
-          "asset": "whale_near_fin",
-          "rect": [
-            236,
-            377,
-            367,
-            482
-          ],
-          "pivot": [
-            238,
-            388
-          ],
-          "parent": "Head"
-        },
-        {
           "name": "Torso",
-          "asset": "whale_body",
+          "asset": "cooperation_default_torso",
           "rect": [
             40,
-            218,
-            398,
+            219,
+            385,
             473
           ],
           "pivot": [
-            192,
-            343
+            250,
+            400
           ],
+          "accent": null,
+          "leg": false,
+          "source": "textures/stage1_cooperation.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
+        },
+        {
+          "name": "Fin near",
+          "asset": "cooperation_default_fin_near",
+          "rect": [
+            224,
+            370,
+            369,
+            480
+          ],
+          "pivot": [
+            250,
+            404
+          ],
+          "accent": [
+            0.07,
+            0.8
+          ],
+          "leg": false,
+          "source": "textures/stage1_cooperation.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
           "name": "Fin far",
-          "asset": "whale_far_fin",
+          "asset": "cooperation_default_fin_far",
           "rect": [
             57,
-            410,
-            157,
-            474
+            397,
+            164,
+            464
           ],
           "pivot": [
-            100,
-            444
+            105,
+            438
           ],
+          "accent": [
+            0.035,
+            2
+          ],
+          "leg": false,
+          "source": "textures/stage1_cooperation.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
           "name": "Tail stem",
-          "asset": "whale_tail_stem",
+          "asset": "cooperation_default_tail_stem",
           "rect": [
-            336,
-            285,
-            403,
+            331,
+            308,
+            394,
             409
           ],
           "pivot": [
-            359,
-            368
+            365,
+            354
           ],
+          "accent": [
+            0.035,
+            1
+          ],
+          "leg": false,
+          "source": "textures/stage1_cooperation.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
           "name": "Tail flukes",
-          "asset": "whale_flukes",
+          "asset": "cooperation_default_tail_flukes",
           "rect": [
-            309,
+            308,
             207,
             460,
-            323
+            333
           ],
           "pivot": [
-            382,
-            315
+            383,
+            305
           ],
+          "accent": [
+            0.045,
+            2.1
+          ],
+          "leg": false,
+          "source": "textures/stage1_cooperation.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Tail stem"
         }
       ],
@@ -728,149 +1174,197 @@
         "Tail flukes"
       ],
       "legs": [],
+      "contacts": [
+        {
+          "child": "Fin near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Fin far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Tail stem",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Tail flukes",
+          "parents": [
+            "Tail stem"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "masters": [
+        "masters/cooperation_default.png"
+      ],
       "walkFrames": 180
     },
     {
       "kind": "stage1_honesty",
       "parts": [
         {
-          "name": "Head paint",
-          "asset": "turtle_head",
+          "name": "Torso",
+          "asset": "honesty_default_torso",
           "rect": [
-            41,
-            240,
-            229,
-            407
+            40,
+            120,
+            460,
+            455
           ],
           "pivot": [
-            196,
-            373
+            250,
+            400
           ],
+          "accent": null,
+          "leg": false,
+          "source": "textures/stage1_honesty.png",
+          "pose": "default",
+          "folder": "registered",
           "parent": "Head"
         },
         {
-          "name": "Crystal",
-          "asset": "turtle_crystal",
-          "rect": [
-            229,
-            130,
-            325,
-            235
-          ],
-          "pivot": [
-            255,
-            215
-          ],
-          "parent": "Artwork"
-        },
-        {
-          "name": "Shell",
-          "asset": "turtle_shell",
-          "rect": [
-            140,
-            203,
-            463,
-            451
-          ],
-          "pivot": [
-            300,
-            350
-          ],
-          "parent": "Artwork"
-        },
-        {
-          "name": "Torso",
-          "asset": "turtle_body",
-          "rect": [
-            112,
-            381,
-            438,
-            462
-          ],
-          "pivot": [
-            270,
-            420
-          ],
-          "parent": "Artwork"
-        },
-        {
           "name": "Tail",
-          "asset": "turtle_tail",
+          "asset": "honesty_default_tail",
           "rect": [
-            435,
-            382,
-            473,
-            428
+            414,
+            371,
+            460,
+            441
           ],
           "pivot": [
-            444,
-            401
+            443,
+            405
           ],
-          "parent": "Artwork"
+          "accent": [
+            0.018,
+            1
+          ],
+          "leg": false,
+          "source": "textures/stage1_honesty.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg front_near",
-          "asset": "turtle_front_near",
+          "asset": "honesty_default_leg_front_near",
           "rect": [
-            206,
-            375,
-            276,
+            183,
+            362,
+            310,
             480
           ],
           "pivot": [
-            240,
-            408
+            246,
+            410
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_honesty.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg front_far",
-          "asset": "turtle_front_far",
+          "asset": "honesty_default_leg_front_far",
           "rect": [
-            62,
-            373,
-            141,
+            44,
+            371,
+            159,
             472
           ],
           "pivot": [
-            117,
-            398
+            111,
+            412
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_honesty.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg rear_near",
-          "asset": "turtle_rear_near",
+          "asset": "honesty_default_leg_rear_near",
           "rect": [
-            375,
-            386,
-            441,
-            474
+            355,
+            364,
+            460,
+            469
           ],
           "pivot": [
-            394,
-            414
+            407,
+            417
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_honesty.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         },
         {
           "name": "Leg rear_far",
-          "asset": "turtle_rear_far",
+          "asset": "honesty_default_leg_rear_far",
           "rect": [
-            294,
-            413,
-            340,
-            472
+            281,
+            396,
+            362,
+            477
           ],
           "pivot": [
-            320,
-            425
+            324,
+            435
           ],
-          "parent": "Artwork"
+          "accent": null,
+          "leg": true,
+          "source": "textures/stage1_honesty.png",
+          "pose": "default",
+          "folder": "registered",
+          "parent": "Head"
         }
       ],
       "appendages": [
-        "Crystal",
         "Tail"
       ],
       "legs": [
@@ -878,6 +1372,81 @@
         "Leg front_far",
         "Leg rear_near",
         "Leg rear_far"
+      ],
+      "contacts": [
+        {
+          "child": "Tail",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg front_near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg front_far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg rear_near",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Leg rear_far",
+          "parents": [
+            "Torso"
+          ],
+          "modes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "masters": [
+        "masters/honesty_default.png"
       ],
       "walkFrames": 192
     },
@@ -885,220 +1454,311 @@
       "kind": "stage1_self_care",
       "parts": [
         {
-          "name": "Head paint",
-          "asset": "cat_head",
-          "rect": [
-            81,
-            128,
-            339,
-            341
-          ],
-          "pivot": [
-            211,
-            327
-          ],
-          "parent": "Head"
-        },
-        {
-          "name": "Ear left",
-          "asset": "cat_right_ear",
-          "rect": [
-            82,
-            70,
-            179,
-            208
-          ],
-          "pivot": [
-            128,
-            166
-          ],
-          "parent": "Head"
-        },
-        {
-          "name": "Ear right",
-          "asset": "cat_left_ear",
-          "rect": [
-            265,
-            78,
-            375,
-            210
-          ],
-          "pivot": [
-            291,
-            165
-          ],
-          "parent": "Head"
-        },
-        {
           "name": "Seated torso",
-          "asset": "cat_seated_body",
+          "asset": "self_care_seated_seated_torso",
           "rect": [
-            177,
-            318,
-            337,
+            57,
+            76,
+            432,
             480
           ],
           "pivot": [
             250,
             400
           ],
+          "accent": null,
+          "leg": false,
+          "source": "textures/stage1_self_care.png",
+          "pose": "seated",
+          "folder": "registered",
+          "parent": "Seated pose"
+        },
+        {
+          "name": "Ear left",
+          "asset": "self_care_seated_ear_left",
+          "rect": [
+            85,
+            70,
+            178,
+            216
+          ],
+          "pivot": [
+            130,
+            173
+          ],
+          "accent": [
+            0.025,
+            0
+          ],
+          "leg": false,
+          "source": "textures/stage1_self_care.png",
+          "pose": "seated",
+          "folder": "registered",
+          "parent": "Seated pose"
+        },
+        {
+          "name": "Ear right",
+          "asset": "self_care_seated_ear_right",
+          "rect": [
+            246,
+            75,
+            373,
+            227
+          ],
+          "pivot": [
+            295,
+            177
+          ],
+          "accent": [
+            0.025,
+            2
+          ],
+          "leg": false,
+          "source": "textures/stage1_self_care.png",
+          "pose": "seated",
+          "folder": "registered",
+          "parent": "Seated pose"
+        },
+        {
+          "name": "Tail seated",
+          "asset": "self_care_seated_tail_seated",
+          "rect": [
+            317,
+            246,
+            442,
+            475
+          ],
+          "pivot": [
+            339,
+            443
+          ],
+          "accent": [
+            0.04,
+            1
+          ],
+          "leg": false,
+          "source": "textures/stage1_self_care.png",
+          "pose": "seated",
+          "folder": "registered",
           "parent": "Seated pose"
         },
         {
           "name": "Paw left",
-          "asset": "cat_seated_left_leg",
+          "asset": "self_care_seated_paw_left",
           "rect": [
-            167,
-            367,
-            221,
+            141,
+            410,
+            209,
             480
           ],
           "pivot": [
-            196,
-            376
+            172,
+            443
           ],
+          "accent": null,
+          "leg": false,
+          "source": "textures/stage1_self_care.png",
+          "pose": "seated",
+          "folder": "registered",
           "parent": "Seated pose"
         },
         {
           "name": "Paw right",
-          "asset": "cat_seated_right_leg",
+          "asset": "self_care_seated_paw_right",
           "rect": [
-            213,
-            367,
-            266,
+            187,
+            405,
+            264,
             480
           ],
           "pivot": [
-            241,
-            376
+            224,
+            443
           ],
-          "parent": "Seated pose"
-        },
-        {
-          "name": "Paw near back",
-          "asset": "cat_near_hind_paw",
-          "rect": [
-            274,
-            435,
-            327,
-            480
-          ],
-          "pivot": [
-            299,
-            449
-          ],
-          "parent": "Seated pose"
-        },
-        {
-          "name": "Paw far back",
-          "asset": "cat_far_hind_paw",
-          "rect": [
-            169,
-            423,
-            222,
-            480
-          ],
-          "pivot": [
-            195,
-            441
-          ],
+          "accent": null,
+          "leg": false,
+          "source": "textures/stage1_self_care.png",
+          "pose": "seated",
+          "folder": "registered",
           "parent": "Seated pose"
         },
         {
           "name": "Standing torso",
-          "asset": "cat_walk_body",
+          "asset": "self_care_standing_standing_torso",
           "rect": [
-            170,
-            304,
-            384,
-            431
+            40,
+            116,
+            425,
+            468
           ],
           "pivot": [
-            275,
-            360
+            250,
+            400
           ],
+          "accent": null,
+          "leg": false,
+          "source": "masters/cat_standing.png",
+          "pose": "standing",
+          "folder": "registered",
           "parent": "Standing pose"
         },
         {
-          "name": "Tail",
-          "asset": "cat_tail",
+          "name": "Ear left standing",
+          "asset": "self_care_standing_ear_left_standing",
           "rect": [
-            302,
-            247,
-            443,
-            467
+            67,
+            104,
+            158,
+            214
           ],
           "pivot": [
-            325,
-            432
+            110,
+            174
           ],
-          "parent": "Artwork"
+          "accent": [
+            0.025,
+            0
+          ],
+          "leg": false,
+          "source": "masters/cat_standing.png",
+          "pose": "standing",
+          "folder": "registered",
+          "parent": "Standing pose"
+        },
+        {
+          "name": "Ear right standing",
+          "asset": "self_care_standing_ear_right_standing",
+          "rect": [
+            214,
+            110,
+            298,
+            232
+          ],
+          "pivot": [
+            246,
+            182
+          ],
+          "accent": [
+            0.025,
+            2
+          ],
+          "leg": false,
+          "source": "masters/cat_standing.png",
+          "pose": "standing",
+          "folder": "registered",
+          "parent": "Standing pose"
+        },
+        {
+          "name": "Tail standing",
+          "asset": "self_care_standing_tail_standing",
+          "rect": [
+            330,
+            99,
+            460,
+            381
+          ],
+          "pivot": [
+            376,
+            349
+          ],
+          "accent": [
+            0.04,
+            1
+          ],
+          "leg": false,
+          "source": "masters/cat_standing.png",
+          "pose": "standing",
+          "folder": "registered",
+          "parent": "Standing pose"
         },
         {
           "name": "Leg front_near",
-          "asset": "cat_walk_front_near",
+          "asset": "self_care_standing_leg_front_near",
           "rect": [
-            194,
-            372,
-            246,
+            179,
+            335,
+            264,
             480
           ],
           "pivot": [
-            218,
-            391
+            220,
+            412
           ],
+          "accent": null,
+          "leg": true,
+          "source": "masters/cat_standing.png",
+          "pose": "standing",
+          "folder": "registered",
           "parent": "Standing pose"
         },
         {
           "name": "Leg front_far",
-          "asset": "cat_walk_front_far",
+          "asset": "self_care_standing_leg_front_far",
           "rect": [
-            160,
-            377,
-            204,
-            473
+            104,
+            335,
+            180,
+            477
           ],
           "pivot": [
-            183,
-            395
+            140,
+            407
           ],
+          "accent": null,
+          "leg": true,
+          "source": "masters/cat_standing.png",
+          "pose": "standing",
+          "folder": "registered",
           "parent": "Standing pose"
         },
         {
           "name": "Leg rear_near",
-          "asset": "cat_walk_rear_near",
+          "asset": "self_care_standing_leg_rear_near",
           "rect": [
-            335,
-            371,
-            402,
+            339,
+            344,
+            426,
             480
           ],
           "pivot": [
-            367,
-            391
+            382,
+            414
           ],
+          "accent": null,
+          "leg": true,
+          "source": "masters/cat_standing.png",
+          "pose": "standing",
+          "folder": "registered",
           "parent": "Standing pose"
         },
         {
           "name": "Leg rear_far",
-          "asset": "cat_walk_rear_far",
+          "asset": "self_care_standing_leg_rear_far",
           "rect": [
-            285,
-            378,
-            330,
-            474
+            251,
+            347,
+            338,
+            471
           ],
           "pivot": [
-            306,
-            398
+            295,
+            415
           ],
+          "accent": null,
+          "leg": true,
+          "source": "masters/cat_standing.png",
+          "pose": "standing",
+          "folder": "registered",
           "parent": "Standing pose"
         }
       ],
       "appendages": [
         "Ear left",
         "Ear right",
-        "Tail"
+        "Tail seated",
+        "Ear left standing",
+        "Ear right standing",
+        "Tail standing"
       ],
       "legs": [
         "Leg front_near",
@@ -1106,7 +1766,141 @@
         "Leg rear_near",
         "Leg rear_far"
       ],
-      "walkFrames": 108
+      "contacts": [
+        {
+          "child": "Ear left",
+          "parents": [
+            "Seated torso"
+          ],
+          "modes": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Ear right",
+          "parents": [
+            "Seated torso"
+          ],
+          "modes": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Tail seated",
+          "parents": [
+            "Seated torso"
+          ],
+          "modes": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Paw left",
+          "parents": [
+            "Seated torso"
+          ],
+          "modes": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Paw right",
+          "parents": [
+            "Seated torso"
+          ],
+          "modes": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "child": "Ear left standing",
+          "parents": [
+            "Standing torso"
+          ],
+          "modes": [
+            1
+          ]
+        },
+        {
+          "child": "Ear right standing",
+          "parents": [
+            "Standing torso"
+          ],
+          "modes": [
+            1
+          ]
+        },
+        {
+          "child": "Tail standing",
+          "parents": [
+            "Standing torso"
+          ],
+          "modes": [
+            1
+          ]
+        },
+        {
+          "child": "Leg front_near",
+          "parents": [
+            "Standing torso"
+          ],
+          "modes": [
+            1
+          ]
+        },
+        {
+          "child": "Leg front_far",
+          "parents": [
+            "Standing torso"
+          ],
+          "modes": [
+            1
+          ]
+        },
+        {
+          "child": "Leg rear_near",
+          "parents": [
+            "Standing torso"
+          ],
+          "modes": [
+            1
+          ]
+        },
+        {
+          "child": "Leg rear_far",
+          "parents": [
+            "Standing torso"
+          ],
+          "modes": [
+            1
+          ]
+        }
+      ],
+      "masters": [
+        "masters/self_care_seated.png",
+        "masters/self_care_standing.png"
+      ],
+      "walkFrames": 120
     }
   ]
 }
