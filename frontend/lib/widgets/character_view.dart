@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../data/models.dart';
 import '../core/character_animation.dart';
-import 'pono_view.dart';
+import 'character_rive_view.dart';
 
 /// Drop-in seam for a future Rive renderer; screens never depend on Rive internals.
 typedef CharacterRenderer =
@@ -64,17 +64,25 @@ class _CharacterViewState extends State<CharacterView>
   )..addListener(_tick);
   double _seconds = 0, _travelSeconds = 0, _lastValue = 0;
   Timer? _tapTimer;
-  bool _ponoTapped = false;
+  bool _reacting = false;
+
+  bool get _hasRig => widget.character.form.stage <= 1;
+  CharacterMotion get _rigMotion =>
+      _reacting &&
+          widget.motion != CharacterMotion.happy &&
+          widget.motion != CharacterMotion.sleeping
+      ? CharacterMotion.tapped
+      : widget.motion;
 
   void _tap() {
-    if (widget.character.form.stage == 0 &&
+    if (_hasRig &&
         widget.animate &&
         !MediaQuery.disableAnimationsOf(context) &&
         widget.motion != CharacterMotion.sleeping) {
       _tapTimer?.cancel();
-      setState(() => _ponoTapped = true);
+      setState(() => _reacting = true);
       _tapTimer = Timer(const Duration(milliseconds: 1800), () {
-        if (mounted) setState(() => _ponoTapped = false);
+        if (mounted) setState(() => _reacting = false);
       });
     }
     widget.onTap?.call();
@@ -100,6 +108,10 @@ class _CharacterViewState extends State<CharacterView>
   @override
   void didUpdateWidget(CharacterView oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (oldWidget.character.form.imageId != widget.character.form.imageId) {
+      _tapTimer?.cancel();
+      _reacting = false;
+    }
     _sync();
   }
 
@@ -107,7 +119,7 @@ class _CharacterViewState extends State<CharacterView>
     if (widget.animate &&
         !MediaQuery.disableAnimationsOf(context) &&
         widget.motion != CharacterMotion.sleeping &&
-        (widget.character.form.stage > 0 || widget.wanderDistance > 0)) {
+        (!_hasRig || widget.wanderDistance > 0)) {
       if (!_animation.isAnimating) _animation.repeat();
     } else {
       _animation.stop();
@@ -130,13 +142,13 @@ class _CharacterViewState extends State<CharacterView>
         '第${widget.character.generation}世代のよいのこ、${widget.character.form.name}、${widget.character.form.label}',
     button:
         widget.onTap != null ||
-        (widget.character.form.stage == 0 &&
+        (_hasRig &&
             widget.animate &&
             widget.motion != CharacterMotion.sleeping),
     child: GestureDetector(
       onTap:
           widget.onTap != null ||
-              (widget.character.form.stage == 0 &&
+              (_hasRig &&
                   widget.animate &&
                   widget.motion != CharacterMotion.sleeping)
           ? _tap
@@ -175,7 +187,7 @@ class _CharacterViewState extends State<CharacterView>
                         : const CharacterPose();
                     // Evolution scenes can give this view unbounded dimensions.
                     final size = widget.size.isFinite ? widget.size : 160.0;
-                    if (widget.character.form.stage == 0) {
+                    if (_hasRig) {
                       // Rive owns the local pose; the room still owns travel.
                       return Transform.translate(
                         offset: Offset(pose.x, 0),
@@ -201,12 +213,15 @@ class _CharacterViewState extends State<CharacterView>
                   },
                   child: widget.character.form.stage == 0
                       ? PonoView(
-                          motion:
-                              _ponoTapped &&
-                                  widget.motion != CharacterMotion.happy &&
-                                  widget.motion != CharacterMotion.sleeping
-                              ? CharacterMotion.tapped
-                              : widget.motion,
+                          motion: _rigMotion,
+                          animate: widget.animate,
+                          walking: widget.walking ?? false,
+                          facingRight: widget.facingRight ?? true,
+                        )
+                      : _hasRig
+                      ? CharacterRiveView(
+                          kind: widget.character.form.imageId,
+                          motion: _rigMotion,
                           animate: widget.animate,
                           walking: widget.walking ?? false,
                           facingRight: widget.facingRight ?? true,
