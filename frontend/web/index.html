@@ -41,6 +41,28 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
-  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    (async function () {
+      const localPreview = ['localhost', '127.0.0.1', '::1'].includes(location.hostname);
+      // An older Flutter service worker can keep serving a previous build even
+      // after a local rebuild. Retire only this local preview's registrations;
+      // player data in local storage is deliberately left untouched.
+      if (localPreview && 'serviceWorker' in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        const local = registrations.filter(registration =>
+          new URL(registration.scope).origin === location.origin);
+        const controlled = navigator.serviceWorker.controller !== null;
+        await Promise.all(local.map(registration => registration.unregister()));
+        if (controlled && local.length > 0) {
+          location.reload();
+          return;
+        }
+      }
+      const bootstrap = document.createElement('script');
+      bootstrap.src = 'flutter_bootstrap.js' + (localPreview ? '?preview=' + Date.now() : '');
+      bootstrap.async = true;
+      document.body.appendChild(bootstrap);
+    })();
+  </script>
 </body>
 </html>
