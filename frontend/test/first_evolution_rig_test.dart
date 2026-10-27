@@ -131,7 +131,7 @@ void main() {
     final data = player.dataBind(rive.DataBind.auto());
     final mode = data.number('mode')!;
     final head = player.artboard.component('Head')!;
-    final tail = player.artboard.component('Tail')!;
+    final face = player.artboard.component('Face')!;
     final standing = player.artboard.component('Standing torso image')!;
     final seated = player.artboard.component('Seated torso image')!;
     void settle(int value) {
@@ -142,16 +142,18 @@ void main() {
     }
 
     settle(0);
-    final seatedX = head.x, seatedTailX = tail.x;
+    final seatedX = head.x, seatedFaceX = face.x;
     settle(1);
-    expect(head.x, seatedX - 20);
-    expect(tail.x, seatedTailX + 48);
+    expect(head.x, seatedX);
+    expect(face.x, lessThan(seatedFaceX - 30));
+    expect(face.scaleX, closeTo(.85, .001));
     expect(standing.localBounds.width, greaterThan(0));
     expect(seated.localBounds.width, greaterThan(0));
     settle(0);
     expect(head.x, seatedX);
-    expect(tail.x, seatedTailX);
-    for (final c in [head, tail, standing, seated]) {
+    expect(face.x, seatedFaceX);
+    expect(face.scaleX, closeTo(1, .001));
+    for (final c in [head, face, standing, seated]) {
       c.dispose();
     }
     mode.dispose();

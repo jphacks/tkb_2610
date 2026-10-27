@@ -1,12 +1,12 @@
 # 第一進化7体のアニメーション
 
-承認済みの「第一進化・シンプル塗り案」から独立した透過パーツを画像生成し、Riveで各パーツの関節を動かします。脚を一枚絵のメッシュで変形させる方式は廃止しました。表情はハイライトのない目・口の図形で切り替え、頭に追従させます。ナミルカは全状態で口なしです。素材の構成は [PARTS.md](PARTS.md) を参照してください。
+完成した元絵を同じ座標で切り分け、Riveで耳・脚・尾などを動かします。6種は原寸で配置し、元絵の頭身と頭・胴体のつながりを保ちます。ルミクラは既存の傘と触手5本の構成です。表情はハイライトのない目・口の図形で切り替え、ナミルカは全状態で口なしです。現在の編集方法は [REGISTERED_PARTS.md](REGISTERED_PARTS.md) を参照してください。
 
 | 形態 | 種族名 | 歩行・移動 | タッチ時のポーズ |
 | --- | --- | --- | --- |
 | stage1_kindness | ルミクラ | 呼吸、独立した5本の触手の時間差の揺れ | 笑顔で弾み、触手を揺らす |
 | stage1_environment | メブシカ | 4本の脚の交互の踏み出し、葉のしっぽ | 首を傾け、前脚を上げる |
-| stage1_gratitude | フワラム | 小さな足運び、耳と角の揺れ | 首を傾けて笑う |
+| stage1_gratitude | フワラム | 小さな足運び、耳の揺れ | 笑顔で弾む |
 | stage1_courage | ヒノレオ | 4本の脚の踏み出し、炎のしっぽ | 前脚を上げて挨拶する |
 | stage1_cooperation | ナミルカ | 尾とひれをずらして泳ぐ | ひれを振る |
 | stage1_honesty | コハガメ | ゆっくりした足運び、小さな首振り | 首を傾けて挨拶する |
@@ -42,8 +42,8 @@ rive . --once
 cp build/first_evolutions.riv ../../assets/animations/first_evolutions.riv
 ```
 
-`build_models.py` が動作の編集元、`part_layouts.py` が部品の接合位置、`character_specs.py` と `face_geometry.py` が顔の位置と表情、`rig_writer.py` がRMLの共通出力処理です。`scene.rml` は生成物として除外しています。画像はすべて `.riv` に埋め込み、追加の画像サーバーや実行時の画像生成は不要です。
+`registered_cuts.py` が切り抜き範囲と関節位置、`registered_rig.py` が6種の動作、`character_specs.py` と `face_geometry.py` が顔の位置と表情、`rig_writer.py` がRMLの共通出力処理です。`build_models.py` が全体を組み立てます。画像はすべて `.riv` に埋め込みます。
 
-`source/blank_faces_*.png` は旧方式で使用した参照素材です。現在は `source/parts_*.png` を `prepare_parts.py` で切り出した `parts/` を使います。切り出しにはPillowとnumpyが必要で、ユーザーが許可した切り抜き・透過整理のみ行います。描き足しや顔の消去は画像生成ツールで行いました。
+6種は `textures/` と歩行用ミケルナの完成絵を `prepare_registered.py` で切り分けた `registered/` を使用します。ルミクラは既存の `parts/` を使用します。切り出しにはPillowとnumpyが必要です。目・口の除去は画像生成ツール、切り抜き・透過整理はユーザーが許可したプログラム処理で行います。
 
 `rig_manifest.json` は独立した部品の一覧と初期位置の検証用データです。テストでは実際のRiveファイルを読み、全7体の全6状態で、画像と関節の拡大率が固定されること、まばたき、各関節が別々に動くこと、ミケルナの歩行姿への切り替えを確認します。
