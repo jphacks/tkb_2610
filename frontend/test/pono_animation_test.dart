@@ -148,7 +148,7 @@ void main() {
     expect(t.takeException(), isNull);
   });
 
-  testWidgets('設定からポノの全動作を試しても育成記録が変わらない', (t) async {
+  testWidgets('設定からポノと第一進化の全動作を試しても育成記録が変わらない', (t) async {
     final game = GameController(DemoRepository(MemoryStore()));
     await game.initialize();
     await game.register('はる');
@@ -158,8 +158,8 @@ void main() {
         home: Scaffold(body: SettingsPage(controller: game, isDemo: true)),
       ),
     );
-    await t.scrollUntilVisible(find.text('ポノの動きをみる'), 200);
-    await t.tap(find.text('ポノの動きをみる'));
+    await t.scrollUntilVisible(find.text('キャラクターの動きをみる'), 200);
+    await t.tap(find.text('キャラクターの動きをみる'));
     await t.pump();
     await t.pump(const Duration(milliseconds: 300));
     final preview = find.byType(PonoView).last;
@@ -172,6 +172,29 @@ void main() {
     await t.tap(find.byTooltip('動きを止める'));
     await t.pump();
     expect(t.widget<PonoView>(preview).animate, isFalse);
+    await t.tap(find.byTooltip('動かす'));
+    await t.pump();
+    for (var i = 0; i < categoryIds.length; i++) {
+      await t.tap(find.byType(DropdownButton<String>));
+      await t.pump(const Duration(milliseconds: 300));
+      final item = find.text(firstSpeciesNames[i]).last;
+      await t.ensureVisible(item);
+      await t.tap(item);
+      await t.pump(const Duration(milliseconds: 300));
+      expect(
+        t
+            .widget<CharacterView>(find.byType(CharacterView).last)
+            .character
+            .form
+            .imageId,
+        'stage1_${categoryIds[i]}',
+      );
+      for (final label in ['あるく', 'なでる', 'よろこぶ', 'つかれた', 'おやすみ', 'いつも']) {
+        await t.tap(find.text(label));
+        await t.pump(const Duration(milliseconds: 250));
+        expect(game.snapshot!.toJson(), before);
+      }
+    }
     await t.tap(find.byTooltip('閉じる'));
     await t.pump(const Duration(milliseconds: 300));
     expect(game.snapshot!.toJson(), before);

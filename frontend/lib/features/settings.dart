@@ -139,15 +139,17 @@ class SettingsPage extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                title: const Text('ポノの動きをみる'),
+                title: const Text('キャラクターの動きをみる'),
                 subtitle: const Text(
-                  '表情と動作をお試し・育成記録は変わりません',
+                  'ポノ・第一進化7種・育成記録は変わりません',
                   style: TextStyle(fontSize: 11, color: muted),
                 ),
                 trailing: const Icon(Icons.play_circle_outline_rounded),
                 onTap: () => showDialog<void>(
                   context: context,
-                  builder: (_) => const PonoPreview(),
+                  builder: (_) => PonoPreview(
+                    initialKind: controller.snapshot!.current.form.imageId,
+                  ),
                 ),
               ),
               const Divider(height: 1),

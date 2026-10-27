@@ -6,7 +6,8 @@ import '../widgets/cloud_background.dart';
 
 /// A local-only preview; never reads or writes the player's companion.
 class PonoPreview extends StatefulWidget {
-  const PonoPreview({super.key});
+  const PonoPreview({super.key, this.initialKind = 'base_01'});
+  final String initialKind;
 
   @override
   State<PonoPreview> createState() => _PonoPreviewState();
@@ -22,11 +23,14 @@ class _PonoPreviewState extends State<PonoPreview> {
     CharacterMotion.lowEnergy,
     CharacterMotion.sleeping,
   ];
-  final _pono = Companion(
-    id: 'pono-preview',
+  late String _kind = characterForm(widget.initialKind).stage <= 1
+      ? characterForm(widget.initialKind).imageId
+      : 'base_01';
+  Companion get _character => Companion(
+    id: 'animation-preview-$_kind',
     generation: 1,
     bornAt: DateTime.utc(2026),
-    kind: 'base_01',
+    kind: _kind,
   );
   int _selected = 0;
   bool _playing = true, _right = true;
@@ -46,13 +50,38 @@ class _PonoPreviewState extends State<PonoPreview> {
               padding: const EdgeInsets.fromLTRB(22, 12, 8, 0),
               child: Row(
                 children: [
-                  const Expanded(
-                    child: Text(
-                      'ポノ',
-                      style: TextStyle(
-                        color: ink,
-                        fontSize: 21,
-                        fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Semantics(
+                      label: 'キャラクターを選ぶ',
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: _kind,
+                          isExpanded: true,
+                          style: const TextStyle(
+                            color: ink,
+                            fontFamily: 'Rounded',
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          items: [
+                            for (final kind in [
+                              'base_01',
+                              for (final category in categoryIds)
+                                'stage1_$category',
+                            ])
+                              DropdownMenuItem(
+                                value: kind,
+                                child: Text(
+                                  characterForm(kind).name,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                          ],
+                          onChanged: (kind) {
+                            if (kind != null) setState(() => _kind = kind);
+                          },
+                        ),
                       ),
                     ),
                   ),
@@ -85,7 +114,8 @@ class _PonoPreviewState extends State<PonoPreview> {
                     ),
                     Center(
                       child: CharacterView(
-                        character: _pono,
+                        key: ValueKey('preview-character-$_kind'),
+                        character: _character,
                         size: 260,
                         motion: motions[_selected],
                         animate: _playing,
