@@ -95,7 +95,7 @@ SPECS = [
                ('Leg back',(370,418),(387,462),28,0)]),
     dict(kind='cooperation', tempo=150, floating=True, head=(192,343),
          eyes=[(206,347,18,25)], mouth=(174,369,'plain'),
-         accents=[('Fin',(238,388),(.10,.8),('cap',(238,390),(322,458),48)),
+         accents=[('Fin',(238,388),(.10,.8),('cap',(238,390),(322,458),72)),
                   ('Tail',(382,326),(.08,-1.2),('oval',410,275,88,95)),
                   ('Rear fin',(100,444),(.06,2),('oval',98,448,57,29))]),
     dict(kind='honesty', tempo=156, head=(196,373),
@@ -342,8 +342,8 @@ class MeshRig(Rig):
                     x,y,_=self.groups['Head']
                     replace_track('Head',90,[(0,x),(22,x-6),(45,x-3),(70,x),(120,x)])
                 if kind=='cooperation':
-                    replace_track('Fin',15,[(0,0),(12,.08),(27,-.18),
-                                  (43,.10),(60,-.12),(80,0),(120,0)])
+                    replace_track('Fin',15,[(0,0),(12,.07),(27,-.14),
+                                  (43,.08),(60,-.10),(80,0),(120,0)])
             elif self.spec['kind']=='honesty':
                 replace_track('Head',90,[(0,self.groups['Head'][0])])
             gaze_object=n(animation,'KeyedObject',objectId=self.ids['Wander gaze'])

@@ -93,7 +93,6 @@ void main() {
           player.stateMachine.advanceAndApply(1 / 60);
           if (mood == 0) blinkScales.add(eye.scaleY);
           if (mood == 1) appendageAngles.add(components.last.rotation);
-          if (frame % 12 != 0) continue;
           final matrices = [for (final c in components) c.worldTransform];
           final posed = <(double, double)>[];
           for (var v = 0; v < vertices.length; v++) {
