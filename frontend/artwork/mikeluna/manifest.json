@@ -1,0 +1,360 @@
+{
+  "tool": "builtin image_gen",
+  "cell_size": 384,
+  "columns": 8,
+  "gutter": 2,
+  "frames": [
+    {
+      "id": "side_00",
+      "source": "frame_01.png",
+      "source_sha256": "42831ea53702ea772e247a3120a7db1266d9fea7843565bed20323eb9e5d14ac",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_01",
+      "source": "frame_02.png",
+      "source_sha256": "adb768a0c55048e0e53a379ef62b21e2325f385abfb7ce8559a5c3ce8383ab70",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_02",
+      "source": "frame_03.png",
+      "source_sha256": "c0227de3f01c20a984315e0d069886d66de9eaceb0bd58512c9d11e7562340aa",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_03",
+      "source": "frame_04.png",
+      "source_sha256": "e4f133d0df90a36d53e4248b151ee084d75eaa104a8a921880cef8a2958a5374",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_04",
+      "source": "frame_05.png",
+      "source_sha256": "9520d7871c791991d6e9d5184d26bcfed9b8d8b80882343393913f59c57d9294",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_05",
+      "source": "frame_06.png",
+      "source_sha256": "42f8b25eb923adca97c0eb8dc0901e319f44b5182817ea9751df2a1a4a08d7ed",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_06",
+      "source": "frame_07.png",
+      "source_sha256": "57ffee6b51da075e3664c60f29fa81afb6078741db726aeff3dd1e4a30990b19",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_07",
+      "source": "frame_08.png",
+      "source_sha256": "52be82e74a04e0a71e3544ee9be185588bcdb59b07e916ed954e9c036c50eaad",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_08",
+      "source": "frame_09.png",
+      "source_sha256": "7fc3779ba77cccff17cec30f5f7e3cf74e5f259d1ddbec06dd645aeefd6b3490",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_09",
+      "source": "frame_10.png",
+      "source_sha256": "388321565e79eb3477ec420a485b615f0b22f1914c6b07dca255ef206b61d6b0",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_10",
+      "source": "frame_11.png",
+      "source_sha256": "411ed70d493d7edddf123c79b84060e7d133346bd5234af7126e062a08b128e1",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_11",
+      "source": "frame_12.png",
+      "source_sha256": "6d5e2b1dff54d80d7ba17a01af87105998cb0c1e847929c5491d020f8187c69a",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_12",
+      "source": "frame_13.png",
+      "source_sha256": "bde71e6ba89e06e9f4adfeab72c066e599a3bec008c51f40d461d07e78f2ce6b",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_13",
+      "source": "frame_14.png",
+      "source_sha256": "41bfb728cd2bd03f546ca461effc0d9db72bd1649b980e1ab63a7a079190af52",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_14",
+      "source": "frame_15.png",
+      "source_sha256": "883e014303b33ff943498c39f62f4f79e3d55bb42cb3294245718f3045af0677",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "side_15",
+      "source": "frame_16.png",
+      "source_sha256": "592a38a1a4ef53ab1b069c6f24f64b8060aa1ec15ad7567741967df93873b59a",
+      "offset_y": 0,
+      "prompt": "前回の16コマ試作から採用",
+      "revision": null
+    },
+    {
+      "id": "front_00",
+      "source": "exec-32b74501-80ab-4c4b-a84c-06568b2a1423.png",
+      "source_sha256": "4e9d1bef71b9bca5353a59c0b45d100947e8247b5f32eb5ad31b9ef73931825f",
+      "offset_y": -13,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact FRONT-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE toward the camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Left front paw in image has just touched down a little forward; right front supports slightly behind. Weight gently rolls toward the left shoulder. Left ear a tiny lower, head stays nearly level; upright tail tip curves gently to image right. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "front_01",
+      "source": "exec-50672740-549a-498e-abfd-aa95f0e5cef4.png",
+      "source_sha256": "e5bbdfe3ff147441c2c2b788eb27a398ba550382942b90444d38f3a8b50ea7db",
+      "offset_y": -23,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact FRONT-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE toward the camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Left front paw takes weight under shoulder; far right hind paw starts a shallow forward swing behind body, other feet support. Body compresses gently and head dips just a little. Tail base leads a small lean right, tip follows. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "front_02",
+      "source": "exec-3285fb49-58b1-4d1b-8559-87399cde5b01.png",
+      "source_sha256": "aeaa61e15569c7c1ffbfe57e76b437f7fb7d87de37bc5a7c97e79fb365e27e61",
+      "offset_y": -25,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact FRONT-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE toward the camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Right front paw starts lifting with relaxed wrist, left front planted. Hip on opposite side shifts forward a little; head moves with chest and compensates to keep gaze at camera. Ears gently follow head. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "front_03",
+      "source": "exec-eb67afa6-11ae-432f-87fc-9fd896c7a67c.png",
+      "source_sha256": "0206906a3caf14be4fd3e34e149db408b6d9823f58b79408dd0e07d198ab8754",
+      "offset_y": -40,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact FRONT-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE toward the camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Right front paw swings forward in a low soft arc toward camera and starts descending; left front and supporting hind paws stay down. Shoulder rises slightly, head lifts slightly; tail tip lags gently toward left. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nCorrect ONLY the tail side in image1. Tail MUST attach behind the rump and curl up on IMAGE RIGHT, matching the exact tail position and S-shape in image2. It must NOT be on image left. Preserve image1 front-facing head, eyes, moon crescent orientation and all four walking leg positions exactly. Do not mirror the entire cat."
+    },
+    {
+      "id": "front_04",
+      "source": "exec-bff102ec-b90c-4c85-86f2-88ca1a0cf478.png",
+      "source_sha256": "463b29e334a26fd777287b669559efb9199bf25c5411f53741f41f7210f0ca38",
+      "offset_y": -48,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact FRONT-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE toward the camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Right front paw now touches down forward; left front supports slightly behind. Weight gently rolls toward right shoulder. Right ear a tiny lower, head stays nearly level; tail S-curve leans a little left. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "front_05",
+      "source": "exec-66667955-c000-41e2-8063-4bb2eb1a666d.png",
+      "source_sha256": "32f253bdbbc211ee4231d29639c484e9a41987a5c3e5dedefa490f922d935fac",
+      "offset_y": -26,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact FRONT-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE toward the camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Right front paw takes weight; far left hind paw starts its shallow forward swing behind body. Soft weight compression, neck counters body roll, ears remain relaxed. Tail base starts returning toward right. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "front_06",
+      "source": "exec-77c217e0-3759-4795-be44-e52ecb4e0df5.png",
+      "source_sha256": "1eeaa61f49964bae06e096d4795995228db3be31fdce0784044b2a53d53ee06b",
+      "offset_y": -22,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact FRONT-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE toward the camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Left front paw begins lifting with bent wrist, right front planted. Opposite hip shifts forward slightly, shoulders and neck follow together, no frozen head. Tail tip still trails left. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "front_07",
+      "source": "exec-a32dee37-3ca6-49f4-a285-049d801c3a68.png",
+      "source_sha256": "ced41353af32740396f813c4a3c12f0e94c77eab1bda751eeeec602c43c3201b",
+      "offset_y": -15,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact FRONT-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE toward the camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Left front paw swings toward camera and descends almost to ground for next loop's contact. Right front and hind supports stay low. Head, ears and tail return gradually toward image1 neutral phase; do not duplicate first frame. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "back_00",
+      "source": "exec-45d08b8a-9041-4555-9b0f-59088d3b33f1.png",
+      "source_sha256": "cf92926cce9e60f3b08cf91e63cc9738bccb570ea448ff179a4fdd27390aff69",
+      "offset_y": -11,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact STRAIGHT REAR-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE away from camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Screen-left HIND paw touches ground under left hip, right hind paw supports slightly ahead. Body weight rolls slightly left, left hip settles, head and ears gently counter the roll. Upright tail softly leans to screen-right. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "back_01",
+      "source": "exec-c0ad24d8-5aa7-4bd6-aeb4-fd79887ee8fa.png",
+      "source_sha256": "9c14f379d6031c9173f340de2dc28a61cd6e75ded6940169a418dfdde061e223",
+      "offset_y": -2,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact STRAIGHT REAR-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE away from camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Screen-left hind paw supports; LEFT front paw farther from camera advances a little ahead, mostly hidden by torso. Right hind paw begins unloading. Pelvis gently rolls; head/ear silhouette stays coherent. Tail base and tip follow with slight delay. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "back_02",
+      "source": "exec-98260e89-4714-4820-baa1-7b7d9fb123d3.png",
+      "source_sha256": "3945bba41b5a3ca700686d2579082cd8b021ad47b74f57265d21f30a7421755c",
+      "offset_y": -3,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact STRAIGHT REAR-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE away from camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Screen-right hind paw lifts with flexed hock, left hind supports; front legs offset in phase. Tiny right hip lift, left shoulder forward, head counters roll. Tail tip sways a little toward center. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "back_03",
+      "source": "exec-2bbcbeaf-e3ef-4ca8-9ef7-99dfd7055092.png",
+      "source_sha256": "f01a689d8b65fce557651ca0ba9a7a69b42154f299c9faa865d3434e43892221",
+      "offset_y": -2,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact STRAIGHT REAR-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE away from camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Screen-right hind paw advances away from camera in a shallow arc and begins to descend. Left hind and the front supports stay grounded. Shoulders/hips shift softly; upright tail bends gently toward screen-left. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "back_04",
+      "source": "exec-65dd155c-62d7-4e61-bb00-4d1340335047.png",
+      "source_sha256": "7ddd5a90cb60460d20196c29f589bc53f7a06966610f5afed337672b11ed3fda",
+      "offset_y": -15,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact STRAIGHT REAR-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE away from camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Screen-right hind paw touches ground under right hip; left hind supports slightly ahead. Right hip settles, shoulders roll oppositely, head and ears compensate. Tail softly leans toward screen-left. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nCorrect ONLY the tail side in image1. Tail MUST emerge behind the rump and curl up on IMAGE RIGHT, matching image2. It must NOT be on image left. Preserve image1 rear-facing head, ears, back silhouette and all four walking leg positions exactly. Do not mirror entire image."
+    },
+    {
+      "id": "back_05",
+      "source": "exec-8626d379-e6ea-4aa1-aa0e-706e78456266.png",
+      "source_sha256": "963bf3fcc13b4d3acd94ae204e23e174929393e784e1a890a3c14a5d1922a9d6",
+      "offset_y": -15,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact STRAIGHT REAR-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE away from camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Screen-right hind paw supports; RIGHT front paw farther away advances slightly, mostly hidden by torso. Left hind begins unloading. Soft body compression, tail tip lags left. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "back_06",
+      "source": "exec-8f5affae-9d0d-4da0-a85e-e6fd6c1a892b.png",
+      "source_sha256": "e55020ff85692de0e5c7773e21885850078771623259dcfa94bad2168a487a35",
+      "offset_y": -12,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact STRAIGHT REAR-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE away from camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Screen-left hind paw lifts with flexed hock while right hind supports; opposite front leg moves out of phase. Small left hip lift and coordinated neck/ear counter-motion. Tail returns toward center. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "back_07",
+      "source": "exec-497ecdf0-57e6-41f8-9a20-e060e6fd13d8.png",
+      "source_sha256": "b17ef255d8741c1a283e400a9dc6979bcd2537a4179fd3565509473cd8f2db20",
+      "offset_y": -9,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the exact STRAIGHT REAR-view identity, proportions and framing reference. Generate ONE complete new cel of an 8-frame soft ANIME WALK IN PLACE away from camera. The silhouette remains centered and the ground baseline unchanged. This is a relaxed four-beat walk with staggered front/hind feet, not simultaneous diagonal trot or bouncing run. Feet swing only a little above ground; planted paws support real weight. Entire spine, pelvis, shoulders, head, ears and tail participate subtly together. Preserve the same face/no face, head-to-body scale, markings and tail thickness. NO eye highlights. Frame-specific pose: Screen-left hind paw advances away from camera and lowers almost to ground for first frame contact. Other paws support. Hips, shoulders, head and tail return toward first pose gently, not a copy. Only a small difference from the reference: short gentle steps, not exaggerated marching.",
+      "revision": null
+    },
+    {
+      "id": "side_idle",
+      "source": "exec-a45fcea7-aab3-441c-aa57-70dbed0279c0.png",
+      "source_sha256": "8b92b4ae8284274d1bb6cf41af96607a5d4bf91e4f80014a98fb731499d79420",
+      "offset_y": 0,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nDraw a calm STANDING IDLE pose, same three-quarter LEFT-facing view as reference. Both front feet and both hind feet DOWN, relaxed weight supported on four paws, no raised walking paw. Head facing gently toward image LEFT with small neutral friendly smile. Tail relaxed upright curl, ears forward. This will connect walk to stop without sitting down.",
+      "revision": null
+    },
+    {
+      "id": "front_idle",
+      "source": "exec-31133829-1706-4675-bd5b-819200580f75.png",
+      "source_sha256": "5ec24b184e3bbd9ee2e8fff28709b85abf43c4bfa9c808e4fe9a8f0c753f2bad",
+      "offset_y": -18,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nDraw this SAME character STANDING viewed directly FROM THE FRONT, looking toward camera; slight view from above only matching reference. Both forepaws parallel under chest, hind paws subtly visible behind them at sides. Full big round head, symmetric forehead crescent, ears symmetrical, cream chest visible. The lavender body extends away behind head, upright curled tail rises behind on image RIGHT, not a second appendage. Match cat's full-body overall HEIGHT to image1 without enlarging the head.",
+      "revision": null
+    },
+    {
+      "id": "back_idle",
+      "source": "exec-37a6fcc6-4f72-45ec-ade7-a09e3e3a5c24.png",
+      "source_sha256": "bcf0aeed9f2b6dd8e10fdf2ace1f3c3a7f15515ea676f62d6ffebc6a2f5cb958",
+      "offset_y": -12,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nImage1 is the same kitten from a rear three-quarter angle. Change camera to EXACTLY STRAIGHT REAR VIEW, rear of head centered directly above the rump and feet. Image2 shows front view for symmetrical proportions only. No face, no eyes, no crescent, no cream ear interiors or chest visible from behind. Two matching lavender hind legs with cream paws at bottom, front feet small ahead of them. Tail emerges from center rump and curves up to image RIGHT. Entire body points straight away from camera, symmetric left-right anatomy. Do not leave it in three-quarter view.",
+      "revision": null
+    },
+    {
+      "id": "turn_front",
+      "source": "exec-9f4b4911-6a25-48fa-9088-817b5458bc9d.png",
+      "source_sha256": "1fd177f3a5bab0697afe647615b4f5fd2144ce7853b3c9bdce3fe730d6549b6f",
+      "offset_y": -7,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nDraw a grounded turning in-between pose: same cat turning from image1's LEFT-facing three-quarter view toward FRONT/camera. Head leads body, nose angled halfway toward camera, both eyes visible with subtle perspective. Body halfway rotated to front, forepaws adjusting but remaining close to ground. All paws low/grounded, no jumping. Tail trails gently to the right of rump. This is a 30-degree turn cel, not a different design.",
+      "revision": null
+    },
+    {
+      "id": "turn_back",
+      "source": "exec-ea3a0fd1-2a51-4d9a-9e8b-3ae2daf97796.png",
+      "source_sha256": "4002fce4b95944270df35a9a10f6b173b3d5d49f56f6d01008623f26ff86b5bb",
+      "offset_y": -13,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nDraw a grounded turning in-between pose: same cat turning from image1's LEFT-facing three-quarter view toward BACK/away from camera. Show three-quarter REAR view, cat looking diagonally away to image LEFT: back of head, one tiny profile eye/muzzle barely at far left edge, forehead crescent mostly hidden by perspective. Lavender shoulder/back/rump, all paws low/grounded, tail anchored and curling behind. Head leads turn, hips follow; do not mirror or show front face.",
+      "revision": null
+    },
+    {
+      "id": "back_turn",
+      "source": "exec-ebe72658-1af7-419f-953b-a5112b0c7ca8.png",
+      "source_sha256": "cac47f5153aef4f39418f40e39c25e08b0978c5669b8f0e359193ff1859eee1b",
+      "offset_y": -25,
+      "prompt": "後ろの斜め向きの生成素材を採用",
+      "revision": null
+    },
+    {
+      "id": "side_blink",
+      "source": "exec-9725fbee-c09e-486f-b2f5-bfe1a0ae3d47.png",
+      "source_sha256": "b034e9f56af89f8a9fb09bb6839bf922649389d61962afb5862ff23c44bcfe6a",
+      "offset_y": -2,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nEdit ONLY both eyes to gently closed small curved eyelid lines for a blink. Preserve head silhouette, smile, whiskers, pose, all four feet planted, tail curve, shading and every other feature exactly.",
+      "revision": null
+    },
+    {
+      "id": "front_blink",
+      "source": "exec-cddb5479-efc1-469c-b81f-b71dc414a6c0.png",
+      "source_sha256": "b270d85ee720d142e911bfd92fa0f4c8357d1b4a5e97a3c6cc35a339af00ddaa",
+      "offset_y": -18,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nEdit ONLY both eyes to gently closed small curved eyelid lines for a blink. Preserve front-facing pose, tiny W smile, head silhouette, upright tail, four feet planted, shading and every other feature exactly.",
+      "revision": null
+    },
+    {
+      "id": "front_happy",
+      "source": "exec-b3104003-f66e-4d63-b2a1-58d4f1d67e79.png",
+      "source_sha256": "beaff3388152c09670a402dacfd90bcefa7a947e64073ae3b2b75ffc5085671a",
+      "offset_y": -18,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nSame front-facing standing kitten is enjoying a gentle pet on the head: eyes close into small happy upward curves, tiny soft smile opens slightly with NO realistic teeth, cheeks warmer pink, ears relax outward just 4 degrees, head tilts 3 degrees, shoulders sink a little. Both forepaws remain grounded, slight pleased whole-body squash, tail softly curls. Keep same design, head/body size and canvas registration. No hands, no hearts or added symbols.",
+      "revision": null
+    },
+    {
+      "id": "front_sleep",
+      "source": "exec-554f69e4-d0d0-4879-9833-7977860da4d7.png",
+      "source_sha256": "a44ad18e45901e695333136ac5e1e8d48c2bdfc2b9c0c10a7881e4e3b939bba8",
+      "offset_y": 13,
+      "prompt": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nSame front-facing kitten curls down into a comfortable compact SLEEPING loaf, head lowered only a little, both eyes peacefully closed as small dark curves, smile neutral small. Four paws tucked below torso with cream tips visible. Upright tail now rests curled beside body on image RIGHT. Keep big round head same size and lavender-cream character design exactly, no props, no Zzz or symbols. Full silhouette remains at same ground y1136, transparent background.",
+      "revision": null
+    },
+    {
+      "id": "front_center",
+      "source": "exec-d98fc411-7935-48d5-87ad-2f4cb3b0ad76.png",
+      "source_sha256": "deff0637c0c5d57ac117eba463cd067538b7e4bfd03fcd5a1608e76f1006fe86",
+      "offset_y": -19,
+      "prompt": "後ろの斜め向きの生成素材を採用",
+      "revision": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nOne standing FRONT view turning cel with ALL paws planted. Keep the cat's head and body exactly the same as image1. Change ONLY the tail: it turns away from camera and is occluded behind the head/torso, so the large tail on image RIGHT disappears behind the character; only a SMALL curled lavender tail-tip peeks from directly behind the top center between the ears. This is natural tail occlusion for a direction change, not tail removal. No tail visible far left or far right. Keep same grounded height and face."
+    },
+    {
+      "id": "back_center",
+      "source": "exec-36b54818-4a94-4378-82d1-4ffe368b3c72.png",
+      "source_sha256": "b00a15fd4bda1f9d82c67c107e185c004716955be20653c89f7868f56df2dc28",
+      "offset_y": -11,
+      "prompt": "後ろの斜め向きの生成素材を採用",
+      "revision": "Use case: identity-preserve. Asset type: one full-body animation cel for the exact same moon kitten Mikeluna in reference, for a Japanese cute pet game.\nImage1 is the character identity and existing camera-scale reference. Preserve the lavender fur, pale cream paw tips and chest ruff, pale crescent on forehead, cream fluffy ear interiors, tiny dark oval eyes with NO highlights, small W smile, pink cheeks, large rounded head and short cute quadruped body, upright curled thick S-tail. Simple clean anime shading, dark purple outlines exactly like reference. Do not redesign proportions or add accessories.\nSquare 1254x1254, true transparent background, entire cat with generous identical margins, grounded feet at imaginary y=1136, top of ears about y=260; keep full silhouette inside image. No floor, no shadow, no words, no grid. Four legs naturally connected, no seams, no holes. One complete character in one pose.\nOne standing REAR view turning cel with all paws planted. Keep rear head and body exactly same as image1. Change ONLY tail: tail rises straight centered from rump up the CENTER of the back, and then goes behind back of head, with just a small curved tip peeking above head center. There must be NO large curl on the far right or far left. Tail follows body turn naturally, same thickness taper and lavender color. This connects opposite views through centered tail instead of sudden horizontal flip."
+    }
+  ]
+}

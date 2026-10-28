@@ -39,6 +39,7 @@ dependencies:
   go_router: ^17.5.0
   flutter_secure_storage: ^11.2.0
   audioplayers: 6.5.1
+  rive: ^0.14.11
 
 dev_dependencies:
   flutter_test:
@@ -98,6 +99,7 @@ flutter:
     - assets/characters/evolution/
     - assets/icons/
     - assets/audio/
+    - assets/animations/
   fonts:
     - family: Rounded
       fonts:

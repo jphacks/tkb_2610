@@ -32,7 +32,11 @@ class RoomCharacter extends StatefulWidget {
 
 class _RoomCharacterState extends State<RoomCharacter>
     with SingleTickerProviderStateMixin {
-  late final _wander = RoomWander(random: widget.random);
+  late RoomWander _wander = RoomWander(
+    random: widget.random,
+    turnDuration: _isMikeluna ? .68 : 0,
+  );
+  bool get _isMikeluna => widget.character.form.imageId == 'stage1_self_care';
   late final _clock = AnimationController(
     vsync: this,
     duration: const Duration(seconds: 60),
@@ -46,6 +50,13 @@ class _RoomCharacterState extends State<RoomCharacter>
   @override
   void didUpdateWidget(RoomCharacter oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if ((oldWidget.character.form.imageId == 'stage1_self_care') !=
+        _isMikeluna) {
+      _wander = RoomWander(
+        random: widget.random,
+        turnDuration: _isMikeluna ? .68 : 0,
+      );
+    }
     _resetLayout =
         oldWidget.showLabels != widget.showLabels ||
         oldWidget.character.form.imageId != widget.character.form.imageId ||
@@ -149,6 +160,8 @@ class _RoomCharacterState extends State<RoomCharacter>
                           _wander.moving &&
                           widget.motion == CharacterMotion.idle,
                       facingRight: !_reduced && _wander.facingRight,
+                      travelDirection: _wander.direction,
+                      movementSpeed: _wander.speed,
                       motion: widget.motion,
                       onTap: widget.onTap,
                     ),

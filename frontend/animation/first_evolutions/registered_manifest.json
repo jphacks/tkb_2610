@@ -1,0 +1,1049 @@
+[
+  {
+    "kind": "environment",
+    "pose": "default",
+    "master": "masters/environment_default.png",
+    "source": "textures/stage1_environment.png",
+    "restMatchesMaster": true,
+    "parts": [
+      {
+        "name": "Torso",
+        "asset": "environment_default_torso",
+        "rect": [
+          90,
+          103,
+          398,
+          475
+        ],
+        "pivot": [
+          250,
+          400
+        ],
+        "accent": null,
+        "leg": false,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      },
+      {
+        "name": "Ear far",
+        "asset": "environment_default_ear_far",
+        "rect": [
+          99,
+          118,
+          180,
+          216
+        ],
+        "pivot": [
+          153,
+          187
+        ],
+        "accent": [
+          0.025,
+          2
+        ],
+        "leg": false,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      },
+      {
+        "name": "Ear near",
+        "asset": "environment_default_ear_near",
+        "rect": [
+          236,
+          144,
+          357,
+          239
+        ],
+        "pivot": [
+          269,
+          216
+        ],
+        "accent": [
+          0.025,
+          0
+        ],
+        "leg": false,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      },
+      {
+        "name": "Antler far",
+        "asset": "environment_default_antler_far",
+        "rect": [
+          159,
+          70,
+          222,
+          194
+        ],
+        "pivot": [
+          184,
+          174
+        ],
+        "accent": [
+          0.012,
+          1
+        ],
+        "leg": false,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      },
+      {
+        "name": "Antler near",
+        "asset": "environment_default_antler_near",
+        "rect": [
+          213,
+          83,
+          315,
+          193
+        ],
+        "pivot": [
+          233,
+          176
+        ],
+        "accent": [
+          0.012,
+          3
+        ],
+        "leg": false,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leaf tail",
+        "asset": "environment_default_leaf_tail",
+        "rect": [
+          328,
+          248,
+          409,
+          362
+        ],
+        "pivot": [
+          350,
+          337
+        ],
+        "accent": [
+          0.04,
+          1
+        ],
+        "leg": false,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg front_near",
+        "asset": "environment_default_leg_front_near",
+        "rect": [
+          204,
+          346,
+          277,
+          480
+        ],
+        "pivot": [
+          243,
+          405
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg front_far",
+        "asset": "environment_default_leg_front_far",
+        "rect": [
+          156,
+          356,
+          227,
+          474
+        ],
+        "pivot": [
+          195,
+          411
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg rear_near",
+        "asset": "environment_default_leg_rear_near",
+        "rect": [
+          332,
+          350,
+          389,
+          479
+        ],
+        "pivot": [
+          362,
+          410
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg rear_far",
+        "asset": "environment_default_leg_rear_far",
+        "rect": [
+          278,
+          365,
+          341,
+          471
+        ],
+        "pivot": [
+          306,
+          413
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_environment.png",
+        "pose": "default"
+      }
+    ]
+  },
+  {
+    "kind": "gratitude",
+    "pose": "default",
+    "master": "masters/gratitude_default.png",
+    "source": "textures/stage1_gratitude.png",
+    "restMatchesMaster": true,
+    "parts": [
+      {
+        "name": "Torso",
+        "asset": "gratitude_default_torso",
+        "rect": [
+          45,
+          93,
+          460,
+          455
+        ],
+        "pivot": [
+          250,
+          400
+        ],
+        "accent": null,
+        "leg": false,
+        "source": "textures/stage1_gratitude.png",
+        "pose": "default"
+      },
+      {
+        "name": "Ear far",
+        "asset": "gratitude_default_ear_far",
+        "rect": [
+          40,
+          224,
+          133,
+          297
+        ],
+        "pivot": [
+          105,
+          264
+        ],
+        "accent": [
+          0.04,
+          2
+        ],
+        "leg": false,
+        "source": "textures/stage1_gratitude.png",
+        "pose": "default"
+      },
+      {
+        "name": "Ear near",
+        "asset": "gratitude_default_ear_near",
+        "rect": [
+          286,
+          246,
+          396,
+          339
+        ],
+        "pivot": [
+          310,
+          280
+        ],
+        "accent": [
+          0.03,
+          0
+        ],
+        "leg": false,
+        "source": "textures/stage1_gratitude.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg front_near",
+        "asset": "gratitude_default_leg_front_near",
+        "rect": [
+          198,
+          385,
+          259,
+          480
+        ],
+        "pivot": [
+          227,
+          428
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_gratitude.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg front_far",
+        "asset": "gratitude_default_leg_front_far",
+        "rect": [
+          135,
+          384,
+          200,
+          474
+        ],
+        "pivot": [
+          172,
+          426
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_gratitude.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg rear_near",
+        "asset": "gratitude_default_leg_rear_near",
+        "rect": [
+          334,
+          386,
+          407,
+          480
+        ],
+        "pivot": [
+          368,
+          430
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_gratitude.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg rear_far",
+        "asset": "gratitude_default_leg_rear_far",
+        "rect": [
+          275,
+          389,
+          332,
+          467
+        ],
+        "pivot": [
+          305,
+          429
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_gratitude.png",
+        "pose": "default"
+      }
+    ]
+  },
+  {
+    "kind": "courage",
+    "pose": "default",
+    "master": "masters/courage_default.png",
+    "source": "textures/stage1_courage.png",
+    "restMatchesMaster": true,
+    "parts": [
+      {
+        "name": "Torso",
+        "asset": "courage_default_torso",
+        "rect": [
+          40,
+          77,
+          460,
+          473
+        ],
+        "pivot": [
+          250,
+          400
+        ],
+        "accent": null,
+        "leg": false,
+        "source": "textures/stage1_courage.png",
+        "pose": "default"
+      },
+      {
+        "name": "Ear far",
+        "asset": "courage_default_ear_far",
+        "rect": [
+          49,
+          165,
+          140,
+          272
+        ],
+        "pivot": [
+          104,
+          232
+        ],
+        "accent": [
+          0.025,
+          2
+        ],
+        "leg": false,
+        "source": "textures/stage1_courage.png",
+        "pose": "default"
+      },
+      {
+        "name": "Ear near",
+        "asset": "courage_default_ear_near",
+        "rect": [
+          231,
+          164,
+          331,
+          277
+        ],
+        "pivot": [
+          270,
+          240
+        ],
+        "accent": [
+          0.025,
+          0
+        ],
+        "leg": false,
+        "source": "textures/stage1_courage.png",
+        "pose": "default"
+      },
+      {
+        "name": "Tail",
+        "asset": "courage_default_tail",
+        "rect": [
+          343,
+          247,
+          458,
+          362
+        ],
+        "pivot": [
+          367,
+          341
+        ],
+        "accent": [
+          0.04,
+          1
+        ],
+        "leg": false,
+        "source": "textures/stage1_courage.png",
+        "pose": "default"
+      },
+      {
+        "name": "Tail flame",
+        "asset": "courage_default_tail_flame",
+        "rect": [
+          371,
+          179,
+          460,
+          289
+        ],
+        "pivot": [
+          429,
+          260
+        ],
+        "accent": [
+          0.035,
+          2
+        ],
+        "leg": false,
+        "source": "textures/stage1_courage.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg front_near",
+        "asset": "courage_default_leg_front_near",
+        "rect": [
+          179,
+          367,
+          259,
+          480
+        ],
+        "pivot": [
+          216,
+          415
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_courage.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg front_far",
+        "asset": "courage_default_leg_front_far",
+        "rect": [
+          88,
+          361,
+          191,
+          477
+        ],
+        "pivot": [
+          142,
+          412
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_courage.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg rear_near",
+        "asset": "courage_default_leg_rear_near",
+        "rect": [
+          329,
+          365,
+          418,
+          477
+        ],
+        "pivot": [
+          373,
+          414
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_courage.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg rear_far",
+        "asset": "courage_default_leg_rear_far",
+        "rect": [
+          257,
+          389,
+          327,
+          473
+        ],
+        "pivot": [
+          295,
+          424
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_courage.png",
+        "pose": "default"
+      }
+    ]
+  },
+  {
+    "kind": "cooperation",
+    "pose": "default",
+    "master": "masters/cooperation_default.png",
+    "source": "textures/stage1_cooperation.png",
+    "restMatchesMaster": true,
+    "parts": [
+      {
+        "name": "Torso",
+        "asset": "cooperation_default_torso",
+        "rect": [
+          40,
+          219,
+          385,
+          473
+        ],
+        "pivot": [
+          250,
+          400
+        ],
+        "accent": null,
+        "leg": false,
+        "source": "textures/stage1_cooperation.png",
+        "pose": "default"
+      },
+      {
+        "name": "Fin near",
+        "asset": "cooperation_default_fin_near",
+        "rect": [
+          224,
+          370,
+          369,
+          480
+        ],
+        "pivot": [
+          250,
+          404
+        ],
+        "accent": [
+          0.07,
+          0.8
+        ],
+        "leg": false,
+        "source": "textures/stage1_cooperation.png",
+        "pose": "default"
+      },
+      {
+        "name": "Fin far",
+        "asset": "cooperation_default_fin_far",
+        "rect": [
+          57,
+          397,
+          164,
+          464
+        ],
+        "pivot": [
+          105,
+          438
+        ],
+        "accent": [
+          0.035,
+          2
+        ],
+        "leg": false,
+        "source": "textures/stage1_cooperation.png",
+        "pose": "default"
+      },
+      {
+        "name": "Tail stem",
+        "asset": "cooperation_default_tail_stem",
+        "rect": [
+          331,
+          308,
+          394,
+          409
+        ],
+        "pivot": [
+          365,
+          354
+        ],
+        "accent": [
+          0.035,
+          1
+        ],
+        "leg": false,
+        "source": "textures/stage1_cooperation.png",
+        "pose": "default"
+      },
+      {
+        "name": "Tail flukes",
+        "asset": "cooperation_default_tail_flukes",
+        "rect": [
+          308,
+          207,
+          460,
+          333
+        ],
+        "pivot": [
+          383,
+          305
+        ],
+        "accent": [
+          0.045,
+          2.1
+        ],
+        "leg": false,
+        "source": "textures/stage1_cooperation.png",
+        "pose": "default"
+      }
+    ]
+  },
+  {
+    "kind": "honesty",
+    "pose": "default",
+    "master": "masters/honesty_default.png",
+    "source": "textures/stage1_honesty.png",
+    "restMatchesMaster": true,
+    "parts": [
+      {
+        "name": "Torso",
+        "asset": "honesty_default_torso",
+        "rect": [
+          40,
+          120,
+          460,
+          455
+        ],
+        "pivot": [
+          250,
+          400
+        ],
+        "accent": null,
+        "leg": false,
+        "source": "textures/stage1_honesty.png",
+        "pose": "default"
+      },
+      {
+        "name": "Tail",
+        "asset": "honesty_default_tail",
+        "rect": [
+          414,
+          371,
+          460,
+          441
+        ],
+        "pivot": [
+          443,
+          405
+        ],
+        "accent": [
+          0.018,
+          1
+        ],
+        "leg": false,
+        "source": "textures/stage1_honesty.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg front_near",
+        "asset": "honesty_default_leg_front_near",
+        "rect": [
+          183,
+          362,
+          310,
+          480
+        ],
+        "pivot": [
+          246,
+          410
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_honesty.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg front_far",
+        "asset": "honesty_default_leg_front_far",
+        "rect": [
+          44,
+          371,
+          159,
+          472
+        ],
+        "pivot": [
+          111,
+          412
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_honesty.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg rear_near",
+        "asset": "honesty_default_leg_rear_near",
+        "rect": [
+          355,
+          364,
+          460,
+          469
+        ],
+        "pivot": [
+          407,
+          417
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_honesty.png",
+        "pose": "default"
+      },
+      {
+        "name": "Leg rear_far",
+        "asset": "honesty_default_leg_rear_far",
+        "rect": [
+          281,
+          396,
+          362,
+          477
+        ],
+        "pivot": [
+          324,
+          435
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "textures/stage1_honesty.png",
+        "pose": "default"
+      }
+    ]
+  },
+  {
+    "kind": "self_care",
+    "pose": "seated",
+    "master": "masters/self_care_seated.png",
+    "source": "textures/stage1_self_care.png",
+    "restMatchesMaster": true,
+    "parts": [
+      {
+        "name": "Seated torso",
+        "asset": "self_care_seated_seated_torso",
+        "rect": [
+          57,
+          76,
+          432,
+          480
+        ],
+        "pivot": [
+          250,
+          400
+        ],
+        "accent": null,
+        "leg": false,
+        "source": "textures/stage1_self_care.png",
+        "pose": "seated"
+      },
+      {
+        "name": "Ear left",
+        "asset": "self_care_seated_ear_left",
+        "rect": [
+          85,
+          70,
+          178,
+          216
+        ],
+        "pivot": [
+          130,
+          173
+        ],
+        "accent": [
+          0.025,
+          0
+        ],
+        "leg": false,
+        "source": "textures/stage1_self_care.png",
+        "pose": "seated"
+      },
+      {
+        "name": "Ear right",
+        "asset": "self_care_seated_ear_right",
+        "rect": [
+          246,
+          75,
+          373,
+          227
+        ],
+        "pivot": [
+          295,
+          177
+        ],
+        "accent": [
+          0.025,
+          2
+        ],
+        "leg": false,
+        "source": "textures/stage1_self_care.png",
+        "pose": "seated"
+      },
+      {
+        "name": "Tail seated",
+        "asset": "self_care_seated_tail_seated",
+        "rect": [
+          317,
+          246,
+          442,
+          475
+        ],
+        "pivot": [
+          339,
+          443
+        ],
+        "accent": [
+          0.04,
+          1
+        ],
+        "leg": false,
+        "source": "textures/stage1_self_care.png",
+        "pose": "seated"
+      },
+      {
+        "name": "Paw left",
+        "asset": "self_care_seated_paw_left",
+        "rect": [
+          141,
+          410,
+          209,
+          480
+        ],
+        "pivot": [
+          172,
+          443
+        ],
+        "accent": null,
+        "leg": false,
+        "source": "textures/stage1_self_care.png",
+        "pose": "seated"
+      },
+      {
+        "name": "Paw right",
+        "asset": "self_care_seated_paw_right",
+        "rect": [
+          187,
+          405,
+          264,
+          480
+        ],
+        "pivot": [
+          224,
+          443
+        ],
+        "accent": null,
+        "leg": false,
+        "source": "textures/stage1_self_care.png",
+        "pose": "seated"
+      }
+    ]
+  },
+  {
+    "kind": "self_care",
+    "pose": "standing",
+    "master": "masters/self_care_standing.png",
+    "source": "masters/cat_standing.png",
+    "restMatchesMaster": true,
+    "parts": [
+      {
+        "name": "Standing torso",
+        "asset": "self_care_standing_standing_torso",
+        "rect": [
+          40,
+          116,
+          425,
+          468
+        ],
+        "pivot": [
+          250,
+          400
+        ],
+        "accent": null,
+        "leg": false,
+        "source": "masters/cat_standing.png",
+        "pose": "standing"
+      },
+      {
+        "name": "Ear left standing",
+        "asset": "self_care_standing_ear_left_standing",
+        "rect": [
+          67,
+          104,
+          158,
+          214
+        ],
+        "pivot": [
+          110,
+          174
+        ],
+        "accent": [
+          0.025,
+          0
+        ],
+        "leg": false,
+        "source": "masters/cat_standing.png",
+        "pose": "standing"
+      },
+      {
+        "name": "Ear right standing",
+        "asset": "self_care_standing_ear_right_standing",
+        "rect": [
+          214,
+          110,
+          298,
+          232
+        ],
+        "pivot": [
+          246,
+          182
+        ],
+        "accent": [
+          0.025,
+          2
+        ],
+        "leg": false,
+        "source": "masters/cat_standing.png",
+        "pose": "standing"
+      },
+      {
+        "name": "Tail standing",
+        "asset": "self_care_standing_tail_standing",
+        "rect": [
+          330,
+          99,
+          460,
+          381
+        ],
+        "pivot": [
+          376,
+          349
+        ],
+        "accent": [
+          0.04,
+          1
+        ],
+        "leg": false,
+        "source": "masters/cat_standing.png",
+        "pose": "standing"
+      },
+      {
+        "name": "Leg front_near",
+        "asset": "self_care_standing_leg_front_near",
+        "rect": [
+          179,
+          335,
+          264,
+          480
+        ],
+        "pivot": [
+          220,
+          412
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "masters/cat_standing.png",
+        "pose": "standing"
+      },
+      {
+        "name": "Leg front_far",
+        "asset": "self_care_standing_leg_front_far",
+        "rect": [
+          104,
+          335,
+          180,
+          477
+        ],
+        "pivot": [
+          140,
+          407
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "masters/cat_standing.png",
+        "pose": "standing"
+      },
+      {
+        "name": "Leg rear_near",
+        "asset": "self_care_standing_leg_rear_near",
+        "rect": [
+          339,
+          344,
+          426,
+          480
+        ],
+        "pivot": [
+          382,
+          414
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "masters/cat_standing.png",
+        "pose": "standing"
+      },
+      {
+        "name": "Leg rear_far",
+        "asset": "self_care_standing_leg_rear_far",
+        "rect": [
+          251,
+          347,
+          338,
+          471
+        ],
+        "pivot": [
+          295,
+          415
+        ],
+        "accent": null,
+        "leg": true,
+        "source": "masters/cat_standing.png",
+        "pose": "standing"
+      }
+    ]
+  }
+]

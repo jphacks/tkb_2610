@@ -1,0 +1,128 @@
+{
+  "stage1_kindness": {
+    "sheet": "blank_faces_01.png",
+    "sourceBox": [
+      48,
+      240,
+      486,
+      663
+    ],
+    "scale": 0.958904109589041,
+    "offset": [
+      40,
+      74
+    ],
+    "size": [
+      420,
+      406
+    ]
+  },
+  "stage1_environment": {
+    "sheet": "blank_faces_01.png",
+    "sourceBox": [
+      493,
+      110,
+      929,
+      671
+    ],
+    "scale": 0.7308377896613191,
+    "offset": [
+      90,
+      70
+    ],
+    "size": [
+      319,
+      410
+    ]
+  },
+  "stage1_gratitude": {
+    "sheet": "blank_faces_01.png",
+    "sourceBox": [
+      945,
+      230,
+      1423,
+      671
+    ],
+    "scale": 0.8786610878661087,
+    "offset": [
+      40,
+      93
+    ],
+    "size": [
+      420,
+      387
+    ]
+  },
+  "stage1_courage": {
+    "sheet": "blank_faces_01.png",
+    "sourceBox": [
+      1442,
+      186,
+      1952,
+      675
+    ],
+    "scale": 0.8235294117647058,
+    "offset": [
+      40,
+      77
+    ],
+    "size": [
+      420,
+      403
+    ]
+  },
+  "stage1_cooperation": {
+    "sheet": "blank_faces_02.png",
+    "sourceBox": [
+      50,
+      275,
+      706,
+      701
+    ],
+    "scale": 0.6402439024390244,
+    "offset": [
+      40,
+      207
+    ],
+    "size": [
+      420,
+      273
+    ]
+  },
+  "stage1_honesty": {
+    "sheet": "blank_faces_02.png",
+    "sourceBox": [
+      698,
+      268,
+      1216,
+      712
+    ],
+    "scale": 0.8108108108108109,
+    "offset": [
+      40,
+      120
+    ],
+    "size": [
+      420,
+      360
+    ]
+  },
+  "stage1_self_care": {
+    "sheet": "blank_faces_02.png",
+    "sourceBox": [
+      1247,
+      191,
+      1736,
+      712
+    ],
+    "scale": 0.7869481765834933,
+    "offset": [
+      57,
+      70
+    ],
+    "size": [
+      385,
+      410
+    ]
+  }
+}

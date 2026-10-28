@@ -5,10 +5,15 @@ import 'package:ichinichi_ichizen/core/controller.dart';
 import 'package:ichinichi_ichizen/data/models.dart';
 import 'package:ichinichi_ichizen/data/repository.dart';
 import 'package:ichinichi_ichizen/widgets/character_view.dart';
+import 'package:rive/rive.dart' as rive;
 import 'repository_test.dart' show MemoryStore;
 
 void main() {
-  for (final kind in ['base_01', 'stage2_environment_self_care']) {
+  for (final kind in [
+    'base_01',
+    'stage1_courage',
+    'stage2_environment_self_care',
+  ]) {
     testWidgets('投稿中も$kindの位置と大きさを保ち、キーボードの後ろで動き続ける', (t) async {
       t.view.physicalSize = const Size(390, 844);
       t.view.devicePixelRatio = 1;
@@ -26,11 +31,33 @@ void main() {
       );
       await t.pumpWidget(YoinokoApp(controller: controller));
       await t.pump();
+      if (kind == 'stage1_courage') {
+        for (
+          var i = 0;
+          i < 40 && find.byType(rive.RiveWidget).evaluate().isEmpty;
+          i++
+        ) {
+          await t.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 20)),
+          );
+          await t.pump();
+        }
+        expect(find.byType(rive.RiveWidget), findsOneWidget);
+      }
       final portrait = find.byType(CharacterView);
       final before = t.getRect(portrait);
       await t.tap(find.byKey(const ValueKey('tab-2')));
       await t.pump();
       expect(controller.composing, isTrue);
+      if (kind == 'stage1_courage') {
+        expect(
+          t
+              .widget<rive.RiveWidget>(find.byType(rive.RiveWidget))
+              .controller
+              .active,
+          isTrue,
+        );
+      }
       expect(t.getRect(portrait), before);
       expect(find.byKey(const ValueKey('character-speech')), findsOneWidget);
       // The sheet owns keyboard avoidance. The background room stays full size.

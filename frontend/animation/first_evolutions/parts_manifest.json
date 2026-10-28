@@ -1,0 +1,899 @@
+{
+  "deer_head": {
+    "source": "parts_environment.png",
+    "box": [
+      33,
+      56,
+      344,
+      381
+    ],
+    "size": [
+      311,
+      325
+    ]
+  },
+  "deer_front_near": {
+    "source": "parts_environment.png",
+    "box": [
+      871,
+      68,
+      1034,
+      365
+    ],
+    "size": [
+      163,
+      297
+    ]
+  },
+  "deer_front_far": {
+    "source": "parts_environment.png",
+    "box": [
+      1191,
+      68,
+      1343,
+      367
+    ],
+    "size": [
+      152,
+      299
+    ]
+  },
+  "deer_body": {
+    "source": "parts_environment.png",
+    "box": [
+      415,
+      78,
+      797,
+      357
+    ],
+    "size": [
+      382,
+      279
+    ]
+  },
+  "deer_rear_far": {
+    "source": "parts_environment.png",
+    "box": [
+      477,
+      416,
+      659,
+      710
+    ],
+    "size": [
+      182,
+      294
+    ]
+  },
+  "deer_rear_near": {
+    "source": "parts_environment.png",
+    "box": [
+      144,
+      422,
+      309,
+      708
+    ],
+    "size": [
+      165,
+      286
+    ]
+  },
+  "deer_tail": {
+    "source": "parts_environment.png",
+    "box": [
+      798,
+      430,
+      1024,
+      684
+    ],
+    "size": [
+      226,
+      254
+    ]
+  },
+  "deer_near_ear": {
+    "source": "parts_environment.png",
+    "box": [
+      1143,
+      445,
+      1365,
+      688
+    ],
+    "size": [
+      222,
+      243
+    ]
+  },
+  "deer_far_antler": {
+    "source": "parts_environment.png",
+    "box": [
+      482,
+      755,
+      649,
+      1021
+    ],
+    "size": [
+      167,
+      266
+    ]
+  },
+  "deer_near_antler": {
+    "source": "parts_environment.png",
+    "box": [
+      803,
+      763,
+      1044,
+      1027
+    ],
+    "size": [
+      241,
+      264
+    ]
+  },
+  "deer_far_ear": {
+    "source": "parts_environment.png",
+    "box": [
+      91,
+      798,
+      287,
+      987
+    ],
+    "size": [
+      196,
+      189
+    ]
+  },
+  "sheep_head": {
+    "source": "parts_gratitude.png",
+    "box": [
+      43,
+      35,
+      480,
+      459
+    ],
+    "size": [
+      437,
+      424
+    ]
+  },
+  "sheep_body": {
+    "source": "parts_gratitude.png",
+    "box": [
+      494,
+      71,
+      981,
+      430
+    ],
+    "size": [
+      487,
+      359
+    ]
+  },
+  "sheep_front_near": {
+    "source": "parts_gratitude.png",
+    "box": [
+      1029,
+      158,
+      1189,
+      433
+    ],
+    "size": [
+      160,
+      275
+    ]
+  },
+  "sheep_front_far": {
+    "source": "parts_gratitude.png",
+    "box": [
+      1260,
+      160,
+      1411,
+      432
+    ],
+    "size": [
+      151,
+      272
+    ]
+  },
+  "sheep_rear_near": {
+    "source": "parts_gratitude.png",
+    "box": [
+      107,
+      519,
+      284,
+      778
+    ],
+    "size": [
+      177,
+      259
+    ]
+  },
+  "sheep_rear_far": {
+    "source": "parts_gratitude.png",
+    "box": [
+      474,
+      519,
+      648,
+      776
+    ],
+    "size": [
+      174,
+      257
+    ]
+  },
+  "sheep_far_ear": {
+    "source": "parts_gratitude.png",
+    "box": [
+      1091,
+      582,
+      1315,
+      744
+    ],
+    "size": [
+      224,
+      162
+    ]
+  },
+  "sheep_near_ear": {
+    "source": "parts_gratitude.png",
+    "box": [
+      792,
+      583,
+      1018,
+      746
+    ],
+    "size": [
+      226,
+      163
+    ]
+  },
+  "sheep_far_horn": {
+    "source": "parts_gratitude.png",
+    "box": [
+      452,
+      825,
+      677,
+      1028
+    ],
+    "size": [
+      225,
+      203
+    ]
+  },
+  "sheep_near_horn": {
+    "source": "parts_gratitude.png",
+    "box": [
+      87,
+      826,
+      318,
+      1034
+    ],
+    "size": [
+      231,
+      208
+    ]
+  },
+  "lion_mane": {
+    "source": "parts_courage.png",
+    "box": [
+      727,
+      35,
+      1145,
+      442
+    ],
+    "size": [
+      418,
+      407
+    ]
+  },
+  "lion_front_near": {
+    "source": "parts_courage.png",
+    "box": [
+      1237,
+      104,
+      1406,
+      412
+    ],
+    "size": [
+      169,
+      308
+    ]
+  },
+  "lion_body": {
+    "source": "parts_courage.png",
+    "box": [
+      372,
+      111,
+      707,
+      402
+    ],
+    "size": [
+      335,
+      291
+    ]
+  },
+  "lion_head": {
+    "source": "parts_courage.png",
+    "box": [
+      24,
+      143,
+      358,
+      402
+    ],
+    "size": [
+      334,
+      259
+    ]
+  },
+  "lion_rear_near": {
+    "source": "parts_courage.png",
+    "box": [
+      450,
+      459,
+      668,
+      752
+    ],
+    "size": [
+      218,
+      293
+    ]
+  },
+  "lion_front_far": {
+    "source": "parts_courage.png",
+    "box": [
+      80,
+      472,
+      247,
+      746
+    ],
+    "size": [
+      167,
+      274
+    ]
+  },
+  "lion_rear_far": {
+    "source": "parts_courage.png",
+    "box": [
+      788,
+      472,
+      1045,
+      755
+    ],
+    "size": [
+      257,
+      283
+    ]
+  },
+  "lion_tail": {
+    "source": "parts_courage.png",
+    "box": [
+      1174,
+      486,
+      1414,
+      742
+    ],
+    "size": [
+      240,
+      256
+    ]
+  },
+  "lion_flame": {
+    "source": "parts_courage.png",
+    "box": [
+      82,
+      771,
+      299,
+      1045
+    ],
+    "size": [
+      217,
+      274
+    ]
+  },
+  "lion_far_ear": {
+    "source": "parts_courage.png",
+    "box": [
+      817,
+      821,
+      1015,
+      1020
+    ],
+    "size": [
+      198,
+      199
+    ]
+  },
+  "lion_near_ear": {
+    "source": "parts_courage.png",
+    "box": [
+      453,
+      823,
+      652,
+      1022
+    ],
+    "size": [
+      199,
+      199
+    ]
+  },
+  "turtle_shell": {
+    "source": "parts_honesty.png",
+    "box": [
+      725,
+      100,
+      1217,
+      476
+    ],
+    "size": [
+      492,
+      376
+    ]
+  },
+  "turtle_head": {
+    "source": "parts_honesty.png",
+    "box": [
+      25,
+      147,
+      334,
+      408
+    ],
+    "size": [
+      309,
+      261
+    ]
+  },
+  "turtle_crystal": {
+    "source": "parts_honesty.png",
+    "box": [
+      1243,
+      221,
+      1424,
+      391
+    ],
+    "size": [
+      181,
+      170
+    ]
+  },
+  "turtle_body": {
+    "source": "parts_honesty.png",
+    "box": [
+      355,
+      234,
+      712,
+      483
+    ],
+    "size": [
+      357,
+      249
+    ]
+  },
+  "turtle_front_near": {
+    "source": "parts_honesty.png",
+    "box": [
+      60,
+      577,
+      271,
+      779
+    ],
+    "size": [
+      211,
+      202
+    ]
+  },
+  "turtle_rear_near": {
+    "source": "parts_honesty.png",
+    "box": [
+      802,
+      581,
+      1018,
+      792
+    ],
+    "size": [
+      216,
+      211
+    ]
+  },
+  "turtle_front_far": {
+    "source": "parts_honesty.png",
+    "box": [
+      480,
+      583,
+      676,
+      784
+    ],
+    "size": [
+      196,
+      201
+    ]
+  },
+  "turtle_rear_far": {
+    "source": "parts_honesty.png",
+    "box": [
+      1188,
+      584,
+      1388,
+      781
+    ],
+    "size": [
+      200,
+      197
+    ]
+  },
+  "turtle_tail": {
+    "source": "parts_honesty.png",
+    "box": [
+      112,
+      886,
+      282,
+      1002
+    ],
+    "size": [
+      170,
+      116
+    ]
+  },
+  "jelly_cap": {
+    "source": "parts_kindness.png",
+    "box": [
+      17,
+      86,
+      497,
+      396
+    ],
+    "size": [
+      480,
+      310
+    ]
+  },
+  "jelly_far_left": {
+    "source": "parts_kindness.png",
+    "box": [
+      545,
+      111,
+      809,
+      400
+    ],
+    "size": [
+      264,
+      289
+    ]
+  },
+  "jelly_inner_left": {
+    "source": "parts_kindness.png",
+    "box": [
+      996,
+      114,
+      1183,
+      394
+    ],
+    "size": [
+      187,
+      280
+    ]
+  },
+  "jelly_inner_right": {
+    "source": "parts_kindness.png",
+    "box": [
+      538,
+      486,
+      774,
+      787
+    ],
+    "size": [
+      236,
+      301
+    ]
+  },
+  "jelly_centre": {
+    "source": "parts_kindness.png",
+    "box": [
+      200,
+      491,
+      354,
+      782
+    ],
+    "size": [
+      154,
+      291
+    ]
+  },
+  "jelly_far_right": {
+    "source": "parts_kindness.png",
+    "box": [
+      940,
+      492,
+      1218,
+      784
+    ],
+    "size": [
+      278,
+      292
+    ]
+  },
+  "jelly_reference": {
+    "source": "parts_kindness.png",
+    "box": [
+      35,
+      832,
+      444,
+      1189
+    ],
+    "size": [
+      409,
+      357
+    ]
+  },
+  "whale_body": {
+    "source": "parts_cooperation.png",
+    "box": [
+      39,
+      105,
+      605,
+      495
+    ],
+    "size": [
+      566,
+      390
+    ]
+  },
+  "whale_near_fin": {
+    "source": "parts_cooperation.png",
+    "box": [
+      645,
+      245,
+      932,
+      462
+    ],
+    "size": [
+      287,
+      217
+    ]
+  },
+  "whale_far_fin": {
+    "source": "parts_cooperation.png",
+    "box": [
+      1007,
+      297,
+      1210,
+      442
+    ],
+    "size": [
+      203,
+      145
+    ]
+  },
+  "whale_tail_stem": {
+    "source": "parts_cooperation.png",
+    "box": [
+      162,
+      585,
+      422,
+      855
+    ],
+    "size": [
+      260,
+      270
+    ]
+  },
+  "whale_flukes": {
+    "source": "parts_cooperation.png",
+    "box": [
+      531,
+      602,
+      868,
+      831
+    ],
+    "size": [
+      337,
+      229
+    ]
+  },
+  "whale_reference": {
+    "source": "parts_cooperation.png",
+    "box": [
+      48,
+      912,
+      535,
+      1212
+    ],
+    "size": [
+      487,
+      300
+    ]
+  },
+  "cat_head": {
+    "source": "parts_cat_idle.png",
+    "box": [
+      30,
+      109,
+      493,
+      476
+    ],
+    "size": [
+      463,
+      330
+    ]
+  },
+  "cat_seated_body": {
+    "source": "parts_cat_idle.png",
+    "box": [
+      528,
+      115,
+      922,
+      481
+    ],
+    "size": [
+      394,
+      366
+    ]
+  },
+  "cat_left_ear": {
+    "source": "parts_cat_idle.png",
+    "box": [
+      976,
+      134,
+      1189,
+      450
+    ],
+    "size": [
+      213,
+      316
+    ]
+  },
+  "cat_seated_right_leg": {
+    "source": "parts_cat_idle.png",
+    "box": [
+      948,
+      552,
+      1126,
+      847
+    ],
+    "size": [
+      178,
+      295
+    ]
+  },
+  "cat_seated_left_leg": {
+    "source": "parts_cat_idle.png",
+    "box": [
+      529,
+      554,
+      690,
+      846
+    ],
+    "size": [
+      161,
+      292
+    ]
+  },
+  "cat_right_ear": {
+    "source": "parts_cat_idle.png",
+    "box": [
+      163,
+      571,
+      371,
+      860
+    ],
+    "size": [
+      208,
+      289
+    ]
+  },
+  "cat_tail": {
+    "source": "parts_cat_idle.png",
+    "box": [
+      971,
+      851,
+      1172,
+      1192
+    ],
+    "size": [
+      201,
+      341
+    ]
+  },
+  "cat_near_hind_paw": {
+    "source": "parts_cat_idle.png",
+    "box": [
+      524,
+      1037,
+      725,
+      1172
+    ],
+    "size": [
+      201,
+      135
+    ]
+  },
+  "cat_far_hind_paw": {
+    "source": "parts_cat_idle.png",
+    "box": [
+      156,
+      1070,
+      320,
+      1167
+    ],
+    "size": [
+      164,
+      97
+    ]
+  },
+  "cat_walk_reference": {
+    "source": "parts_cat_walk.png",
+    "box": [
+      18,
+      109,
+      501,
+      546
+    ],
+    "size": [
+      483,
+      437
+    ]
+  },
+  "cat_walk_front_near": {
+    "source": "parts_cat_walk.png",
+    "box": [
+      1052,
+      250,
+      1184,
+      550
+    ],
+    "size": [
+      132,
+      300
+    ]
+  },
+  "cat_walk_body": {
+    "source": "parts_cat_walk.png",
+    "box": [
+      569,
+      300,
+      915,
+      511
+    ],
+    "size": [
+      346,
+      211
+    ]
+  },
+  "cat_walk_rear_near": {
+    "source": "parts_cat_walk.png",
+    "box": [
+      571,
+      625,
+      759,
+      912
+    ],
+    "size": [
+      188,
+      287
+    ]
+  },
+  "cat_walk_front_far": {
+    "source": "parts_cat_walk.png",
+    "box": [
+      169,
+      634,
+      291,
+      902
+    ],
+    "size": [
+      122,
+      268
+    ]
+  },
+  "cat_walk_rear_far": {
+    "source": "parts_cat_walk.png",
+    "box": [
+      1003,
+      646,
+      1124,
+      912
+    ],
+    "size": [
+      121,
+      266
+    ]
+  }
+}
