@@ -19,7 +19,7 @@ class AndroidPetOverlay extends StatefulWidget {
 
 class _AndroidPetOverlayState extends State<AndroidPetOverlay> {
   static const _channel = MethodChannel('jp.yoinoko.app/overlay');
-  final _wander = RoomWander();
+  final _wander = RoomWander(turnDuration: .68);
   final _random = Random();
   Companion? _character;
   Rect _bounds = Rect.zero;
@@ -97,13 +97,20 @@ class _AndroidPetOverlayState extends State<AndroidPetOverlay> {
         .platformDispatcher
         .accessibilityFeatures
         .disableAnimations;
+    final oldDirection = _wander.direction;
+    final wasPreparing = _wander.preparing;
     _wander.advance(
       .033,
       _bounds,
       _wander.position,
       enabled: !_tapped && c.hp > 20 && c.stage == LifeStage.active && !reduced,
     );
-    if (_moving != _wander.moving) setState(() => _moving = _wander.moving);
+    if (_moving != _wander.moving ||
+        oldDirection != _wander.direction ||
+        wasPreparing != _wander.preparing ||
+        (c.form.imageId == 'stage1_self_care' && _wander.moving)) {
+      setState(() => _moving = _wander.moving);
+    }
     _move();
   }
 
@@ -189,6 +196,8 @@ class _AndroidPetOverlayState extends State<AndroidPetOverlay> {
                           wander: false,
                           walking: !_dragging && !_tapped && _moving,
                           facingRight: _wander.facingRight,
+                          travelDirection: _wander.direction,
+                          movementSpeed: _wander.speed,
                           motion: _character!.stage != LifeStage.active
                               ? CharacterMotion.sleeping
                               : _tapped

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../data/models.dart';
 import '../core/character_animation.dart';
 import 'character_rive_view.dart';
+import 'mikeluna_sprite_view.dart';
 
 /// Drop-in seam for a future Rive renderer; screens never depend on Rive internals.
 typedef CharacterRenderer =
@@ -42,6 +43,8 @@ class CharacterView extends StatefulWidget {
     this.wander = true,
     this.walking,
     this.facingRight,
+    this.travelDirection,
+    this.movementSpeed,
   });
   final Companion character;
   final double size;
@@ -52,6 +55,8 @@ class CharacterView extends StatefulWidget {
   final double wanderDistance;
   final bool wander;
   final bool? walking, facingRight;
+  final Offset? travelDirection;
+  final double? movementSpeed;
   @override
   State<CharacterView> createState() => _CharacterViewState();
 }
@@ -217,6 +222,21 @@ class _CharacterViewState extends State<CharacterView>
                           animate: widget.animate,
                           walking: widget.walking ?? false,
                           facingRight: widget.facingRight ?? true,
+                        )
+                      : widget.character.form.imageId == 'stage1_self_care'
+                      ? MikelunaSpriteView(
+                          motion: _rigMotion,
+                          animate: widget.animate,
+                          walking: widget.walking ?? false,
+                          direction:
+                              widget.travelDirection ??
+                              (widget.facingRight == null
+                                  ? null
+                                  : Offset(widget.facingRight! ? 1 : -1, 0)),
+                          pace: widget.movementSpeed == null
+                              ? 1
+                              : widget.movementSpeed! /
+                                    (widget.size * .18 / 1.28),
                         )
                       : _hasRig
                       ? CharacterRiveView(

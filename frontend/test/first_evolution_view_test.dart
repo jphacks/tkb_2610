@@ -17,9 +17,10 @@ Future<void> loaded(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('第一進化7体で正しいモデル、タッチ、歩行中の停止とおやすみを扱う', (t) async {
+  testWidgets('Riveを使う第一進化6体でモデル、タッチ、停止とおやすみを扱う', (t) async {
     var taps = 0;
     for (final category in categoryIds) {
+      if (category == 'self_care') continue; // Covered by mikeluna_sprite_test.
       final kind = 'stage1_$category';
       final character = Companion(
         id: kind,
